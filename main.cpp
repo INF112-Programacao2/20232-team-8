@@ -1,0 +1,12 @@
+#include <string>
+#include "alcool.h"
+#include "algodao.h"
+#include "aplicador.h"
+#include "historico.h"
+#include "luva.h"
+#include "paciente.h"
+#include "posto.h"
+#include "produto.h"
+#include "seringa.h"
+#include "usuario.h"
+#include "vacina.h"
