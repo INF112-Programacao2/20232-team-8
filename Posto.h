@@ -1,17 +1,23 @@
 #ifndef INF112_POSTO_H
 #define INF112_POSTO_H
 #include <string>
-#include "produto.h"
+#include "Estoque.h"
+#include "Vacina.h"
 
 class Posto {
     private:
-    std::string _login;
-    int _senha;
+    std::string _nome
     std::string _endereco;
-    Produto _estoque;
+    Estoque _estoque;
+    Vacina _vacina;
 
     public:
-    Posto(std::string _login, int _senha, std::string _endereco, Produto _estoque);
+    //construtor
+    Posto(std::string nome, std::string _endereco, Estoque estoque, Vacina vacina);
+    //métodos para alteração de variáveis
+    void set_nome(std::string nome);
+    void set_endereco(std::string endereco);
+
 };
 
 #endif
