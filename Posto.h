@@ -1,8 +1,8 @@
 #ifndef INF112_POSTO_H
 #define INF112_POSTO_H
 #include <string>
-#include "Estoque.h"
-#include "Vacina.h"
+#include "estoque.h"
+#include "vacina.h"
 
 class Posto {
     private:
