@@ -12,7 +12,6 @@ class Estoque {
         std::string _data_recebimento;
         std::string _lote;
     public:
-        //metodos da classe estoque
         //construtor
         Estoque(std::string nome, int quantidade, std::string validade, std::string data_recebimento, std::string lote);
         //metodos set 
