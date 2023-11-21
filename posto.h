@@ -6,7 +6,7 @@
 
 class Posto {
     private:
-    std::string _nome
+    std::string _nome;
     std::string _endereco;
     Estoque _estoque;
     Vacina _vacina;
@@ -17,6 +17,9 @@ class Posto {
     //métodos para alteração de variáveis
     void set_nome(std::string nome);
     void set_endereco(std::string endereco);
+    //métodos para visualização de variáveis
+    std::string get_nome();
+    std::string get_endereco();
 
 };
 

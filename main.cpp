@@ -7,3 +7,7 @@
 #include "vacina.h"
 #include "estoque.h"
 #include "gerente.h"
+
+int main(void){
+    
+}
