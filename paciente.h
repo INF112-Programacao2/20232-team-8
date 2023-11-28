@@ -8,7 +8,8 @@ private:
     std::string _cns;
     //Historico;
 public:
-    Paciente();
+    Paciente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
+                std::string cpf, std::string data_nascimento, std::string cns);
     std::string get_cns();
     void set_cns(std::string cns);
 };
