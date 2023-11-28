@@ -2,7 +2,7 @@
 #include "estoque.h"
 #include "vacina.h"
 
-Posto::Posto(std::string nome, std::string endereco, Estoque estoque, Vacina vacina):
+Posto::Posto(std::string nome, std::string endereco):
     _nome(nome), _endereco(endereco){}
 
 void Posto::set_nome(std::string nome){

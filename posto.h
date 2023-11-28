@@ -14,7 +14,7 @@ class Posto {
 
     public:
     //construtor
-    Posto(std::string nome, std::string endereco, Estoque estoque, Vacina vacina);
+    Posto(std::string nome, std::string endereco);
     //métodos para alteração de variáveis
     void set_nome(std::string nome);
     void set_endereco(std::string endereco);
