@@ -35,13 +35,13 @@ int main(void){
             throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
         }
     } catch(std::invalid_argument& e){
-        while(opcao1!=1 || opcao1!=2 || opcao1!=3 || !isdigit(opcao1)){
+        while(opcao1!=1 && opcao1!=2 && opcao1!=3 && !isdigit(opcao1)){
             std::cerr << e.what();
             std::cin >> opcao1;
         }
     }
     if(opcao1==1){ //área de acesso do paciente
-        std::cout << "Você deseja realizar login ou cadastro?\n";
+        std::cout << "\nVocê deseja realizar login ou cadastro?\n";
         std::cout << "(1) Login\n(2) Cadastro\n";
         try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao2;
@@ -49,14 +49,16 @@ int main(void){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
         }
         } catch(std::invalid_argument& e){
-            while(opcao2!=1 || opcao2!=2 || !isdigit(opcao2)){
+            while(opcao2!=1 && opcao2!=2 && !isdigit(opcao2)){
                 std::cerr << e.what();
                 std::cin >> opcao2;
             }
         }
         if(opcao2==1){//verifica se o usuário está cadastrado
-            std::cout << "Digite seu nome de usuário e senha: ";
-            std::cin >> nome >> senha;
+            std::cout << "Digite seu nome de usuário: ";
+            std::cin >> nome;
+            std::cout << "Digite sua senha: ";
+            std::cin >> senha;
             bool existe=false;
             for(int i=0;i<p.size();i++){
                 if(nome==p[i].get_nome()){
@@ -227,8 +229,10 @@ int main(void){
             }
         }
         if(opcao2==1){//verifica se o usuário está cadastrado
-            std::cout << "Digite seu nome de usuário e senha: ";
-            std::cin >> nome >> senha;
+            std::cout << "Digite seu nome de usuário: ";
+            std::cin >> nome;
+            std::cout << "Digite sua senha: ";
+            std::cin >> senha;
             bool existe=false;
             for(int i=0;i<p.size();i++){
                 if(nome==p[i].get_nome()){
@@ -374,8 +378,10 @@ int main(void){
             }
         }
         if(opcao2==1){//verifica se o usuário está cadastrado
-            std::cout << "Digite seu nome de usuário e senha: ";
-            std::cin >> nome >> senha;
+            std::cout << "Digite seu nome de usuário: ";
+            std::cin >> nome;
+            std::cout << "Digite sua senha: ";
+            std::cin >> senha;
             bool existe=false;
             for(int i=0;i<p.size();i++){
                 if(nome==p[i].get_nome()){
