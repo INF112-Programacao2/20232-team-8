@@ -362,6 +362,7 @@ int main(void){
                 }
             }
             std::cout << "Digite sua data de nascimento: ";
+        }
     }
     else if(opcao1==3){ //área de acesso do aplicador
         std::cout << "Você deseja realizar login ou cadastro?\n";
@@ -535,8 +536,6 @@ int main(void){
                 }
             }
         }
-    }
-
 
     }
 }
