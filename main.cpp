@@ -14,14 +14,14 @@
 
 int main(void){
     //vector para cada tipo de usuário
-    std::vector <Paciente> p;
-    std::vector <Gerente> g;
-    std::vector <Aplicador> a;
+    std::vector <Paciente*> p;
+    std::vector <Gerente*> g;
+    std::vector <Aplicador*> a;
     //variáveis para a inicialização dos objetos
     std::string login, senha, nome, telefone, email, cpf, data_nascimento, coren, cns;
     int opcao1, opcao2;
     //objetos criados já existentes no sistema
-    p.push_back(Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
+    pacientes.push_back(Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
     p.push_back(Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","54665"));
     a.push_back(Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
     a.push_back(Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
@@ -189,6 +189,7 @@ int main(void){
                 }
             }
             std::cout << "Digite sua data de nascimento: ";
+            //std::cin >> data_nascimento;
             std::cout << "Digite o número do seu cartão nacional de saúde: ";
             try { //verifica se é um número válido
                 std::cin >> cns;
@@ -362,6 +363,7 @@ int main(void){
                 }
             }
             std::cout << "Digite sua data de nascimento: ";
+            //std::cin >> data_nascimento;
         }
     }
     else if(opcao1==3){ //área de acesso do aplicador
@@ -481,6 +483,7 @@ int main(void){
                 }
             }
             std::cout << "Digite seu email: ";
+            std::cin >> email;
             try { //verifica se possui @ e é um email válido
                 std::cin >> email;
                 for(int i=0;i<email.length();i++){
@@ -513,6 +516,7 @@ int main(void){
                 }
             }
             std::cout << "Digite sua data de nascimento: ";
+            std::cin >> data_nascimento;
             std::cout << "Digite seu número do coren: ";
             try { //verifica se o valor digitado é válido
                 std::cin >> coren;
@@ -536,6 +540,6 @@ int main(void){
                 }
             }
         }
-
+        //construtor do aplicador
+        a.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento, coren));
     }
-}
