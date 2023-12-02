@@ -21,10 +21,10 @@ int main(void){
     std::string login, senha, nome, telefone, email, cpf, data_nascimento, coren, cns;
     int opcao1, opcao2;
     //objetos criados já existentes no sistema
-    pacientes.push_back(Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
-    p.push_back(Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","54665"));
-    a.push_back(Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
-    a.push_back(Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
+    p.push_back(new Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
+    p.push_back(new Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","54665"));
+    a.push_back(new Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
+    a.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
     //definição de que tipo de usuário acessará o sistema, o que define diferentes funções
     std::cout << "----------------------------------" << std::endl;
     std::cout << "Que tipo de usuário você é?\n";
@@ -61,7 +61,7 @@ int main(void){
             std::cin >> senha;
             bool existe=false;
             for(int i=0;i<p.size();i++){
-                if(nome==p[i].get_nome()){
+                if(nome==p[i]->get_nome()){
                     existe=true;
                     break;
                 }
@@ -236,7 +236,7 @@ int main(void){
             std::cin >> senha;
             bool existe=false;
             for(int i=0;i<p.size();i++){
-                if(nome==p[i].get_nome()){
+                if(nome==p[i]->get_nome()){
                     existe=true;
                     break;
                 }
@@ -387,7 +387,7 @@ int main(void){
             std::cin >> senha;
             bool existe=false;
             for(int i=0;i<p.size();i++){
-                if(nome==p[i].get_nome()){
+                if(nome==p[i]->get_nome()){
                     existe=true;
                     break;
                 }
@@ -543,3 +543,4 @@ int main(void){
         //construtor do aplicador
         a.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento, coren));
     }
+}
