@@ -21,13 +21,12 @@ int main(void){
     std::string login, senha, nome, telefone, email, cpf, data_nascimento, coren, cns;
     std::string nome2, endereco;
     //dados de estoque
-    std::string nome, quantidade, validade, data_recebimento, lote; 
+    std::string nome3, validade, data_recebimento, lote; 
     int quantidade;
     //dados de vacina
     std::string fabricante, tipo, aplicacao;
     //valor das opcoes
-    int opcao1, opcao2;
-    std::string opcao3;
+    std::string opcao1, opcao2, opcao3;
     int aux; //guarda o indice do usuario
     //objetos criados já existentes no sistema
     p.push_back(new Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
@@ -36,35 +35,36 @@ int main(void){
     a.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
     g.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004", "posto1", "sao sebastiao"));
     //definição de que tipo de usuário acessará o sistema, o que define diferentes funções
-    std::cout << "----------------------------------" << std::endl;
+    std::cout << "--------------- Inicio --------------- " << std::endl;
     std::cout << "Que tipo de usuário você é?\n";
     std::cout << "(1) Paciente\n(2) Gerente\n(3) Aplicador\n";
     try{ //tratamento de exceção caso a opção seja inválida
         std::cin >> opcao1;
-        if(opcao1!=1 || opcao1!=2 || opcao1!=3 || !isdigit(opcao1)){
+        if(opcao1!="1" || opcao1!="2" || opcao1!="3"){
             throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
         }
     } catch(std::invalid_argument& e){
-        while(opcao1!=1 && opcao1!=2 && opcao1!=3 && !isdigit(opcao1)){
+        while(opcao1!="1" && opcao1!="2" && opcao1!="3"){
             std::cerr << e.what();
             std::cin >> opcao1;
         }
     }
-    if(opcao1==1){ //área de acesso do paciente
+    if(opcao1=="1"){ //área de acesso do paciente
         std::cout << "\nVocê deseja realizar login ou cadastro?\n";
         std::cout << "(1) Login\n(2) Cadastro\n";
         try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao2;
-            if(opcao2!=1 || opcao2!=2 || !isdigit(opcao2)){
+            if(opcao2!="1" || opcao2!="2"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
         }
         } catch(std::invalid_argument& e){
-            while(opcao2!=1 && opcao2!=2 && !isdigit(opcao2)){
+            while(opcao2!="1" && opcao2!="2"){
                 std::cerr << e.what();
                 std::cin >> opcao2;
             }
         }
-        if(opcao2==1){//verifica se o usuário está cadastrado
+        if(opcao2=="1"){//verifica se o usuário está cadastrado
+            std::cout << "\n--------------- Login --------------- " << std::endl;
             std::cout << "Digite seu nome de usuário: ";
             std::cin >> nome;
             std::cout << "Digite sua senha: ";
@@ -81,8 +81,9 @@ int main(void){
                 opcao2=2;
             }
         }
-        if(opcao2==2){ //realiza o cadastro
+        if(opcao2=="2"){ //realiza o cadastro
             //leitura dos dados e tratamento de excessão
+            std::cout << "\n--------------- Cadastro --------------- " << std::endl;
             std::cout << "Digite o nome de usuário desejado: ";
             bool valido=true;
             bool validonome=true;
@@ -225,22 +226,23 @@ int main(void){
 
         }
     }
-    else if(opcao1==2){ //área de acesso do gerente
+    else if(opcao1=="2"){ //área de acesso do gerente
         std::cout << "\nVocê deseja realizar login ou cadastro?\n";
         std::cout << "(1) Login\n(2) Cadastro\n";
         try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao2;
-            if(opcao2!=1 || opcao2!=2 || !isdigit(opcao2)){
+            if(opcao2!="1" || opcao2!="2"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
         }
         } catch(std::invalid_argument& e){
-            while(opcao2!=1 && opcao2!=2 && !isdigit(opcao2)){
+            while(opcao2!="1" && opcao2!="2"){
                 std::cerr << e.what();
                 std::cin >> opcao2;
             }
         }
-        if(opcao2==1){//verifica se o usuário está cadastrado
-            std::cout << "\nDigite seu nome de usuário: ";
+        if(opcao2=="1"){//verifica se o usuário está cadastrado
+            std::cout << "\n--------------- Login --------------- " << std::endl;
+            std::cout << "Digite seu nome de usuário: ";
             std::cin >> login;
             std::cout << "Digite sua senha: ";
             std::cin >> senha;
@@ -254,12 +256,13 @@ int main(void){
             }
             if(!existe){ //se não existir, realiza o cadastro
                 std::cout << "Usuário inexistente, realize cadastro\n";
-                opcao2=2;
+                opcao2="2";
             }
         }
-        if(opcao2==2){ //realiza o cadastro
+        if(opcao2=="2"){ //realiza o cadastro
             //leitura dos dados e tratamento de excessão
-            std::cout << "\nDigite o nome de usuário desejado: ";
+            std::cout << "\n--------------- Cadastro --------------- " << std::endl;
+            std::cout << "Digite o nome de usuário desejado: ";
             bool valido=true;
             bool validonome=true;
             bool validotel=true;
@@ -412,24 +415,25 @@ int main(void){
         }
         //operacao de fazer pedido
         if(opcao3 == "4"){
-            g[aux]->vizualizar_estoque();
+            g[aux]->fazer_pedido();
         }
     }
-    else if(opcao1==3){ //área de acesso do aplicador
+    else if(opcao1=="3"){ //área de acesso do aplicador
         std::cout << "Você deseja realizar login ou cadastro?\n";
         std::cout << "(1) Login\n(2) Cadastro\n";
         try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao2;
-            if(opcao2!=1 || opcao2!=2 || !isdigit(opcao2)){
+            if(opcao2!="1" || opcao2!="2"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
         }
         } catch(std::invalid_argument& e){
-            while(opcao2!=1 || opcao2!=2 || !isdigit(opcao2)){
+            while(opcao2!="1" || opcao2!="2"){
                 std::cerr << e.what();
                 std::cin >> opcao2;
             }
         }
-        if(opcao2==1){//verifica se o usuário está cadastrado
+        if(opcao2=="1"){//verifica se o usuário está cadastrado
+            std::cout << "\n--------------- Login --------------- " << std::endl;
             std::cout << "Digite seu nome de usuário: ";
             std::cin >> nome;
             std::cout << "Digite sua senha: ";
@@ -446,8 +450,9 @@ int main(void){
                 opcao2=2;
             }
         }
-        if(opcao2==2){ //realiza o cadastro
+        if(opcao2=="2"){ //realiza o cadastro
             //leitura dos dados e tratamento de excessão
+            std::cout << "\n--------------- Cadastro --------------- " << std::endl;
             std::cout << "Digite o nome de usuário desejado: ";
             bool valido=true;
             bool validonome=true;

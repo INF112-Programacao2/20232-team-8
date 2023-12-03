@@ -13,8 +13,8 @@ class Gerente : public Usuario{
     public:
     Gerente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string data_nascimento,std::string nome2, std::string endereco);
-    void alterar_estoque();
     void adicionar_estoque();
+    void alterar_estoque();
     void vizualizar_estoque();
     void fazer_pedido();
 };
