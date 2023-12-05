@@ -22,7 +22,7 @@ int main(void){
     std::string nome2, endereco;
     //dados de estoque
     std::string nome3, validade, data_recebimento, lote; 
-    int quantidade;
+    int quantidade, dia, mes, ano;
     //dados de vacina
     std::string fabricante, tipo, aplicacao;
     //valor das opcoes
@@ -90,11 +90,12 @@ int main(void){
             bool validotel=true;
             bool validocpf=true;
             bool validoemail=false;
+            bool validodata=true;
             bool validocns=true;
             try{ //verifica se é válido
                 std::cin >> login;
                 for(int i=0;i<login.length();i++){
-                    if(!isalpha(login[i]) || !isdigit(login[i])){
+                    if(ispunct(login[i])){
                         valido=false;
                         throw std::invalid_argument ("O login só pode conter letras e números, digite novamente\n");
                     }
@@ -104,7 +105,7 @@ int main(void){
                     std::cerr << e.what();
                     std::cin >> login;
                     for(int i=0;i<login.length();i++){
-                        if(!isalpha(login[i]) || !isdigit(login[i])){
+                        if(ispunct(login[i])){
                             valido=false;
                             break;
                         }
@@ -137,7 +138,7 @@ int main(void){
                 while(!validonome){
                     std::cerr << e.what();
                     std::cin >> nome;
-                    for(int i=0;i,nome.length();i++){
+                    for(int i=0;i<nome.length();i++){
                         if(!isalpha(nome[i])){
                             validonome=false;
                             break;
@@ -158,8 +159,9 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validotel){
                     std::cerr << e.what();
-                    for(int i=0;i,nome.length();i++){
-                        if(isalpha(nome[i]) || telefone.length()<10){
+                    std::cin >> telefone;
+                    for(int i=0;i<telefone.length();i++){
+                        if(isalpha(telefone[i]) || telefone.length()<10){
                             validotel=false;
                             break;
                         }
@@ -190,17 +192,27 @@ int main(void){
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
-                if(cpf.length()<11){
-                    throw std::invalid_argument ("Digite um cpf válido\n");
+                for(int i=0;i<cpf.length();i++){
+                    if(cpf.length()<11 || isalpha(cpf[i])){
+                        validocpf=false;
+                        throw std::invalid_argument ("Digite um cpf válido\n");
+                    }
                 }
             } catch(std::invalid_argument& e){
-                while(cpf.length()<11){
+                while(!validocpf){
                     std::cerr << e.what();
                     std::cin >> cpf;
+                    for(int i=0;i<cpf.length();i++){
+                        if(isalpha(cpf[i]) || cpf.length()<11){
+                            validocpf=false;
+                            break;
+                        }
+                        validocpf=true;
+                    }
                 }
             }
             std::cout << "Digite sua data de nascimento: ";
-            //std::cin >> data_nascimento;
+            std::cin >> data_nascimento;
             std::cout << "Digite o número do seu cartão nacional de saúde: ";
             try { //verifica se é um número válido
                 std::cin >> cns;
@@ -223,6 +235,8 @@ int main(void){
                     }
                 }
             }
+            //construtor do paciente
+            p.push_back(new Paciente(login,senha,nome,telefone,email,cpf,data_nascimento,cns));
 
         }
     }
@@ -268,10 +282,11 @@ int main(void){
             bool validotel=true;
             bool validocpf=true;
             bool validoemail=false;
+            bool validonome2=true;
             try{ //verifica se é válido
                 std::cin >> login;
                 for(int i=0;i<login.length();i++){
-                    if(!isalpha(login[i]) || !isdigit(login[i])){
+                    if(ispunct(login[i])){
                         valido=false;
                         throw std::invalid_argument ("O login só pode conter letras e números, digite novamente\n");
                     }
@@ -281,7 +296,7 @@ int main(void){
                     std::cerr << e.what();
                     std::cin >> login;
                     for(int i=0;i<login.length();i++){
-                        if(!isalpha(login[i]) || !isdigit(login[i])){
+                        if(ispunct(login[i])){
                             valido=false;
                             break;
                         }
@@ -314,7 +329,7 @@ int main(void){
                 while(!validonome){
                     std::cerr << e.what();
                     std::cin >> nome;
-                    for(int i=0;i,nome.length();i++){
+                    for(int i=0;i<nome.length();i++){
                         if(!isalpha(nome[i])){
                             validonome=false;
                             break;
@@ -335,8 +350,9 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validotel){
                     std::cerr << e.what();
-                    for(int i=0;i,nome.length();i++){
-                        if(isalpha(nome[i]) || telefone.length()<10){
+                    std::cin >> telefone;
+                    for(int i=0;i<telefone.length();i++){
+                        if(isalpha(telefone[i]) || telefone.length()<10){
                             validotel=false;
                             break;
                         }
@@ -367,20 +383,50 @@ int main(void){
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
-                if(cpf.length()<11){
-                    throw std::invalid_argument ("Digite um cpf válido\n");
+                for(int i=0;i<cpf.length();i++){
+                    if(cpf.length()<11 || isalpha(cpf[i])){
+                        validocpf=false;
+                        throw std::invalid_argument ("Digite um cpf válido\n");
+                    }
                 }
             } catch(std::invalid_argument& e){
-                while(cpf.length()<11){
+                while(!validocpf){
                     std::cerr << e.what();
                     std::cin >> cpf;
+                    for(int i=0;i<cpf.length();i++){
+                        if(isalpha(cpf[i]) || cpf.length()<11){
+                            validocpf=false;
+                            break;
+                        }
+                        validocpf=true;
+                    }
                 }
             }
             //tem que adicionar excecao depois
             std::cout << "Digite sua data de nascimento: ";
             std::cin >> data_nascimento;
             //variaveis do posto
-            std::cin >> nome2;
+            try{ //verifica se é válido
+                std::cin >> nome2;
+                for(int i=0;i<nome2.length();i++){
+                    if(!isalpha(nome2[i])){
+                        validonome2=false;
+                        throw std::invalid_argument ("O nome só pode conter letras, digite novamente\n");
+                    }
+                }
+            } catch(std::invalid_argument& e){
+                while(!validonome2){
+                    std::cerr << e.what();
+                    std::cin >> nome2;
+                    for(int i=0;i<nome2.length();i++){
+                        if(!isalpha(nome2[i])){
+                            validonome2=false;
+                            break;
+                        }
+                        validonome2=true;
+                    }
+                }
+            }
             std::cin >> endereco;
             //construtor do gerente
             g.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento,nome2,endereco));
@@ -463,7 +509,7 @@ int main(void){
             try{ //verifica se é válido
                 std::cin >> login;
                 for(int i=0;i<login.length();i++){
-                    if(!isalpha(login[i]) || !isdigit(login[i])){
+                    if(ispunct(login[i])){
                         valido=false;
                         throw std::invalid_argument ("O login só pode conter letras e números, digite novamente\n");
                     }
@@ -473,7 +519,7 @@ int main(void){
                     std::cerr << e.what();
                     std::cin >> login;
                     for(int i=0;i<login.length();i++){
-                        if(!isalpha(login[i]) || !isdigit(login[i])){
+                        if(ispunct(login[i])){
                             valido=false;
                             break;
                         }
@@ -506,7 +552,7 @@ int main(void){
                 while(!validonome){
                     std::cerr << e.what();
                     std::cin >> nome;
-                    for(int i=0;i,nome.length();i++){
+                    for(int i=0;i<nome.length();i++){
                         if(!isalpha(nome[i])){
                             validonome=false;
                             break;
@@ -527,8 +573,9 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validotel){
                     std::cerr << e.what();
-                    for(int i=0;i,nome.length();i++){
-                        if(isalpha(nome[i]) || telefone.length()<10){
+                    std::cin >> telefone;
+                    for(int i=0;i<telefone.length();i++){
+                        if(isalpha(telefone[i]) || telefone.length()<10){
                             validotel=false;
                             break;
                         }
@@ -537,7 +584,6 @@ int main(void){
                 }
             }
             std::cout << "Digite seu email: ";
-            std::cin >> email;
             try { //verifica se possui @ e é um email válido
                 std::cin >> email;
                 for(int i=0;i<email.length();i++){
@@ -560,13 +606,23 @@ int main(void){
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
-                if(cpf.length()<11){
-                    throw std::invalid_argument ("Digite um cpf válido\n");
+                for(int i=0;i<cpf.length();i++){
+                    if(cpf.length()<11 || isalpha(cpf[i])){
+                        validocpf=false;
+                        throw std::invalid_argument ("Digite um cpf válido\n");
+                    }
                 }
             } catch(std::invalid_argument& e){
-                while(cpf.length()<11){
+                while(!validocpf){
                     std::cerr << e.what();
                     std::cin >> cpf;
+                    for(int i=0;i<cpf.length();i++){
+                        if(isalpha(cpf[i]) || cpf.length()<11){
+                            validocpf=false;
+                            break;
+                        }
+                        validocpf=true;
+                    }
                 }
             }
             std::cout << "Digite sua data de nascimento: ";
@@ -593,6 +649,8 @@ int main(void){
                     }
                 }
             }
+            //construtor de aplicador
+            a.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
         }
     }
 }
