@@ -9,8 +9,8 @@ class Posto {
     private:
     std::string _nome;
     std::string _endereco;
-    std::vector <Estoque> _estoque;
-    std::vector <Vacina> _vacina;
+    std::vector <Estoque*> _estoque;
+    std::vector <Vacina*> _vacina;
 
     public:
     //construtor
