@@ -15,6 +15,8 @@ public:
                 std::string cpf, std::string data_nascimento, std::string cns);
     std::string get_cns();
     void set_cns(std::string cns);
+    void modificar_dados();
+    void visualizar_dados();
 };
 
 #endif

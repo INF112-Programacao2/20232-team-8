@@ -239,6 +239,57 @@ int main(void){
             p.push_back(new Paciente(login,senha,nome,telefone,email,cpf,data_nascimento,cns));
 
         }
+        //operações do gerente
+        std::cout << "\nQual operação deseja realizar?\n";
+        std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Vizualizar estoque\n(4) Fazer Pedido\n";
+        try{ //tratamento de exceção caso a opção seja inválida
+        std::cin >> opcao3;
+        if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
+            throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+        }
+        } catch(std::invalid_argument& e){
+            while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5"){
+                std::cerr << e.what();
+                std::cin >> opcao3;
+            }
+        } 
+    
+        while(true){
+            //operações do paciente
+            std::cout << "\nQual operação deseja realizar?\n";
+            std::cout << "(1) Modificar Dados\n(2) Visualizar Dados\n";
+            try{ //tratamento de exceção caso a opção seja inválida
+            std::cin >> opcao3;
+            if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4" || opcao3!="5"){
+                throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+            }
+            } catch(std::invalid_argument& e){
+            while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5"){
+                std::cin.clear();
+                std::cerr << e.what();
+                std::cin >> opcao3;
+                }
+            } 
+            //operacao de adicionar o estoque
+            if(opcao3 == "1"){
+                g[aux]->adicionar_estoque();
+            }
+            //operacao de alterar o estoque
+            if(opcao3 == "2"){
+                g[aux]->alterar_estoque();
+            }
+            //operacao de vizualizar o estoque
+            if(opcao3 == "3"){
+                g[aux]->vizualizar_estoque();
+            }
+            //operacao de fazer pedido
+            if(opcao3 == "4"){
+                g[aux]->fazer_pedido();
+            }
+            if(opcao3 == "5"){
+                break;
+            }
+        }
     }
     else if(opcao1=="2"){ //área de acesso do gerente
         std::cout << "\nVocê deseja realizar login ou cadastro?\n";
@@ -690,4 +741,5 @@ int main(void){
         }
         if(opcao3=="1")
             a[aux] -> registrar_vacina();
+}
 }
