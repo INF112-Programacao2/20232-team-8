@@ -313,7 +313,7 @@ int main(void){
             } 
             //operacao de modificar dados
             if(opcao4 == "1"){
-                paciente[aux]->modificar_dados();
+                paciente[aux]->modificar_dados(paciente);
             }
             //operacao de visualizar dados
             if(opcao4 == "2"){
