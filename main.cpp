@@ -150,8 +150,12 @@ int main(void){
             std::cout << "Digite um número de contato: ";
             try{ //verifica se é válido
                 std::cin >> telefone;
+                if(telefone.length()<10){
+                    validotel=false;
+                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
+                }
                 for(int i=0;i<telefone.length();i++){
-                    if(isalpha(telefone[i]) || telefone.length()<10){
+                    if(isalpha(telefone[i])){
                         validotel=false;
                         throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
                     }
@@ -161,11 +165,14 @@ int main(void){
                     std::cerr << e.what();
                     std::cin >> telefone;
                     for(int i=0;i<telefone.length();i++){
-                        if(isalpha(telefone[i]) || telefone.length()<10){
+                        if(isalpha(telefone[i])){
                             validotel=false;
                             break;
                         }
                         validotel=true;
+                    }
+                    if(telefone.length()<10){
+                        validotel=false;
                     }
                 }
             }
@@ -192,8 +199,12 @@ int main(void){
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
+                if(cpf.length()<11){
+                    validocpf=false;
+                    throw std::invalid_argument ("Digite um cpf válido\n");
+                }
                 for(int i=0;i<cpf.length();i++){
-                    if(cpf.length()<11 || isalpha(cpf[i])){
+                    if(isalpha(cpf[i])){
                         validocpf=false;
                         throw std::invalid_argument ("Digite um cpf válido\n");
                     }
@@ -203,11 +214,14 @@ int main(void){
                     std::cerr << e.what();
                     std::cin >> cpf;
                     for(int i=0;i<cpf.length();i++){
-                        if(isalpha(cpf[i]) || cpf.length()<11){
+                        if(isalpha(cpf[i])){
                             validocpf=false;
                             break;
                         }
                         validocpf=true;
+                    }
+                    if(cpf.length()<11){
+                        validocpf=false;
                     }
                 }
             }
@@ -341,8 +355,12 @@ int main(void){
             std::cout << "Digite um número de contato: ";
             try{ //verifica se é válido
                 std::cin >> telefone;
+                if(telefone.length()<10){
+                    validotel=false;
+                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
+                }
                 for(int i=0;i<telefone.length();i++){
-                    if(isalpha(telefone[i]) || telefone.length()<10){
+                    if(isalpha(telefone[i])){
                         validotel=false;
                         throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
                     }
@@ -352,11 +370,14 @@ int main(void){
                     std::cerr << e.what();
                     std::cin >> telefone;
                     for(int i=0;i<telefone.length();i++){
-                        if(isalpha(telefone[i]) || telefone.length()<10){
+                        if(isalpha(telefone[i])){
                             validotel=false;
                             break;
                         }
                         validotel=true;
+                    }
+                    if(telefone.length()<10){
+                        validotel=false;
                     }
                 }
             }
@@ -383,8 +404,12 @@ int main(void){
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
+                if(cpf.length()<11){
+                    validocpf=false;
+                    throw std::invalid_argument ("Digite um cpf válido\n");
+                }
                 for(int i=0;i<cpf.length();i++){
-                    if(cpf.length()<11 || isalpha(cpf[i])){
+                    if(isalpha(cpf[i])){
                         validocpf=false;
                         throw std::invalid_argument ("Digite um cpf válido\n");
                     }
@@ -394,11 +419,14 @@ int main(void){
                     std::cerr << e.what();
                     std::cin >> cpf;
                     for(int i=0;i<cpf.length();i++){
-                        if(isalpha(cpf[i]) || cpf.length()<11){
+                        if(isalpha(cpf[i])){
                             validocpf=false;
                             break;
                         }
                         validocpf=true;
+                    }
+                    if(cpf.length()<11){
+                        validocpf=false;
                     }
                 }
             }
@@ -406,6 +434,7 @@ int main(void){
             std::cout << "Digite sua data de nascimento: ";
             std::cin >> data_nascimento;
             //variaveis do posto
+            std::cout << "Digite o nome do posto onde trabalha: ";
             try{ //verifica se é válido
                 std::cin >> nome2;
                 for(int i=0;i<nome2.length();i++){
@@ -427,6 +456,7 @@ int main(void){
                     }
                 }
             }
+            std::cout << "Digite o endereço do posto onde trabalha: ";
             std::cin >> endereco;
             //construtor do gerente
             g.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento,nome2,endereco));
@@ -564,8 +594,12 @@ int main(void){
             std::cout << "Digite um número de contato: ";
             try{ //verifica se é válido
                 std::cin >> telefone;
+                if(telefone.length()<10){
+                    validotel=false;
+                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
+                }
                 for(int i=0;i<telefone.length();i++){
-                    if(isalpha(telefone[i]) || telefone.length()<10){
+                    if(isalpha(telefone[i])){
                         validotel=false;
                         throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
                     }
@@ -575,11 +609,14 @@ int main(void){
                     std::cerr << e.what();
                     std::cin >> telefone;
                     for(int i=0;i<telefone.length();i++){
-                        if(isalpha(telefone[i]) || telefone.length()<10){
+                        if(isalpha(telefone[i])){
                             validotel=false;
                             break;
                         }
                         validotel=true;
+                    }
+                    if(telefone.length()<10){
+                        validotel=false;
                     }
                 }
             }
@@ -606,8 +643,12 @@ int main(void){
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
+                if(cpf.length()<11){
+                    validocpf=false;
+                    throw std::invalid_argument ("Digite um cpf válido\n");
+                }
                 for(int i=0;i<cpf.length();i++){
-                    if(cpf.length()<11 || isalpha(cpf[i])){
+                    if(isalpha(cpf[i])){
                         validocpf=false;
                         throw std::invalid_argument ("Digite um cpf válido\n");
                     }
@@ -617,11 +658,14 @@ int main(void){
                     std::cerr << e.what();
                     std::cin >> cpf;
                     for(int i=0;i<cpf.length();i++){
-                        if(isalpha(cpf[i]) || cpf.length()<11){
+                        if(isalpha(cpf[i])){
                             validocpf=false;
                             break;
                         }
                         validocpf=true;
+                    }
+                    if(cpf.length()<11){
+                        validocpf=false;
                     }
                 }
             }
