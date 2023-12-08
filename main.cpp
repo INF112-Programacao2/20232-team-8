@@ -225,8 +225,49 @@ int main(void){
                     }
                 }
             }
-            std::cout << "Digite sua data de nascimento: ";
-            std::cin >> data_nascimento;
+            std::string d,m,a;
+            s:
+            try{
+                std::cout << "Digite a data_nascimento no formato dd/mm/aaaa: ";
+                std::cin >> data_nascimento;
+                if(data_nascimento.length()!=10){
+                    validodata=false;
+                    throw std::invalid_argument("Digite a data_nascimento no formato especificado\n");
+                }
+                d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
+                m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
+                a[0]=data_nascimento[6]; a[1]=data_nascimento[7]; a[2]=data_nascimento[8]; a[3]=data_nascimento[9];
+                if(stoi(d)<=0){
+                    validodata=false;
+                    throw std::invalid_argument("Dia inválido, digite novamente\n");
+                }
+                if(stoi(m)>12 || stoi(m)<0){
+                    validodata=false;
+                    throw std::invalid_argument("Mês inválido, digite novamente\n");
+                }
+                if((stoi(m)==1 || stoi(m)==3 || stoi(m)==5 || stoi(m)==7 || stoi(m)==8 || stoi(m)==10 || stoi(m)==12) && stoi(d)>31){
+                    validodata=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if((stoi(m)==4 || stoi(m)==6 || stoi(m)==9 || stoi(m)==11) && stoi(d)>31){
+                    validodata=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if(stoi(m)==2 && stoi(d)>28){
+                    validodata=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if(stoi(a)>2023 || stoi(a)<1907){
+                    validodata=false;
+                    throw std::invalid_argument("Ano inválido, digite novamente\n");
+                }
+                validodata=true;
+            } catch(std::invalid_argument& e){
+                std::cerr << e.what();
+                if(!validodata){
+                    goto s;
+                }
+            }
             std::cout << "Digite o número do seu cartão nacional de saúde: ";
             try { //verifica se é um número válido
                 std::cin >> cns;
@@ -324,6 +365,7 @@ int main(void){
             bool validocpf=true;
             bool validoemail=false;
             bool validonome2=true;
+            bool validodata=true;
             try{ //verifica se é válido
                 std::cin >> login;
                 for(int i=0;i<login.length();i++){
@@ -457,9 +499,50 @@ int main(void){
                     }
                 }
             }
-            //tem que adicionar excecao depois
-            std::cout << "Digite sua data de nascimento: ";
-            std::cin >> data_nascimento;
+            //tratamento de exceção da data
+            std::string d,m,a;
+            i:
+            try{
+                std::cout << "Digite a data_nascimento no formato dd/mm/aaaa: ";
+                std::cin >> data_nascimento;
+                if(data_nascimento.length()!=10){
+                    validodata=false;
+                    throw std::invalid_argument("Digite a data_nascimento no formato especificado\n");
+                }
+                d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
+                m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
+                a[0]=data_nascimento[6]; a[1]=data_nascimento[7]; a[2]=data_nascimento[8]; a[3]=data_nascimento[9];
+                if(stoi(d)<=0){
+                    validodata=false;
+                    throw std::invalid_argument("Dia inválido, digite novamente\n");
+                }
+                if(stoi(m)>12 || stoi(m)<0){
+                    validodata=false;
+                    throw std::invalid_argument("Mês inválido, digite novamente\n");
+                }
+                if((stoi(m)==1 || stoi(m)==3 || stoi(m)==5 || stoi(m)==7 || stoi(m)==8 || stoi(m)==10 || stoi(m)==12) && stoi(d)>31){
+                    validodata=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if((stoi(m)==4 || stoi(m)==6 || stoi(m)==9 || stoi(m)==11) && stoi(d)>31){
+                    validodata=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if(stoi(m)==2 && stoi(d)>28){
+                    validodata=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if(stoi(a)>2023 || stoi(a)<1907){
+                    validodata=false;
+                    throw std::invalid_argument("Ano inválido, digite novamente\n");
+                }
+                validodata=true;
+            } catch(std::invalid_argument& e){
+                std::cerr << e.what();
+                if(!validodata){
+                    goto i;
+                }
+            }
             //variaveis do posto
             std::cout << "Digite o nome do posto onde trabalha: ";
             try{ //verifica se é válido
@@ -568,6 +651,7 @@ int main(void){
             bool validocpf=true;
             bool validoemail=false;
             bool validocoren=true;
+            bool validodata=true;
             try{ //verifica se é válido
                 std::cin >> login;
                 for(int i=0;i<login.length();i++){
@@ -701,9 +785,49 @@ int main(void){
                     }
                 }
             }
-            // falta adicionar exceção
-            std::cout << "Digite sua data de nascimento: ";
-            std::cin >> data_nascimento;
+            std::string d,m,a;
+            t:
+            try{
+                std::cout << "Digite a data_nascimento no formato dd/mm/aaaa: ";
+                std::cin >> data_nascimento;
+                if(data_nascimento.length()!=10){
+                    validodata=false;
+                    throw std::invalid_argument("Digite a data_nascimento no formato especificado\n");
+                }
+                d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
+                m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
+                a[0]=data_nascimento[6]; a[1]=data_nascimento[7]; a[2]=data_nascimento[8]; a[3]=data_nascimento[9];
+                if(stoi(d)<=0){
+                    validodata=false;
+                    throw std::invalid_argument("Dia inválido, digite novamente\n");
+                }
+                if(stoi(m)>12 || stoi(m)<0){
+                    validodata=false;
+                    throw std::invalid_argument("Mês inválido, digite novamente\n");
+                }
+                if((stoi(m)==1 || stoi(m)==3 || stoi(m)==5 || stoi(m)==7 || stoi(m)==8 || stoi(m)==10 || stoi(m)==12) && stoi(d)>31){
+                    validodata=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if((stoi(m)==4 || stoi(m)==6 || stoi(m)==9 || stoi(m)==11) && stoi(d)>31){
+                    validodata=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if(stoi(m)==2 && stoi(d)>28){
+                    validodata=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if(stoi(a)>2023 || stoi(a)<1907){
+                    validodata=false;
+                    throw std::invalid_argument("Ano inválido, digite novamente\n");
+                }
+                validodata=true;
+            } catch(std::invalid_argument& e){
+                std::cerr << e.what();
+                if(!validodata){
+                    goto t;
+                }
+            } 
             std::cout << "Digite seu número do coren: ";
             try { //verifica se o valor digitado é válido
                 std::cin >> coren;
