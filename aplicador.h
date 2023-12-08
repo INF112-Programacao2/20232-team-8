@@ -10,6 +10,7 @@ private:
 public:
     Aplicador(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string data_nascimento, std::string coren);
+    ~Aplicador();
     
     std::string get_coren();
     void set_coren(std::string coren);

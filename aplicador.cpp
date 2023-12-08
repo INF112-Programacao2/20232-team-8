@@ -8,6 +8,8 @@ Aplicador::Aplicador(std::string login, std::string senha, std::string nome, std
                 std::string cpf, std::string data_nascimento, std::string coren):
                 Usuario(login,senha,nome,telefone,email,cpf,data_nascimento), _coren(coren){}
 
+Aplicador::~Aplicador() {}
+
 std::string Aplicador::get_coren(){
     return _coren;
 }
