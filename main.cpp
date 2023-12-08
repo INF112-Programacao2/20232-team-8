@@ -14,9 +14,9 @@
 
 int main(void){
     //vector para cada tipo de usuário
-    std::vector <Paciente*> p;
-    std::vector <Gerente*> g;
-    std::vector <Aplicador*> a;
+    std::vector <Paciente*> paciente;
+    std::vector <Gerente*> gerente;
+    std::vector <Aplicador*> aplicador;
     //variáveis para a inicialização dos objetos
     std::string login, senha, nome, telefone, email, cpf, data_nascimento, coren, cns;
     std::string nome2, endereco;
@@ -29,11 +29,11 @@ int main(void){
     std::string opcao1, opcao2, opcao3, opcao4, opcao5;
     int aux; //guarda o indice do usuario
     //objetos criados já existentes no sistema
-    p.push_back(new Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
-    p.push_back(new Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","54665"));
-    a.push_back(new Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
-    a.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
-    g.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004", "posto1", "sao sebastiao"));
+    paciente.push_back(new Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
+    paciente.push_back(new Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","54665"));
+    aplicador.push_back(new Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
+    aplicador.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
+    gerente.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004", "posto1", "sao sebastiao"));
     //definição de que tipo de usuário acessará o sistema, o que define diferentes funções
     std::cout << "--------------- Inicio --------------- " << std::endl;
     std::cout << "Que tipo de usuário você é?\n";
@@ -70,8 +70,8 @@ int main(void){
             std::cout << "Digite sua senha: ";
             std::cin >> senha;
             bool existe=false;
-            for(int i=0;i<p.size();i++){
-                if(nome==p[i]->get_nome()){
+            for(int i=0;i<paciente.size();i++){
+                if(nome==paciente[i]->get_nome()){
                     existe=true;
                     break;
                 }
@@ -291,7 +291,7 @@ int main(void){
                 }
             }
             //construtor do paciente
-            p.push_back(new Paciente(login,senha,nome,telefone,email,cpf,data_nascimento,cns));
+            paciente.push_back(new Paciente(login,senha,nome,telefone,email,cpf,data_nascimento,cns));
 
         }
 
@@ -313,11 +313,11 @@ int main(void){
             } 
             //operacao de modificar dados
             if(opcao4 == "1"){
-                p[aux]->modificar_dados();
+                paciente[aux]->modificar_dados();
             }
             //operacao de visualizar dados
             if(opcao4 == "2"){
-                p[aux]->visualizar_dados();
+                paciente[aux]->visualizar_dados();
             }
         }
     }
@@ -343,8 +343,8 @@ int main(void){
             std::cout << "Digite sua senha: ";
             std::cin >> senha;
             bool existe=false;
-            for(int i=0;i<g.size();i++){
-                if(login==g[i]->get_login()){
+            for(int i=0;i<gerente.size();i++){
+                if(login==gerente[i]->get_login()){
                     aux = i;
                     existe=true;
                     break;
@@ -569,7 +569,7 @@ int main(void){
             std::cout << "Digite o endereço do posto onde trabalha: ";
             std::cin >> endereco;
             //construtor do gerente
-            g.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento,nome2,endereco));
+            gerente.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento,nome2,endereco));
         }
     
         while(true){
@@ -590,19 +590,19 @@ int main(void){
             } 
             //operacao de adicionar o estoque
             if(opcao3 == "1"){
-                g[aux]->adicionar_estoque();
+                gerente[aux]->adicionar_estoque();
             }
             //operacao de alterar o estoque
             if(opcao3 == "2"){
-                g[aux]->alterar_estoque();
+                gerente[aux]->alterar_estoque();
             }
             //operacao de vizualizar o estoque
             if(opcao3 == "3"){
-                g[aux]->vizualizar_estoque();
+                gerente[aux]->vizualizar_estoque();
             }
             //operacao de fazer pedido
             if(opcao3 == "4"){
-                g[aux]->fazer_pedido();
+                gerente[aux]->fazer_pedido();
             }
             if(opcao3 == "5"){
                 break;
@@ -630,8 +630,8 @@ int main(void){
             std::cout << "Digite sua senha: ";
             std::cin >> senha;
             bool existe=false;
-            for(int i=0;i<p.size();i++){
-                if(nome==p[i]->get_nome()){
+            for(int i=0;i<aplicador.size();i++){
+                if(nome==aplicador[i]->get_nome()){
                     existe=true;
                     break;
                 }
@@ -851,7 +851,7 @@ int main(void){
                 }
             }
             //construtor de aplicador
-            a.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
+            aplicador.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
 
         while(true){
             // operações do aplicador
@@ -872,7 +872,7 @@ int main(void){
             }
 
             if(opcao5=="1"){
-                a[aux] -> registrar_vacina();
+                aplicador[aux] -> registrar_vacina();
             }    
         }
         }
