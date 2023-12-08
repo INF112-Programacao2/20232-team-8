@@ -580,14 +580,14 @@ int main(void){
         while(true){
             //operações do gerente
             std::cout << "\nQual operação deseja realizar?\n";
-            std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Vizualizar estoque\n(4) Fazer Pedido\n(5) Encerrar Sessão\n";
+            std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Visualizar estoque\n(4) Fazer Pedido\n(5) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
                 std::cin >> opcao3;
-            if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4" || opcao3!="5"){
+            if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-                while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5"){
+                while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
                     std::cin.clear();
                     std::cerr << e.what();
                     std::cin >> opcao3;
@@ -601,15 +601,12 @@ int main(void){
             if(opcao3 == "2"){
                 gerente[aux]->alterar_estoque();
             }
-            //operacao de vizualizar o estoque
+            //operacao de visualizar o estoque
             if(opcao3 == "3"){
-                gerente[aux]->vizualizar_estoque();
+                gerente[aux]->visualizar_estoque();
             }
-            //operacao de fazer pedido
+            //encerrar sessão
             if(opcao3 == "4"){
-                gerente[aux]->fazer_pedido();
-            }
-            if(opcao3 == "5"){
                 break;
             }
         }

@@ -4,6 +4,8 @@
 #include "gerente.h"
 #include "usuario.h"
 
+std::string opcao1;
+
 Gerente::Gerente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string data_nascimento,std::string nome2, std::string endereco):
     Usuario(login,senha,nome,telefone,email,cpf,data_nascimento), _posto(nome2,endereco){}
@@ -13,7 +15,6 @@ void Gerente::adicionar_estoque(){
     //dados do estoque
     std::string nome, validade, data_recebimento, lote;
     int quantidade;
-    std::string opcao1;
     std::cout << "\nQual o tipo de produto do estoque?\n";
     std::cout << "(1) Material\n(2) Vacina\n";
     try{ //tratamento de exceção caso a opção seja inválida
@@ -175,10 +176,29 @@ void Gerente::alterar_estoque(){
     std::cout << "Qual o tipo de produto do estoque? ";
 }
 
-void Gerente::vizualizar_estoque(){
-    std::cout << "Qual o tipo de produto do estoque? ";
-}
-
-void Gerente::fazer_pedido(){
-    std::cout << "Qual o tipo de produto do estoque? ";
+void Gerente::visualizar_estoque(){
+    std::cout << "\nQual o tipo de produto do estoque?\n";
+    std::cout << "(1) Material\n(2) Vacina\n";
+    try{ //tratamento de exceção caso a opção seja inválida
+        std::cin >> opcao1;
+        if(opcao1!="1" || opcao1!="2"){
+            throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+        }
+    } catch(std::invalid_argument& e){
+        while(opcao1!="1" && opcao1!="2"){
+            std::cerr << e.what();
+            std::cin >> opcao1;
+        }
+    }
+    if(opcao1 == "1"){
+        std::cout << "\n--------------- Materiais --------------- " << std::endl;
+        for(int i=0; i<_estoque.size(); i++){
+            std::cout << "Tipo: " << _estoque[i]->get_nome();
+            std::cout << "\nQuantidade: " << _estoque[i]->get_quantidade();
+            std::cout << "\nValidade: " << _estoque[i]->get_validade();
+            std::cout << "\nData de recebimento: " << _estoque[i]->get_data_recebimento();
+            std::cout << "\nLote: " << _estoque[i]->get_lote();
+            std::cout << "\n----------------------------------------- " << std::endl;
+        }
+    }
 }

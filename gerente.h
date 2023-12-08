@@ -17,8 +17,7 @@ class Gerente : public Usuario{
                 std::string cpf, std::string data_nascimento,std::string nome2, std::string endereco);
     void adicionar_estoque();
     void alterar_estoque();
-    void vizualizar_estoque();
-    void fazer_pedido();
+    void visualizar_estoque();
 };
 
 #endif
