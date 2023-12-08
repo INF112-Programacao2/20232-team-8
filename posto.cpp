@@ -1,3 +1,5 @@
+//EXCLUIR
+
 #include "posto.h"
 #include "estoque.h"
 #include "vacina.h"
