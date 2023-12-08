@@ -853,28 +853,28 @@ int main(void){
             //construtor de aplicador
             aplicador.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
 
-        while(true){
-            // operações do aplicador
-            std::cout << "\nQual operação deseja realizar?\n";
-            std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n (3) Definir data de retorno do paciente\n";
-            try{ 
-                std::cin >> opcao5;
-                if(opcao5!="1" || opcao5!="2" || opcao5!="3"){
-                    std::cin.clear();
-                    throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
-                }
-            } catch(std::invalid_argument &e){
-                while(opcao5!="1" && opcao5!="2" && opcao5!="3"){
-                    std::cin.clear();
-                    std::cerr << e.what();
+            while(true){
+                // operações do aplicador
+                std::cout << "\nQual operação deseja realizar?\n";
+                std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n (3) Definir data de retorno do paciente\n";
+                try{ 
                     std::cin >> opcao5;
+                    if(opcao5!="1" || opcao5!="2" || opcao5!="3"){
+                        std::cin.clear();
+                        throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+                    }
+                } catch(std::invalid_argument &e){
+                    while(opcao5!="1" && opcao5!="2" && opcao5!="3"){
+                        std::cin.clear();
+                        std::cerr << e.what();
+                        std::cin >> opcao5;
+                    }
                 }
-            }
 
-            if(opcao5=="1"){
-                aplicador[aux] -> registrar_vacina();
-            }    
-        }
+                if(opcao5=="1"){
+                    aplicador[aux] -> registrar_vacina();
+                }    
+            }
         }
     }
 }
