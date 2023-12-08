@@ -16,7 +16,7 @@ void Paciente::set_cns(std::string cns){
     _cns = cns;
 }
 
-void Paciente::modificar_dados(std::vector <Paciente*> p){
+void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     std::string opcao=0;
     std::cout <<"Qual dado deseja modificar?\n";
     std::cout << "(1) Login\n(2) Senha\n(3) Nome\n(4) Telefone\n(5) E-mail\n(6) CPF\n(7) Data de nascimento\n(8) CNS\n";
@@ -64,7 +64,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p){
             }
         }
         if(valido==true){
-            
+            p[aux]->set_login(login);
         }
     }
 
