@@ -644,6 +644,7 @@ int main(void){
                     }
                 }
             }
+            // falta adicionar exceção
             std::cout << "Digite sua data de nascimento: ";
             std::cin >> data_nascimento;
             std::cout << "Digite seu número do coren: ";
@@ -671,5 +672,22 @@ int main(void){
             //construtor de aplicador
             a.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
         }
-    }
+        // operações do aplicador
+        std::cout << "\nQual operação deseja realizar?\n";
+        std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n (3) Definir data de retorno do paciente\n";
+        try{ 
+            std::cin >> opcao3;
+            if(opcao3!="1" || opcao3!="2" || opcao3!="3"){
+                std::cin.clear();
+                throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+            }
+        } catch(std::invalid_argument &e){
+            while(opcao3!="1" && opcao3!="2" && opcao3!="3"){
+                std::cin.clear();
+                std::cerr << e.what();
+                std::cin >> opcao3;
+            }
+        }
+        if(opcao3=="1")
+            a[aux] -> registrar_vacina();
 }
