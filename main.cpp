@@ -26,7 +26,7 @@ int main(void){
     //dados de vacina
     std::string fabricante, tipo, aplicacao;
     //valor das opcoes
-    std::string opcao1, opcao2, opcao3;
+    std::string opcao1, opcao2, opcao3, opcao4, opcao5;
     int aux; //guarda o indice do usuario
     //objetos criados já existentes no sistema
     p.push_back(new Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
@@ -239,58 +239,34 @@ int main(void){
             p.push_back(new Paciente(login,senha,nome,telefone,email,cpf,data_nascimento,cns));
 
         }
-        //operações do gerente
-        std::cout << "\nQual operação deseja realizar?\n";
-        std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Vizualizar estoque\n(4) Fazer Pedido\n";
-        try{ //tratamento de exceção caso a opção seja inválida
-        std::cin >> opcao3;
-        if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
-            throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
-        }
-        } catch(std::invalid_argument& e){
-            while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5"){
-                std::cerr << e.what();
-                std::cin >> opcao3;
-            }
-        } 
-    
+
         while(true){
             //operações do paciente
             std::cout << "\nQual operação deseja realizar?\n";
             std::cout << "(1) Modificar Dados\n(2) Visualizar Dados\n";
             try{ //tratamento de exceção caso a opção seja inválida
-            std::cin >> opcao3;
-            if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4" || opcao3!="5"){
+            std::cin >> opcao4;
+            if(opcao4!="1" || opcao4!="2"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-            while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5"){
+            while(opcao4!="1" && opcao4!="2"){
                 std::cin.clear();
                 std::cerr << e.what();
-                std::cin >> opcao3;
+                std::cin >> opcao4;
                 }
             } 
-            //operacao de adicionar o estoque
-            if(opcao3 == "1"){
-                g[aux]->adicionar_estoque();
+            //operacao de modificar dados
+            if(opcao4 == "1"){
+                p[aux]->modificar_dados();
             }
-            //operacao de alterar o estoque
-            if(opcao3 == "2"){
-                g[aux]->alterar_estoque();
-            }
-            //operacao de vizualizar o estoque
-            if(opcao3 == "3"){
-                g[aux]->vizualizar_estoque();
-            }
-            //operacao de fazer pedido
-            if(opcao3 == "4"){
-                g[aux]->fazer_pedido();
-            }
-            if(opcao3 == "5"){
-                break;
+            //operacao de visualizar dados
+            if(opcao4 == "2"){
+                p[aux]->visualizar_dados();
             }
         }
     }
+
     else if(opcao1=="2"){ //área de acesso do gerente
         std::cout << "\nVocê deseja realizar login ou cadastro?\n";
         std::cout << "(1) Login\n(2) Cadastro\n";
@@ -482,35 +458,21 @@ int main(void){
             //construtor do gerente
             g.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento,nome2,endereco));
         }
-        //operações do gerente
-        std::cout << "\nQual operação deseja realizar?\n";
-        std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Vizualizar estoque\n(4) Fazer Pedido\n";
-        try{ //tratamento de exceção caso a opção seja inválida
-        std::cin >> opcao3;
-        if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
-            throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
-        }
-        } catch(std::invalid_argument& e){
-            while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5"){
-                std::cerr << e.what();
-                std::cin >> opcao3;
-            }
-        } 
     
         while(true){
             //operações do gerente
             std::cout << "\nQual operação deseja realizar?\n";
             std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Vizualizar estoque\n(4) Fazer Pedido\n(4) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
-            std::cin >> opcao3;
+                std::cin >> opcao3;
             if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4" || opcao3!="5"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-            while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5"){
-                std::cin.clear();
-                std::cerr << e.what();
-                std::cin >> opcao3;
+                while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5"){
+                    std::cin.clear();
+                    std::cerr << e.what();
+                    std::cin >> opcao3;
                 }
             } 
             //operacao de adicionar o estoque
@@ -722,24 +684,29 @@ int main(void){
             }
             //construtor de aplicador
             a.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
-        }
-        // operações do aplicador
-        std::cout << "\nQual operação deseja realizar?\n";
-        std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n (3) Definir data de retorno do paciente\n";
-        try{ 
-            std::cin >> opcao3;
-            if(opcao3!="1" || opcao3!="2" || opcao3!="3"){
-                std::cin.clear();
-                throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+
+        while(true){
+            // operações do aplicador
+            std::cout << "\nQual operação deseja realizar?\n";
+            std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n (3) Definir data de retorno do paciente\n";
+            try{ 
+                std::cin >> opcao5;
+                if(opcao5!="1" || opcao5!="2" || opcao5!="3"){
+                    std::cin.clear();
+                    throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+                }
+            } catch(std::invalid_argument &e){
+                while(opcao5!="1" && opcao5!="2" && opcao5!="3"){
+                    std::cin.clear();
+                    std::cerr << e.what();
+                    std::cin >> opcao5;
+                }
             }
-        } catch(std::invalid_argument &e){
-            while(opcao3!="1" && opcao3!="2" && opcao3!="3"){
-                std::cin.clear();
-                std::cerr << e.what();
-                std::cin >> opcao3;
-            }
+
+            if(opcao5=="1"){
+                a[aux] -> registrar_vacina();
+            }    
         }
-        if(opcao3=="1")
-            a[aux] -> registrar_vacina();
-}
+        }
+    }
 }
