@@ -293,6 +293,12 @@ int main(void){
             }
             //construtor do paciente
             _paciente.push_back(new Paciente(login,senha,nome,telefone,email,cpf,data_nascimento,cns));
+            for(int i=0; i<_paciente.size(); i++){
+                if(_paciente[i]->get_login() == login){
+                    aux1 = i;
+                    break;
+                }
+            }
 
         }
 
@@ -302,11 +308,11 @@ int main(void){
             std::cout << "(1) Modificar Dados\n(2) Visualizar Dados\n(3) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao3;
-            if(opcao3!="1" && opcao3!="2" && opcao3!="3"){
+            if(opcao3!="1" || opcao3!="2" || opcao3!="3"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-            while(opcao3!="1" || opcao3!="2" || opcao3!="3"){
+            while(opcao3!="1" && opcao3!="2" && opcao3!="3"){
                 std::cin.clear();
                 std::cerr << e.what();
                 std::cin >> opcao3;
@@ -610,11 +616,11 @@ int main(void){
             std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Visualizar estoque\n(4) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
                 std::cin >> opcao3;
-            if(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
+            if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-                while(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
+                while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
                     std::cin.clear();
                     std::cerr << e.what();
                     std::cin >> opcao3;
@@ -889,12 +895,12 @@ int main(void){
                 std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n(3) Definir data de retorno do paciente\n(4) Encerrar Sessão\n";
                 try{ 
                     std::cin >> opcao3;
-                    if(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
+                    if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
                         std::cin.clear();
                         throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
                     }
                 } catch(std::invalid_argument &e){
-                    while(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
+                    while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
                         std::cin.clear();
                         std::cerr << e.what();
                         std::cin >> opcao3;
