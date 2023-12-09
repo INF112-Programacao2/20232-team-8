@@ -79,7 +79,7 @@ int main(void){
             }
             if(!existe){ //se não existir, realiza o cadastro
                 std::cout << "Usuário inexistente, realize cadastro\n";
-                opcao2=2;
+                opcao2="2";
             }
         }
         if(opcao2=="2"){ //realiza o cadastro
@@ -153,12 +153,12 @@ int main(void){
                 std::cin >> telefone;
                 if(telefone.length()<10){
                     validotel=false;
-                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
+                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente\n");
                 }
                 for(int i=0;i<telefone.length();i++){
                     if(isalpha(telefone[i])){
                         validotel=false;
-                        throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
+                        throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente\n");
                     }
                 }
             } catch(std::invalid_argument& e){
@@ -302,11 +302,11 @@ int main(void){
             std::cout << "(1) Modificar Dados\n(2) Visualizar Dados\n(3) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao3;
-            if(opcao3!="1" || opcao3!="2" || opcao3!="3"){
+            if(opcao3!="1" && opcao3!="2" && opcao3!="3"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-            while(opcao3!="1" && opcao3!="2" || opcao3!="3"){
+            while(opcao3!="1" || opcao3!="2" || opcao3!="3"){
                 std::cin.clear();
                 std::cerr << e.what();
                 std::cin >> opcao3;
@@ -318,7 +318,7 @@ int main(void){
             }
             //operacao de visualizar dados
             if(opcao3 == "2"){
-                _paciente[aux1]->visualizar_dados();
+                _paciente[aux1]->visualizar_dados(_paciente, aux1);
             }
             //operacao de encerrar sessão
             if(opcao3 == "3"){
@@ -610,11 +610,11 @@ int main(void){
             std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Visualizar estoque\n(4) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
                 std::cin >> opcao3;
-            if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
+            if(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-                while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
+                while(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
                     std::cin.clear();
                     std::cerr << e.what();
                     std::cin >> opcao3;
@@ -889,12 +889,12 @@ int main(void){
                 std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n(3) Definir data de retorno do paciente\n(4) Encerrar Sessão\n";
                 try{ 
                     std::cin >> opcao3;
-                    if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
+                    if(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
                         std::cin.clear();
                         throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
                     }
                 } catch(std::invalid_argument &e){
-                    while(opcao3!="1" && opcao3!="2" && opcao3!="3" || opcao3!="4"){
+                    while(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
                         std::cin.clear();
                         std::cerr << e.what();
                         std::cin >> opcao3;

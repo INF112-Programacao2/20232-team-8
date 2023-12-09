@@ -313,6 +313,16 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     }
 
 }
-void Paciente::visualizar_dados(){
 
+
+void Paciente::visualizar_dados(std::vector <Paciente*> p, int aux){
+    std::cout << "\n--------------- Dados --------------- " << std::endl;
+    //std::cout << "Login: " << p[aux]->get_login() << std::endl;
+    //std::cout << "Senha: " << p[aux]->get_senha() << std::endl;
+    std::cout << "Nome: " << p[aux]->get_nome() << std::endl;
+    std::cout << "Telefone: " << p[aux]->get_telefone() << std::endl;
+    std::cout << "E-mail: " << p[aux]->get_telefone() << std::endl;
+    std::cout << "CPF: " << p[aux]->get_cpf() << std::endl;
+    std::cout << "Data de nascimento: " << p[aux]->get_data_nascimento() << std::endl;
+    std::cout << "Cartão Nacional de Saúde (CNS): " << p[aux]->get_cns() << std::endl;
 }
