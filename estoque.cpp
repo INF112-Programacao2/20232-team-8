@@ -3,7 +3,7 @@
 
 //construtor
 Estoque::Estoque(std::string nome, int quantidade, std::string validade, std::string data_recebimento, std::string lote) :
-    _nome(nome), _quantidade(quantidade), _validade(validade), _data_recebimento(_data_recebimento), _lote(lote) {}
+    _nome(nome), _quantidade(quantidade), _validade(validade), _data_recebimento(data_recebimento), _lote(lote) {}
 
 //metodos set
 void Estoque::set_nome(std::string new_nome){
