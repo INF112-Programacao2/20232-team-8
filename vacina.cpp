@@ -9,13 +9,6 @@ std::string validade, std::string data_recebimento, std::string lote):
     //dados herdados da classe estoque
     Estoque(nome, quantidade, validade, data_recebimento, lote) {}
 
-//metodos set
-void Vacina::set_fabricante(std::string new_fabricante){
-    _fabricante = new_fabricante;
-}
-void Vacina::set_tipo(std::string new_tipo){
-    _tipo = new_tipo;
-}
 //metodos get
 std::string Vacina::get_fabricante(){
     return _fabricante;

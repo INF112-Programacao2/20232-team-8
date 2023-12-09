@@ -9,7 +9,6 @@
 
 class Gerente : public Usuario{
     private:
-    Posto _posto;
     std::vector <Estoque*> _estoque;
     std::vector <Vacina*> _vacina;
     public:

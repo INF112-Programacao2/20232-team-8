@@ -4,17 +4,23 @@
 #include "gerente.h"
 #include "usuario.h"
 
+//variaveis genericas
 std::string opcao1;
+bool existe = false;
+
+//dados do estoque
+std::string nome, validade, data_recebimento, lote;
+int quantidade, aux;
+
+//dados especificos de vacina
+std::string fabricante, tipo;
 
 Gerente::Gerente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string  data_nascimento,std::string nome2, std::string endereco):
-    Usuario(login,senha,nome,telefone,email,cpf, data_nascimento), _posto(nome2,endereco){}
+    Usuario(login,senha,nome,telefone,email,cpf, data_nascimento) {}
 
 //funcao que adiciona um novo estoque
 void Gerente::adicionar_estoque(){
-    //dados do estoque
-    std::string nome, validade, data_recebimento, lote;
-    int quantidade;
     std::cout << "\nQual o tipo de produto do estoque?\n";
     std::cout << "(1) Material\n(2) Vacina\n";
     try{ //tratamento de exceção caso a opção seja inválida
@@ -142,8 +148,10 @@ void Gerente::adicionar_estoque(){
             invalida = false;
             std::cin >> q;
             for(int i=0; i<q.size(); i++){
-                if(!(q[i] >= '0' && q[i] <= '9')){
+                //não pode ser letra e nem digito especial
+                if(((q[i] >= 'a' && q[i] <= 'z') || (q[i] >= 'A' && q[i] <= 'Z')) || !(q[i] >= '0' && q[i] <= '9')){
                     invalida = true;
+                    break;
                 }
             }
             if(invalida){
@@ -158,8 +166,10 @@ void Gerente::adicionar_estoque(){
                 invalida = false;
                 std::cin >> q;
                 for(int i=0; i<q.size(); i++){
-                    if(isalpha(q[i])){
+                    //não pode ser letra e nem digito especial
+                    if(((q[i] >= 'a' && q[i] <= 'z') || (q[i] >= 'A' && q[i] <= 'Z')) || !(q[i] >= '0' && q[i] <= '9')){
                         invalida = true;
+                        break;
                     }
                 }
                 if(!invalida){
@@ -174,8 +184,7 @@ void Gerente::adicionar_estoque(){
     if(opcao1 == "2"){
         //leitura dos dados da vacina
         int i=0;
-        std::string fabricante, tipo;
-        //nome do material
+        //nome da vacina
         std::cout << "\nDigite o nome da vacina: ";
         std::cin >> nome;
          //data de validade
@@ -285,8 +294,10 @@ void Gerente::adicionar_estoque(){
             invalida = false;
             std::cin >> q;
             for(int i=0; i<q.size(); i++){
-                if(!(q[i] >= '0' && q[i] <= '9')){
+            //não pode ser letra e nem digito especial
+                if(((q[i] >= 'a' && q[i] <= 'z') || (q[i] >= 'A' && q[i] <= 'Z')) || !(q[i] >= '0' && q[i] <= '9')){
                     invalida = true;
+                    break;
                 }
             }
             if(invalida){
@@ -301,7 +312,7 @@ void Gerente::adicionar_estoque(){
                 invalida = false;
                 std::cin >> q;
                 for(int i=0; i<q.size(); i++){
-                    if(isalpha(q[i])){
+                    if(((q[i] >= 'a' && q[i] <= 'z') || (q[i] >= 'A' && q[i] <= 'Z')) || !(q[i] >= '0' && q[i] <= '9')){
                         invalida = true;
                     }
                 }
@@ -320,10 +331,6 @@ void Gerente::adicionar_estoque(){
         //construtor de estoque
         _vacina.push_back(new Vacina(fabricante, tipo, nome, quantidade, validade, data_recebimento, lote));
     }
-}
-
-void Gerente::alterar_estoque(){
-    std::cout << "Qual o tipo de produto do estoque? ";
 }
 
 void Gerente::visualizar_estoque(){
@@ -363,5 +370,161 @@ void Gerente::visualizar_estoque(){
             std::cout << "\nTipo: " << _vacina[i]->get_tipo();
             std::cout << "\n----------------------------------------- " << std::endl;
         }
+    }
+}
+
+
+void Gerente::alterar_estoque(){
+    std::cout << "\nQual o tipo de produto do estoque? \n";
+    std::cout << "(1) Material\n(2) Vacina\n";
+    try{ //tratamento de exceção caso a opção seja inválida
+        std::cin >> opcao1;
+        if(opcao1!="1" || opcao1!="2"){
+            throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+        }
+    } catch(std::invalid_argument& e){
+        while(opcao1!="1" && opcao1!="2"){
+            std::cerr << e.what();
+            std::cin >> opcao1;
+        }
+    }
+    //alterar dados de materiais
+    if(opcao1 == "1"){
+        existe = false;
+        std::cout << "\nDigite o lote do material que deseja alterar: ";
+        //verificacao do lote
+        try{
+            std::cin >> lote;
+            for(int i=0; i<_estoque.size(); i++){
+                if(lote == _estoque[i]->get_lote()){
+                    existe = true;
+                    break;
+                }
+            }
+            if(!existe){
+                throw std::invalid_argument ("Lote invalido! Digite novamente: ");
+            }
+        }catch(std::invalid_argument& e){
+            while(!existe){
+                std::cerr << e.what();
+                std::cin >> lote;
+                for(int i=0; i<_estoque.size(); i++){
+                    if(lote == _estoque[i]->get_lote()){
+                        existe = true;
+                        break;
+                    }
+                }  
+            }
+        }
+         //area de alteracao
+        std::cout << "\nNova quantidade: ";
+        bool invalida = false;
+        std::string q;
+        try{ //tratamento de exceção caso a quantidade seja inválida
+            invalida = false;
+            std::cin >> q;
+            for(int i=0; i<q.size(); i++){
+                //não pode ser letra e nem digito especial
+                if(((q[i] >= 'a' && q[i] <= 'z') || (q[i] >= 'A' && q[i] <= 'Z')) || !(q[i] >= '0' && q[i] <= '9')){
+                    invalida = true;
+                    break;
+                }
+            }
+            if(invalida){
+                throw std::invalid_argument ("Quantidade invalida, digite novamente!\n");
+            }
+            if(!invalida){
+                quantidade = (stoi(q));
+            }
+        }catch(std::invalid_argument& e){
+            while(invalida || quantidade < 1){
+                std::cerr << e.what();
+                invalida = false;
+                std::cin >> q;
+                for(int i=0; i<q.size(); i++){
+                    //não pode ser letra e nem digito especial
+                    if(((q[i] >= 'a' && q[i] <= 'z') || (q[i] >= 'A' && q[i] <= 'Z')) || !(q[i] >= '0' && q[i] <= '9')){
+                        invalida = true;
+                        aux = i;
+                        break;
+                    }
+                }
+                if(!invalida){
+                    quantidade = (stoi(q));
+                }
+            }
+        }
+        //alterando a quantidade
+        _estoque[aux]->set_quantidade(quantidade);
+    }
+    //alterar dados de vacinas
+    if(opcao1 == "2"){
+        existe = false;
+        std::cout << "\nDigite o lote do material que deseja alterar: ";
+        //verificacao do lote
+        try{
+            std::cin >> lote;
+            for(int i=0; i<_vacina.size(); i++){
+                if(lote == _vacina[i]->get_lote()){
+                    existe = true;
+                    break;
+                }
+            }
+            if(!existe){
+                throw std::invalid_argument ("Lote invalido! Digite novamente: ");
+            }
+        }catch(std::invalid_argument& e){
+            while(!existe){
+                std::cerr << e.what();
+                std::cin >> lote;
+                for(int i=0; i<_vacina.size(); i++){
+                    if(lote == _vacina[i]->get_lote()){
+                        existe = true;
+                        aux = i;
+                        break;
+                    }
+                }  
+            }
+        }
+        //area de alteracao
+        std::cout << "\nNova quantidade: ";
+        bool invalida = false;
+        std::string q;
+        try{ //tratamento de exceção caso a quantidade seja inválida
+            invalida = false;
+            std::cin >> q;
+            for(int i=0; i<q.size(); i++){
+                //não pode ser letra e nem digito especial
+                if(((q[i] >= 'a' && q[i] <= 'z') || (q[i] >= 'A' && q[i] <= 'Z')) || !(q[i] >= '0' && q[i] <= '9')){
+                    invalida = true;
+                    break;
+                }
+            }
+            if(invalida){
+                throw std::invalid_argument ("Quantidade invalida, digite novamente!\n");
+            }
+            if(!invalida){
+                quantidade = (stoi(q));
+            }
+        }catch(std::invalid_argument& e){
+            while(invalida || quantidade < 1){
+                std::cerr << e.what();
+                invalida = false;
+                std::cin >> q;
+                for(int i=0; i<q.size(); i++){
+                    //não pode ser letra e nem digito especial
+                    if(((q[i] >= 'a' && q[i] <= 'z') || (q[i] >= 'A' && q[i] <= 'Z')) || !(q[i] >= '0' && q[i] <= '9')){
+                        invalida = true;
+                        aux = i;
+                        break;
+                    }
+                }
+                if(!invalida){
+                    quantidade = (stoi(q));
+                }
+            }
+        }
+        //alterando a quantidade
+        _vacina[aux]->set_quantidade(quantidade);
     }
 }
