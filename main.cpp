@@ -14,9 +14,9 @@
 
 int main(void){
     //vector para cada tipo de usuário
-    std::vector <Paciente*> paciente;
-    std::vector <Gerente*> gerente;
-    std::vector <Aplicador*> aplicador;
+    std::vector <Paciente*> _paciente;
+    std::vector <Gerente*> _gerente;
+    std::vector <Aplicador*> _aplicador;
     //variáveis para a inicialização dos objetos
     std::string login, senha, nome, telefone, email, cpf, data_nascimento, coren, cns;
     std::string nome2, endereco;
@@ -29,11 +29,11 @@ int main(void){
     std::string opcao1, opcao2, opcao3;
     int aux, aux1; //guarda o indice do usuario
     //objetos criados já existentes no sistema
-    paciente.push_back(new Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
-    paciente.push_back(new Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","54665"));
-    aplicador.push_back(new Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
-    aplicador.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
-    gerente.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004", "posto1", "sao sebastiao"));
+    _paciente.push_back(new Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
+    _paciente.push_back(new Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","54665"));
+    _aplicador.push_back(new Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
+    _aplicador.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
+    _gerente.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004", "posto1", "sao sebastiao"));
     //definição de que tipo de usuário acessará o sistema, o que define diferentes funções
     std::cout << "--------------- Inicio --------------- " << std::endl;
     std::cout << "Que tipo de usuário você é?\n";
@@ -70,8 +70,8 @@ int main(void){
             std::cout << "Digite sua senha: ";
             std::cin >> senha;
             bool existe=false;
-            for(int i=0;i<paciente.size();i++){
-                if(login==paciente[i]->get_login()){
+            for(int i=0;i<_paciente.size();i++){
+                if(login==_paciente[i]->get_login()){
                     aux1 = i;
                     existe=true;
                     break;
@@ -292,7 +292,7 @@ int main(void){
                 }
             }
             //construtor do paciente
-            paciente.push_back(new Paciente(login,senha,nome,telefone,email,cpf,data_nascimento,cns));
+            _paciente.push_back(new Paciente(login,senha,nome,telefone,email,cpf,data_nascimento,cns));
 
         }
 
@@ -314,11 +314,11 @@ int main(void){
             } 
             //operacao de modificar dados
             if(opcao3 == "1"){
-                paciente[aux1]->modificar_dados(paciente, aux1);
+                _paciente[aux1]->modificar_dados(_paciente, aux1);
             }
             //operacao de visualizar dados
             if(opcao3 == "2"){
-                paciente[aux1]->visualizar_dados();
+                _paciente[aux1]->visualizar_dados();
             }
             //operacao de encerrar sessão
             if(opcao3 == "3"){
@@ -348,8 +348,8 @@ int main(void){
             std::cout << "Digite sua senha: ";
             std::cin >> senha;
             bool existe=false;
-            for(int i=0;i<gerente.size();i++){
-                if(login==gerente[i]->get_login()){
+            for(int i=0;i<_gerente.size();i++){
+                if(login==_gerente[i]->get_login()){
                     aux = i;
                     existe=true;
                     break;
@@ -574,7 +574,7 @@ int main(void){
             std::cout << "Digite o endereço do posto onde trabalha: ";
             std::cin >> endereco;
             //construtor do gerente
-            gerente.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento,nome2,endereco));
+            _gerente.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento,nome2,endereco));
         }
     
         while(true){
@@ -595,15 +595,15 @@ int main(void){
             } 
             //operacao de adicionar o estoque
             if(opcao3 == "1"){
-                gerente[aux]->adicionar_estoque();
+                _gerente[aux]->adicionar_estoque();
             }
             //operacao de alterar o estoque
             if(opcao3 == "2"){
-                gerente[aux]->alterar_estoque();
+                _gerente[aux]->alterar_estoque();
             }
             //operacao de visualizar o estoque
             if(opcao3 == "3"){
-                gerente[aux]->visualizar_estoque();
+                _gerente[aux]->visualizar_estoque();
             }
             //encerrar sessão
             if(opcao3 == "4"){
@@ -628,12 +628,12 @@ int main(void){
         if(opcao2=="1"){//verifica se o usuário está cadastrado
             std::cout << "\n--------------- Login --------------- " << std::endl;
             std::cout << "Digite seu nome de usuário: ";
-            std::cin >> nome;
+            std::cin >> login;
             std::cout << "Digite sua senha: ";
             std::cin >> senha;
             bool existe=false;
-            for(int i=0;i<aplicador.size();i++){
-                if(nome==aplicador[i]->get_nome()){
+            for(int i=0;i<_aplicador.size();i++){
+                if(login==_aplicador[i]->get_login()){
                     existe=true;
                     break;
                 }
@@ -853,12 +853,12 @@ int main(void){
                 }
             }
             //construtor de aplicador
-            aplicador.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
+            _aplicador.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
 
             while(true){
                 // operações do aplicador
                 std::cout << "\nQual operação deseja realizar?\n";
-                std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n(3) Definir data de retorno do paciente\n(5) Encerrar Sessão\n";
+                std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n(3) Definir data de retorno do paciente\n(4) Encerrar Sessão\n";
                 try{ 
                     std::cin >> opcao3;
                     if(opcao3!="1" || opcao3!="2" || opcao3!="3"){
@@ -873,13 +873,58 @@ int main(void){
                     }
                 }
 
-                if(opcao3=="1"){
-                    aplicador[aux] -> registrar_vacina();
-                }   
-                if(opcao3=="5"){
+                if(opcao3!="4"){ // agrupa as funções que exigem identificação do aplicador
+                    for(int i=0;i<_aplicador.size();i++){ 
+                        if(login==_aplicador[i]->get_login()){ // confere se o login do usuáario é igual ao login de um aplicador
+                            aux = i; // identifica o aplicador
+                            break;
+                        }
+                    }
+                    if(opcao3=="1"){
+                        digitar_cns_do_paciente:
+                        bool existe=false;
+                        std::cout << "Digite o número do CNS do paciente: ";
+                        std::cin >> cns;
+                        for(int i=0;i<_paciente.size();i++){ 
+                            if(cns==_paciente[i]->get_cns()){ // confere se o cns digitado é igual a um cns registrado no sistema
+                                aux1 = i;
+                                existe=true;
+                                break;
+                            }
+                        }
+                        if(existe)
+                            _aplicador[aux] -> registrar_vacina();
+                        else{
+                            std::cout << "CNS não cadastrado no sistema, deseja (1) tentar novamente ou (2) encerrar a sessão?" << std::endl;
+                            try{ 
+                                std::cin >> opcao3;
+                                if(opcao3!="1" || opcao3!="2"){
+                                    std::cin.clear();
+                                    throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+                                }
+                            } catch(std::invalid_argument &er){
+                                while(opcao3!="1" && opcao3!="2"){
+                                    std::cin.clear();
+                                    std::cerr << er.what();
+                                    std::cin >> opcao3;
+                                }
+                            }
+                            if(opcao3=="1")
+                                goto digitar_cns_do_paciente;
+                            if(opcao3=="2")
+                                break;
+                        }
+                    }
+                    if(opcao3=="2"){
+
+                    }
+                    if(opcao3=="3"){
+                        
+                    }
+                }
+                else
                     break;
-                } 
-            }
+            } 
         }
     }
 }
