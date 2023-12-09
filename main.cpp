@@ -67,7 +67,7 @@ int main(void){
         if(opcao2=="1"){//verifica se o usuário está cadastrado
             std::cout << "\n--------------- Login --------------- " << std::endl;
             std::cout << "Digite seu nome de usuário: ";
-            std::cin >> nome;
+            std::cin >> login;
             std::cout << "Digite sua senha: ";
             std::cin >> senha;
             bool existe=false;
