@@ -35,6 +35,7 @@ int main(void){
     _aplicador.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
     _gerente.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004", "posto1", "sao sebastiao"));
     //definição de que tipo de usuário acessará o sistema, o que define diferentes funções
+    inicio:
     std::cout << "--------------- Inicio --------------- " << std::endl;
     std::cout << "Que tipo de usuário você é?\n";
     std::cout << "(1) Paciente\n(2) Gerente\n(3) Aplicador\n";
@@ -302,11 +303,11 @@ int main(void){
             std::cout << "(1) Modificar Dados\n(2) Visualizar Dados\n(3) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao3;
-            if(opcao3!="1" || opcao3!="2"){
+            if(opcao3!="1" || opcao3!="2" || opcao3!="3"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-            while(opcao3!="1" && opcao3!="2"){
+            while(opcao3!="1" && opcao3!="2" || opcao3!="3"){
                 std::cin.clear();
                 std::cerr << e.what();
                 std::cin >> opcao3;
@@ -322,7 +323,7 @@ int main(void){
             }
             //operacao de encerrar sessão
             if(opcao3 == "3"){
-                break;
+                goto inicio;
             }
         }
     }
@@ -345,12 +346,10 @@ int main(void){
             std::cout << "\n--------------- Login --------------- " << std::endl;
             std::cout << "Digite seu nome de usuário: ";
             std::cin >> login;
-            std::cout << "Digite sua senha: ";
-            std::cin >> senha;
-            bool existe=false;
+            bool existe = false;
             for(int i=0;i<_gerente.size();i++){
                 if(login==_gerente[i]->get_login()){
-                    aux = i;
+                    aux = i; //guarda do indice do usuario
                     existe=true;
                     break;
                 }
@@ -358,6 +357,29 @@ int main(void){
             if(!existe){ //se não existir, realiza o cadastro
                 std::cout << "Usuário inexistente, realize cadastro\n";
                 opcao2="2";
+            }
+            std::cout << "Digite sua senha: ";
+            bool senha_correta;
+            try{
+                senha_correta = true;
+                std::cin >> senha;
+                for(int i=0; i<senha.size(); i++){
+                    if(senha[i] != _gerente[aux]->get_senha()[i]){
+                        senha_correta = false;
+                        throw std:: invalid_argument ("Senha incorreta! Digite novamente: ");
+                    }
+                }
+            }catch(std::invalid_argument& e){
+                while(!senha_correta){
+                    std::cerr << e.what();
+                    senha_correta = true;
+                    std::cin >> senha;
+                    for(int i=0; i<senha.size(); i++){
+                        if(senha[i] != _gerente[aux]->get_senha()[i]){
+                            senha_correta = false;
+                        }
+                    }
+                }
             }
         }
         if(opcao2=="2"){ //realiza o cadastro
@@ -575,12 +597,18 @@ int main(void){
             std::cin >> endereco;
             //construtor do gerente
             _gerente.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento,nome2,endereco));
+            for(int i=0; i<_gerente.size(); i++){
+                if(_gerente[i]->get_login() == login){
+                    aux = i;
+                    break;
+                }
+            }
         }
     
         while(true){
             //operações do gerente
             std::cout << "\nQual operação deseja realizar?\n";
-            std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Visualizar estoque\n(4) Fazer Pedido\n(5) Encerrar Sessão\n";
+            std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Visualizar estoque\n(4) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
                 std::cin >> opcao3;
             if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
@@ -607,7 +635,8 @@ int main(void){
             }
             //encerrar sessão
             if(opcao3 == "4"){
-                break;
+                std::cout << std::endl;
+                goto inicio;
             }
         }
     }
@@ -861,12 +890,12 @@ int main(void){
                 std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n(3) Definir data de retorno do paciente\n(4) Encerrar Sessão\n";
                 try{ 
                     std::cin >> opcao3;
-                    if(opcao3!="1" || opcao3!="2" || opcao3!="3"){
+                    if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
                         std::cin.clear();
                         throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
                     }
                 } catch(std::invalid_argument &e){
-                    while(opcao3!="1" && opcao3!="2" && opcao3!="3"){
+                    while(opcao3!="1" && opcao3!="2" && opcao3!="3" || opcao3!="4"){
                         std::cin.clear();
                         std::cerr << e.what();
                         std::cin >> opcao3;
@@ -912,7 +941,7 @@ int main(void){
                             if(opcao3=="1")
                                 goto digitar_cns_do_paciente;
                             if(opcao3=="2")
-                                break;
+                                goto inicio;
                         }
                     }
                     if(opcao3=="2"){
@@ -921,10 +950,17 @@ int main(void){
                     if(opcao3=="3"){
                         
                     }
+                    if(opcao3=="3"){
+                        goto inicio;
+                    }
                 }
                 else
                     break;
             } 
         }
     }
+    //destrutor dos vectors
+    _paciente.clear();
+    _gerente.clear();
+    _aplicador.clear();
 }
