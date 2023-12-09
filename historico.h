@@ -2,7 +2,6 @@
 #define INF112_HISTORICO_H
 #include <string>
 #include "vacina.h"
-#include "posto.h"
 
 class Historico {
 private:
@@ -11,10 +10,10 @@ private:
     bool _retorno;
     std::string _dataDeRetorno;
     Vacina _vacina_;
-    Posto _posto_;
+    //Posto _posto_;
 
 public: 
-    Historico(std::string data, int dose, bool retorno, std::string dataDeRetorno, Vacina vacina_, Posto posto_);
+    Historico(std::string data, int dose, bool retorno, std::string dataDeRetorno, Vacina vacina_);
 
     std::string get_data();
     int get_dose();

@@ -2,7 +2,6 @@
 #include "aplicador.h"
 #include "historico.h"
 #include "paciente.h"
-#include "posto.h"
 #include "usuario.h"
 #include "vacina.h"
 #include "estoque.h"
@@ -33,7 +32,7 @@ int main(void){
     _paciente.push_back(new Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","54665"));
     _aplicador.push_back(new Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
     _aplicador.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
-    _gerente.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004", "posto1", "sao sebastiao"));
+    _gerente.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004"));
     //definição de que tipo de usuário acessará o sistema, o que define diferentes funções
     inicio:
     std::cout << "--------------- Inicio --------------- " << std::endl;
@@ -596,7 +595,7 @@ int main(void){
             std::cout << "Digite o endereço do posto onde trabalha: ";
             std::cin >> endereco;
             //construtor do gerente
-            _gerente.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento,nome2,endereco));
+            _gerente.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento));
             for(int i=0; i<_gerente.size(); i++){
                 if(_gerente[i]->get_login() == login){
                     aux = i;
