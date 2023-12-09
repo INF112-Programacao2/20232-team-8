@@ -3,7 +3,6 @@
 #include "usuario.h"
 #include "historico.h"
 #include "vacina.h"
-#include "posto.h"
 #include <string>
 #include <vector>
 

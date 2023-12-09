@@ -5,7 +5,6 @@
 #include "usuario.h"
 #include "vacina.h"
 #include "estoque.h"
-#include "posto.h"
 
 class Gerente : public Usuario{
     private:
@@ -13,7 +12,7 @@ class Gerente : public Usuario{
     std::vector <Vacina*> _vacina;
     public:
     Gerente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
-                std::string cpf, std::string data_nascimento,std::string nome2, std::string endereco);
+                std::string cpf, std::string data_nascimento);
     void adicionar_estoque();
     void alterar_estoque();
     void visualizar_estoque();
