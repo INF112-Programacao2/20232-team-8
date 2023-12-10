@@ -18,8 +18,7 @@ void Aplicador::set_coren(std::string coren){
 }
 
 void Aplicador::registrar_vacina(){
-    int numvac;
-    std::string nome_vacina;
+    std::string numvac, nome_vacina;
     std::cout >> "Qual o nome da vacina aplicada?" >> std::endl;
     std::cout >> "(1) Coronavac\n(2) Astrazeneca\n(3) Pfizer\n (4) Janssen\n";
     try{ 
