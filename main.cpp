@@ -703,7 +703,7 @@ int main(void){
             std::cin >> opcao2;
             if(opcao2!="1" || opcao2!="2"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
-        }
+            }
         } catch(std::invalid_argument& e){
             while(opcao2!="1" && opcao2!="2"){
                 std::cerr << e.what();
@@ -734,7 +734,6 @@ int main(void){
                     std::cin >> senha;
                 }
             }
-            
         }
         if(opcao2=="2"){ //realiza o cadastro
             //leitura dos dados e tratamento de excessão
@@ -1036,13 +1035,14 @@ int main(void){
                         }
                     }
                 }
-                else
+                else{
                     std::cout << std::endl;
                     goto inicio;
+                }
             } 
         }
     }
-    std::cout << "-------------------------------------- " << std::endl;
+    std::cout << "------------------------------------- " << std::endl;
     //destrutor dos vectors
     _paciente.clear();
     _gerente.clear();

@@ -1,8 +1,9 @@
 #include "aplicador.h"
+#include "gerente.h"
 #include <iostream>
 #include <cctype>
 
-Gerente g;
+Gerente _gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004");
 
 Aplicador::Aplicador(std::string login, std::string senha, std::string nome, std::string telefone, std::string email, std::string cpf, std::string data_vacina, std::string coren):
     Usuario(login,senha,nome,telefone,email,cpf,data_vacina), _coren(coren){}
@@ -48,10 +49,10 @@ void Aplicador::registrar_vacina(std::string cns){
     std::cout << "Qual o lote da vacina?\n";
     try{
         std::cin >> lote;
-        if(g.verificar_lote(nome_vacina,lote) == false)
+        if(_gerente.verificar_lote(nome_vacina,lote) == false)
             throw std::invalid_argument ("Lote da vacina digitado não corresponde a um lote existente, digite novamente. ");
     } catch(std::invalid_argument &d){
-        while(g.verificar_lote(nome_vacina,lote) == false){
+        while(_gerente.verificar_lote(nome_vacina,lote) == false){
             std::cerr << d.what();
             std::cin >> lote;
         }
@@ -174,7 +175,7 @@ void Aplicador::registrar_vacina(std::string cns){
             }
         }
     }
-    fabricante = g.visualizar_fabricante(lote);
+    fabricante = _gerente.visualizar_fabricante(lote);
     _historico.push_back(new Historico(cns,_coren,data_vacina,dose,opcao_retorno,data_retorno,fabricante,lote));
 }
 
