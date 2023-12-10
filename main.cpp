@@ -1026,7 +1026,7 @@ int main(void){
                                 goto inicio;
                         }
                         if(opcao3=="1"){
-                            _aplicador[aux] -> registrar_vacina();
+                            _aplicador[aux] -> registrar_vacina(cns);
                         }
                         if(opcao3=="2"){
                             _aplicador[aux] -> verificar_retorno();

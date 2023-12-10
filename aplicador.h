@@ -16,7 +16,7 @@ public:
     
     std::string get_coren();
     void set_coren(std::string coren);
-    void registrar_vacina();
+    void registrar_vacina(std::string cns);
     void verificar_retorno();
     void definir_retorno();
 };
