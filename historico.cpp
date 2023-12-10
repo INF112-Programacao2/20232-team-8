@@ -1,8 +1,8 @@
 #include "historico.h"
 #include "vacina.h"
 
-Historico::Historico(std::string data, int dose, bool retorno, std::string dataDeRetorno, Vacina vacina_):
-    _data(data), _dose(dose), _retorno(retorno), _dataDeRetorno(dataDeRetorno), _vacina_(vacina_) {}
+Historico::Historico(std::string data, int dose, bool retorno, std::string dataDeRetorno, Vacina vacina_, std::string cns):
+    _data(data), _dose(dose), _retorno(retorno), _dataDeRetorno(dataDeRetorno), _vacina_(vacina_), _cns(cns) {}
 
 std::string Historico::get_data(){
     return _data;

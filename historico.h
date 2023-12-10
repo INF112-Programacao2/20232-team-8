@@ -10,10 +10,10 @@ private:
     bool _retorno;
     std::string _dataDeRetorno;
     Vacina _vacina_;
-    //Posto _posto_;
+    std::string _cns;
 
 public: 
-    Historico(std::string data, int dose, bool retorno, std::string dataDeRetorno, Vacina vacina_);
+    Historico(std::string data, int dose, bool retorno, std::string dataDeRetorno, Vacina vacina_, std::string cns);
 
     std::string get_data();
     int get_dose();
