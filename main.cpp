@@ -140,7 +140,8 @@ int main(void){
             }
             std::cout << "Digite seu nome: ";
             try{ //verifica se é válido
-                std::cin >> nome;
+                std::cin.ignore();
+                getline(std::cin,nome);
                 for(int i=0;i<nome.length();i++){
                     if(!isalpha(nome[i])){
                         validonome=false;
@@ -468,7 +469,8 @@ int main(void){
             }
             std::cout << "Digite seu nome: ";
             try{ //verifica se é válido
-                std::cin >> nome;
+                std::cin.ignore();
+                getline(std::cin,nome);
                 for(int i=0;i<nome.length();i++){
                     if(!isalpha(nome[i])){
                         validonome=false;
@@ -786,7 +788,8 @@ int main(void){
             }
             std::cout << "Digite seu nome: ";
             try{ //verifica se é válido
-                std::cin >> nome;
+                std::cin.ignore();
+                getline(std::cin,nome);
                 for(int i=0;i<nome.length();i++){
                     if(!isalpha(nome[i])){
                         validonome=false;

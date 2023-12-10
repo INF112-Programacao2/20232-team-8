@@ -95,7 +95,8 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     bool valido = true;
         std::cout << "Digite o novo nome desejado: ";
         try{ //verifica se é válido
-            std::cin >> nome;
+            std::cin.ignore();
+            getline(std::cin,nome);
             for(int i=0;i<nome.length();i++){
                 if(!isalpha(nome[i])){
                     valido=false;
