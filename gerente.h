@@ -16,6 +16,8 @@ class Gerente : public Usuario{
     void adicionar_estoque();
     void alterar_estoque();
     void visualizar_estoque();
+    void editar_dados();
+    void visualizar_dados();
 };
 
 #endif

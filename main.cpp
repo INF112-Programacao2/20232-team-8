@@ -613,14 +613,14 @@ int main(void){
         while(true){
             //operações do gerente
             std::cout << "\nQual operação deseja realizar?\n";
-            std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Visualizar estoque\n(4) Encerrar Sessão\n";
+            std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Visualizar estoque\n(4) Editar dados pessoais\n(5) Vizualizar dados pessoais\n(6) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
                 std::cin >> opcao3;
-            if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
+            if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4" || opcao3!="5" || opcao3!="6"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-                while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
+                while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5" && opcao3!="6"){
                     std::cin.clear();
                     std::cerr << e.what();
                     std::cin >> opcao3;
@@ -638,8 +638,16 @@ int main(void){
             if(opcao3 == "3"){
                 _gerente[aux]->visualizar_estoque();
             }
-            //encerrar sessão
+            //operacao de editar dados pessoais
             if(opcao3 == "4"){
+                _gerente[aux]->editar_dados();
+            }
+            //operacao de vizualizar dados pessoais
+            if(opcao3 == "5"){
+                _gerente[aux]->visualizar_dados();
+            }
+            //encerrar sessão
+            if(opcao3 == "6"){
                 std::cout << std::endl;
                 goto inicio;
             }

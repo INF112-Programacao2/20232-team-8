@@ -528,3 +528,11 @@ void Gerente::alterar_estoque(){
         _vacina[aux]->set_quantidade(quantidade);
     }
 }
+
+void Gerente::editar_dados(){
+
+}
+
+void Gerente::visualizar_dados(){
+    
+}
