@@ -793,3 +793,13 @@ bool Gerente::verificar_lote(std::string nome, std::string lote){
     }
     return valido;
 }
+
+std::string Gerente::visualizar_fabricante(std::string lote){
+    std::string f;
+    for(int i=0; i<vacina.size(); i++){
+        if(lote == vacina[i]->get_lote()){
+            f = vacina[i]->get_fabricante();
+        }
+    }
+    return f;
+}

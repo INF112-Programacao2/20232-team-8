@@ -18,7 +18,6 @@ public:
     void set_cns(std::string cns);
     void modificar_dados(std::vector <Paciente*> p, int aux);
     void visualizar_dados(std::vector <Paciente*> p, int aux);
-    void visualizar_historico(std::vector <Historico*> h, int aux);
 };
 
 #endif

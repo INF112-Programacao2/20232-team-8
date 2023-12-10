@@ -16,7 +16,6 @@ int main(void){
     std::vector <Paciente*> _paciente;
     std::vector <Gerente*> _gerente;
     std::vector <Aplicador*> _aplicador;
-    std::vector <Historico*> _historico;
     //variáveis para a inicialização dos objetos
     std::string login, senha, nome, telefone, email, cpf, data_nascimento, coren, cns;
     std::string nome2, endereco;
@@ -353,10 +352,11 @@ int main(void){
             }
             //operacao de visualizar historico de vacinas
             if(opcao3 == "3"){
-                _paciente[aux1]->visualizar_historico(_historico, aux1);
+                //funcao do aplicador
             }
             //operacao de encerrar sessão
             if(opcao3 == "4"){
+                std::cout << std::endl;
                 goto inicio;
             }
         }
@@ -1019,6 +1019,7 @@ int main(void){
                             if(opcao3=="1")
                                 goto digitar_cns_do_paciente;
                             if(opcao3=="2")
+                                std::cout << std::endl;
                                 goto inicio;
                         }
                         if(opcao3=="1"){
@@ -1033,13 +1034,14 @@ int main(void){
                     }
                 }
                 else
+                    std::cout << std::endl;
                     goto inicio;
             } 
         }
     }
+    std::cout << "-------------------------------------- " << std::endl;
     //destrutor dos vectors
     _paciente.clear();
     _gerente.clear();
     _aplicador.clear();
-    _historico.clear();
 }
