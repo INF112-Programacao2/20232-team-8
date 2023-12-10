@@ -1,7 +1,7 @@
 #include "historico.h"
 #include "vacina.h"
 
-Historico(std::string cns, std::coren, std::string data, std::string dose, bool retorno, std::string dataDeRetorno, std::string fabricante, std::string lote):
+Historico(std::string cns, std::string coren, std::string data, std::string dose, bool retorno, std::string dataDeRetorno, std::string fabricante, std::string lote):
     _cns(cns), _coren(coren), _data(data), _dose(dose), _retorno(retorno), _dataDeRetorno(dataDeRetorno), _fabricante(fabricante), _lote(lote) {}
 
 std::string Historico::get_data(){
