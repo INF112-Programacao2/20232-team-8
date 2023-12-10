@@ -965,7 +965,7 @@ int main(void){
             }
             //construtor de aplicador
             _aplicador.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
-
+  
             while(true){
                 // operações do aplicador
                 std::cout << "\nQual operação deseja realizar?\n";
