@@ -2,18 +2,15 @@
 #define INF112_HISTORICO_H
 #include <string>
 #include "vacina.h"
+#include <iostream>
 
 class Historico {
 private:
-    std::string _data;
-    int _dose;
+    std::string _cns, _coren, _data, _dose, _dataDeRetorno, _fabricante, _lote;
     bool _retorno;
-    std::string _dataDeRetorno;
-    Vacina _vacina_;
-    std::string _cns;
 
 public: 
-    Historico(std::string data, int dose, bool retorno, std::string dataDeRetorno, Vacina vacina_, std::string cns);
+    Historico(std::string cns, std::coren, std::string data, std::string dose, bool retorno, std::string dataDeRetorno, std::string fabricante, std::string lote);
 
     std::string get_data();
     int get_dose();
