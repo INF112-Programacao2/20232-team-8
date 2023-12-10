@@ -982,6 +982,7 @@ int main(void){
             try{ 
                 std::cin >> opcao3;
                 if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
+                    std::cin.clear();
                     throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
                 }
             } catch(std::invalid_argument &e){
