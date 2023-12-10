@@ -11,7 +11,7 @@
 #include <string>
 #include <exception>
 
-int main(void){
+int main(void){ 
     //vector para cada tipo de usuário
     std::vector <Paciente*> _paciente;
     std::vector <Gerente*> _gerente;
