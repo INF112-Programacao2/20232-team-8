@@ -19,7 +19,7 @@ class Gerente : public Usuario{
     void visualizar_estoque();
     void editar_dados(std::vector <Gerente*> g, int aux);
     void visualizar_dados(std::vector <Gerente*> g, int aux);
-    std::vector <Vacina*> get_vacina();
+    bool verificar_lote(std::string nome, std::string lote);
 };
 
 #endif

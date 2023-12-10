@@ -774,6 +774,22 @@ void Gerente::visualizar_dados(std::vector <Gerente*> g, int aux){
     std::cout << "Data de nascimento: " << g[aux]->get_data_nascimento() << std::endl;
 }
 
-std::vector <Vacina*> Gerente:: get_vacina(){
-    return vacina;
+bool Gerente::verificar_lote(std::string nome, std::string lote){
+    std::vector <std::string> lote_referente;
+    int j = 0;
+    bool valido = false;
+    //guarda todas as referencias de lote que batem com o nome da vacina
+    for(int i=0; i<_vacina.size(); i++){
+        if(nome == _vacina[i]->get_nome()){
+            lote_referente[j] = _vacina[i]->get_lote();
+            j++;
+        }
+    }
+    //verifica se alguma referencia bate
+    for(int i=0; i<lote_referente.size(); i++){
+        if(lote == lote_referente[i]){
+            valido = true;
+        }
+    }
+    return valido;
 }
