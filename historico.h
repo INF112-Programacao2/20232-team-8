@@ -10,7 +10,7 @@ private:
     bool _retorno;
 
 public: 
-    Historico(std::string cns, std::coren, std::string data, std::string dose, bool retorno, std::string dataDeRetorno, std::string fabricante, std::string lote);
+    Historico(std::string cns, std::string coren, std::string data, std::string dose, bool retorno, std::string dataDeRetorno, std::string fabricante, std::string lote);
 
     std::string get_data();
     int get_dose();
