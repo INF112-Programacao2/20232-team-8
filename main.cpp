@@ -236,11 +236,11 @@ int main(void){
             std::string d,m,a;
             s:
             try{
-                std::cout << "Digite a data_nascimento no formato dd/mm/aaaa: ";
+                std::cout << "Digite a data de nascimento no formato dd/mm/aaaa: ";
                 std::cin >> data_nascimento;
                 if(data_nascimento.length()!=10){
                     validodata=false;
-                    throw std::invalid_argument("Digite a data_nascimento no formato especificado\n");
+                    throw std::invalid_argument("Digite a data de nascimento no formato especificado\n");
                 }
                 d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
                 m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
@@ -469,12 +469,12 @@ int main(void){
                 std::cin >> telefone;
                 if(telefone.length()<10){
                     validotel=false;
-                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
+                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente\n");
                 }
                 for(int i=0;i<telefone.length();i++){
                     if(isalpha(telefone[i])){
                         validotel=false;
-                        throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
+                        throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente\n");
                     }
                 }
             } catch(std::invalid_argument& e){
@@ -546,11 +546,11 @@ int main(void){
             std::string d,m,a;
             i:
             try{
-                std::cout << "Digite a data_nascimento no formato dd/mm/aaaa: ";
+                std::cout << "Digite a data de nascimento no formato dd/mm/aaaa: ";
                 std::cin >> data_nascimento;
                 if(data_nascimento.length()!=10){
                     validodata=false;
-                    throw std::invalid_argument("Digite a data_nascimento no formato especificado\n");
+                    throw std::invalid_argument("Digite a data de nascimento no formato especificado\n");
                 }
                 d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
                 m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
@@ -775,12 +775,12 @@ int main(void){
                 std::cin >> telefone;
                 if(telefone.length()<10){
                     validotel=false;
-                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
+                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente\n");
                 }
                 for(int i=0;i<telefone.length();i++){
                     if(isalpha(telefone[i])){
                         validotel=false;
-                        throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter letras, digite novamente\n");
+                        throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente\n");
                     }
                 }
             } catch(std::invalid_argument& e){
@@ -851,11 +851,11 @@ int main(void){
             std::string d,m,a;
             t:
             try{
-                std::cout << "Digite a data_nascimento no formato dd/mm/aaaa: ";
+                std::cout << "Digite a data de nascimento no formato dd/mm/aaaa: ";
                 std::cin >> data_nascimento;
                 if(data_nascimento.length()!=10){
                     validodata=false;
-                    throw std::invalid_argument("Digite a data_nascimento no formato especificado\n");
+                    throw std::invalid_argument("Digite a data de nascimento no formato especificado\n");
                 }
                 d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
                 m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
