@@ -965,14 +965,6 @@ int main(void){
             }
             //construtor de aplicador
             _aplicador.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
-<<<<<<< HEAD
-  
-            while(true){
-                // operações do aplicador
-                std::cout << "\nQual operação deseja realizar?\n";
-                std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n(3) Definir data de retorno do paciente\n(4) Encerrar Sessão\n";
-                try{ 
-=======
         }
 
         while(true){
@@ -987,9 +979,7 @@ int main(void){
                 }
             } catch(std::invalid_argument &e){
                 while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
-                    std::cin.clear();
                     std::cerr << e.what();
->>>>>>> 318e5116baf47b1f3c1181e5830eb1f0342c0130
                     std::cin >> opcao3;
                 }
             }
