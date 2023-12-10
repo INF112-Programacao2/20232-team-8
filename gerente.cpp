@@ -17,7 +17,9 @@ std::string fabricante, tipo;
 
 Gerente::Gerente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string  data_nascimento) :
-    Usuario(login,senha,nome,telefone,email,cpf, data_nascimento), vacina(_vacina) {}
+    Usuario(login,senha,nome,telefone,email,cpf, data_nascimento), vacina(_vacina) {
+        _vacina.push_back(new Vacina("Pfizer","aaa","Pfizer",2,"30/12/2024","06/06/2023","01")); // vacina exemplo
+    }
 
 //funcao que adiciona um novo estoque
 void Gerente::adicionar_estoque(){
