@@ -609,11 +609,169 @@ void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
         g[aux]->set_senha(senha);//chama a função do usuário para mudar a senha
         std::cout << "Senha modificada com sucesso.\n";
     }
+    //modificar nome
+    if(opcao1 == "3"){
+    std::string nome;
+    bool valido = true;
+        std::cout << "Digite o novo nome desejado: ";
+        try{ //verifica se é válido
+            std::cin >> nome;
+            for(int i=0;i<nome.length();i++){
+                if(!isalpha(nome[i])){
+                    valido=false;
+                    throw std::invalid_argument ("O nome só pode conter letras, digite novamente\n");
+                }
+            }
+        } catch(std::invalid_argument& e){
+            while(!valido){
+                std::cerr << e.what();
+                std::cin >> nome;
+                for(int i=0;i<nome.length();i++){
+                    if(!isalpha(nome[i])){
+                        valido=false;
+                            break;
+                    }
+                    valido=true;
+                }
+            }
+        }
+        if(valido==true){//chama a função do usuário para mudar o nome
+            g[aux]->set_nome(nome);
+            std::cout << "Nome modificado com sucesso.\n";
+        }
+    }
+    //modificar telefone
+    if(opcao1=="4"){
+    std::string telefone;
+    bool valido = true;
+        std::cout << "Digite o novo número de telefone desejado: ";
+        try{ //verifica se é válido
+                std::cin >> telefone;
+                if(telefone.length()<10){
+                    valido=false;
+                    throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente\n");
+                }
+                for(int i=0;i<telefone.length();i++){
+                    if(isalpha(telefone[i])){
+                        valido=false;
+                        throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente\n");
+                    }
+                }
+            } catch(std::invalid_argument& e){
+                while(!valido){
+                    std::cerr << e.what();
+                    std::cin >> telefone;
+                    for(int i=0;i<telefone.length();i++){
+                        if(isalpha(telefone[i])){
+                            valido=false;
+                            break;
+                        }
+                        valido=true;
+                    }
+                    if(telefone.length()<10){
+                        valido=false;
+                    }
+                }
+            }
+            if(valido==true){//chama a função do usuário para mudar o telefone
+                g[aux]->set_telefone(telefone);
+                std::cout << "Número de telefone modificado com sucesso.\n";
+            }
+    }
+    //modificar o email
+    if(opcao1=="5"){
+    std::string email;
+    bool valido = true;
+        std::cout << "Digite o novo e-mail desejado: ";
+        try { //verifica se possui @ e é um email válido
+                std::cin >> email;
+                for(int i=0;i<email.length();i++){
+                    if(email[i]=='@')
+                        valido=true;
+                }
+                if(!valido){
+                    throw std::invalid_argument ("Digite um email válido\n");
+                }
+            } catch(std::invalid_argument& e) {
+                while(!valido){
+                    std::cerr << e.what();
+                    std::cin >> email;
+                    for(int i=0;i<email.length();i++){
+                        if(email[i]=='@')
+                            valido=true;
+                    }
+                }
+            }
+            if(valido==true){//chama a função do usuário para mudar o email
+                g[aux]->set_email(email);
+                std::cout << "E-mail modificado com sucesso.\n";
+            }
+    }
+
+    //modificar data de nascimento
+    if(opcao1=="6"){
+        std::string data_nascimento;
+        bool valido = true;
+        std::string d,m,a;
+            s:
+            try{
+                std::cout << "Digite a nova data de nascimento no formato dd/mm/aaaa: ";
+                std::cin >> data_nascimento;
+                if(data_nascimento.length()!=10){
+                    valido=false;
+                    throw std::invalid_argument("Digite a data de nascimento no formato especificado\n");
+                }
+                d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
+                m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
+                a[0]=data_nascimento[6]; a[1]=data_nascimento[7]; a[2]=data_nascimento[8]; a[3]=data_nascimento[9];
+                if(stoi(d)<=0){
+                    valido=false;
+                    throw std::invalid_argument("Dia inválido, digite novamente\n");
+                }
+                if(stoi(m)>12 || stoi(m)<0){
+                    valido=false;
+                    throw std::invalid_argument("Mês inválido, digite novamente\n");
+                }
+                if((stoi(m)==1 || stoi(m)==3 || stoi(m)==5 || stoi(m)==7 || stoi(m)==8 || stoi(m)==10 || stoi(m)==12) && stoi(d)>31){
+                    valido=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if((stoi(m)==4 || stoi(m)==6 || stoi(m)==9 || stoi(m)==11) && stoi(d)>31){
+                    valido=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if(stoi(m)==2 && stoi(d)>28){
+                    valido=false;
+                    throw std::invalid_argument("Data inexistente, digite novamente\n");
+                }
+                else if(stoi(a)>2023 || stoi(a)<1907){
+                    valido=false;
+                    throw std::invalid_argument("Ano inválido, digite novamente\n");
+                }
+                valido=true;
+            } catch(std::invalid_argument& e){
+                std::cerr << e.what();
+                if(!valido){
+                    goto s;
+                }
+            }
+            if(valido==true){
+                g[aux]->set_data_nascimento(data_nascimento);
+                std::cout << "Data de nascimento modificada com sucesso.\n";
+            }
+
+    }
 }
 
 void Gerente::visualizar_dados(std::vector <Gerente*> g, int aux){
     std::cout << "\n--------------- Dados Pessoais --------------- " << std::endl;
     std::cout << "\n---------------------------------------------- " << std::endl;
+    std::cout << "Login: " << g[aux]->get_login() << std::endl;
+    std::cout << "Nome: " << g[aux]->get_nome() << std::endl;
+    std::cout << "Telefone: " << g[aux]->get_telefone() << std::endl;
+    std::cout << "E-mail: " << g[aux]->get_email() << std::endl;
+    std::cout << "CPF: " << g[aux]->get_cpf() << std::endl;
+    std::cout << "Data de nascimento: " << g[aux]->get_data_nascimento() << std::endl;
 }
 
 std::vector <Vacina*> Gerente:: get_vacina(){
