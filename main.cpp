@@ -989,7 +989,7 @@ int main(void){
                             break;
                         }
                     }
-                    if(opcao3=="1"){
+                    if(opcao3 == "1" || opcao3 == "2" || opcao3 == "3"){ // agrupa as funções que exigem identificação do paciente
                         digitar_cns_do_paciente:
                         bool existe=false;
                         std::cout << "Digite o número do CNS do paciente: ";
@@ -1001,9 +1001,7 @@ int main(void){
                                 break;
                             }
                         }
-                        if(existe)
-                            _aplicador[aux] -> registrar_vacina();
-                        else{
+                        if(!existe){
                             std::cout << "CNS não cadastrado no sistema, deseja (1) tentar novamente ou (2) encerrar a sessão?" << std::endl;
                             try{ 
                                 std::cin >> opcao3;
@@ -1023,19 +1021,19 @@ int main(void){
                             if(opcao3=="2")
                                 goto inicio;
                         }
-                    }
-                    if(opcao3=="2"){
-
-                    }
-                    if(opcao3=="3"){
-                        
-                    }
-                    if(opcao3=="3"){
-                        goto inicio;
+                        if(opcao3=="1"){
+                            _aplicador[aux] -> registrar_vacina();
+                        }
+                        if(opcao3=="2"){
+                            _aplicador[aux] -> verificar_retorno();
+                        }
+                        if(opcao3=="3"){
+                            _aplicador[aux] -> definir_retorno();
+                        }
                     }
                 }
                 else
-                    break;
+                    goto inicio;
             } 
         }
     }
