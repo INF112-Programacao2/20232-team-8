@@ -79,11 +79,13 @@ int main(void){
                 std::cout << "Usuário inexistente, realize cadastro\n";
                 opcao2="2";
             }
-            std::cout << "Digite sua senha: "; //se existir o usuário, verifica se a senha está correta
-            std::cin >> senha;
-            while(senha!=_paciente[aux1]->get_senha()){
-                std::cout << "Senha incorreta, digite novamente\n";
+            if(existe){
+                std::cout << "Digite sua senha: "; //se existir o usuário, verifica se a senha está correta
                 std::cin >> senha;
+                while(senha!=_paciente[aux1]->get_senha()){
+                    std::cout << "Senha incorreta, digite novamente\n";
+                    std::cin >> senha;
+                }
             }
         }
         if(opcao2=="2"){ //realiza o cadastro
@@ -687,11 +689,13 @@ int main(void){
                 std::cout << "Usuário inexistente, realize cadastro\n";
                 opcao2=2;
             }
-            std::cout << "Digite sua senha: ";
-            std::cin >> senha;
-            while(senha!=_aplicador[aux1]->get_senha()){
-                std::cout << "Senha incorreta, digite novamente\n";
+            if(existe){
+                std::cout << "Digite sua senha: ";
                 std::cin >> senha;
+                while(senha!=_aplicador[aux1]->get_senha()){
+                    std::cout << "Senha incorreta, digite novamente\n";
+                    std::cin >> senha;
+                }
             }
             
         }
