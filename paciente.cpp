@@ -255,6 +255,6 @@ void Paciente::visualizar_dados(std::vector <Paciente*> p, int aux){
     std::cout << "Cartão Nacional de Saúde (CNS): " << p[aux]->get_cns() << std::endl;
 }
 
-void Paciente::visualizar_historico(std::vector <Paciente*> p, int aux){
+void Paciente::visualizar_historico(std::vector <Historico*> h, int aux){
 
 }

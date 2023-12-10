@@ -10,7 +10,6 @@ class Paciente : public Usuario{
 private:
 //dados
     std::string _cns;
-    std::vector <Historico*> _historico;
 public:
 //métodos
     Paciente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
@@ -19,7 +18,7 @@ public:
     void set_cns(std::string cns);
     void modificar_dados(std::vector <Paciente*> p, int aux);
     void visualizar_dados(std::vector <Paciente*> p, int aux);
-    void visualizar_historico(std::vector <Paciente*> p, int aux);
+    void visualizar_historico(std::vector <Historico*> h, int aux);
 };
 
 #endif

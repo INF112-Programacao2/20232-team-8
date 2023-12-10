@@ -16,6 +16,7 @@ int main(void){
     std::vector <Paciente*> _paciente;
     std::vector <Gerente*> _gerente;
     std::vector <Aplicador*> _aplicador;
+    std::vector <Historico*> _historico;
     //variáveis para a inicialização dos objetos
     std::string login, senha, nome, telefone, email, cpf, data_nascimento, coren, cns;
     std::string nome2, endereco;
@@ -311,14 +312,14 @@ int main(void){
         while(true){
             //operações do paciente
             std::cout << "\nQual operação deseja realizar?\n";
-            std::cout << "(1) Modificar Dados\n(2) Visualizar Dados\n(3) Encerrar Sessão\n";
+            std::cout << "(1) Modificar Dados\n(2) Visualizar Dados\n(3) Visualizar histórico de vacinas(4) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao3;
-            if(opcao3!="1" || opcao3!="2" || opcao3!="3"){
+            if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
             }
             } catch(std::invalid_argument& e){
-            while(opcao3!="1" && opcao3!="2" && opcao3!="3"){
+            while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
                 std::cin.clear();
                 std::cerr << e.what();
                 std::cin >> opcao3;
@@ -332,8 +333,12 @@ int main(void){
             if(opcao3 == "2"){
                 _paciente[aux1]->visualizar_dados(_paciente, aux1);
             }
-            //operacao de encerrar sessão
+            //operacao de visualizar historico de vacinas
             if(opcao3 == "3"){
+                _paciente[aux1]->visualizar_historico(_historico, aux1);
+            }
+            //operacao de encerrar sessão
+            if(opcao3 == "4"){
                 goto inicio;
             }
         }
@@ -990,4 +995,5 @@ int main(void){
     _paciente.clear();
     _gerente.clear();
     _aplicador.clear();
+    _historico.clear();
 }
