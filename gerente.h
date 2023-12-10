@@ -13,11 +13,13 @@ class Gerente : public Usuario{
     public:
     Gerente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string data_nascimento);
+    std::vector <Vacina*> vacina; //vector que o aplicador tera acesso
     void adicionar_estoque();
     void alterar_estoque();
     void visualizar_estoque();
-    void editar_dados(std::vector <Gerente*>, int aux);
-    void visualizar_dados(std::vector <Gerente*>, int aux);
+    void editar_dados(std::vector <Gerente*> g, int aux);
+    void visualizar_dados(std::vector <Gerente*> g, int aux);
+    std::vector <Vacina*> get_vacina();
 };
 
 #endif

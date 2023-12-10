@@ -17,7 +17,7 @@ std::string fabricante, tipo;
 
 Gerente::Gerente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string  data_nascimento) :
-    Usuario(login,senha,nome,telefone,email,cpf, data_nascimento) {}
+    Usuario(login,senha,nome,telefone,email,cpf, data_nascimento), vacina(_vacina) {}
 
 //funcao que adiciona um novo estoque
 void Gerente::adicionar_estoque(){
@@ -40,7 +40,8 @@ void Gerente::adicionar_estoque(){
         int i=0;
         //nome do material
         std::cout << "\nDigite o nome do material: ";
-        std::cin >> nome;
+        std::cin.ignore();
+        getline(std::cin,nome);
         //data de validade
         i=0;
         bool validodata = true;
@@ -186,8 +187,18 @@ void Gerente::adicionar_estoque(){
         int i=0;
         //nome da vacina
         std::cout << "\nDigite o nome da vacina: ";
-        std::cin >> nome;
-         //data de validade
+        try{
+            std::cin >> nome;
+            if(nome!= "Coronavac" || nome!= "Astrazeneca" || nome!= "Pfizer" || nome!= "Janssen"){
+                throw std::invalid_argument("\nNome de vacina inválido! Digite novamente: ");
+            }
+        }catch(std::invalid_argument& e){
+            while(nome!= "Coronavac" && nome!= "Astrazeneca" && nome!= "Pfizer" && nome!= "Janssen"){
+                std::cerr << e.what();
+                std::cin >> nome;
+            }
+        }
+        //data de validade
         bool validodata = true;
         std::string d,m,a;
         teste3:
@@ -323,7 +334,8 @@ void Gerente::adicionar_estoque(){
         }
         //fabricante
         std::cout << "Digite o nome do fabricante: ";
-        std::cin >> fabricante;
+        std::cin.ignore();
+        getline(std::cin,fabricante);
         //tipo
         std::cout << "Digite o tipo da vacina: ";
         std::cin >> tipo;
@@ -529,10 +541,81 @@ void Gerente::alterar_estoque(){
     }
 }
 
-void Gerente::editar_dados(std::vector <Gerente*>, int aux){
-
+void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
+    std::cout << "\nEscolha o dado que deseja editar:\n";
+    std::cout << "(1) Login\n(2) Senha\n(3) Nome\n(4) Telefone\n(5) Email\n(6) Data de nascimento\n";
+    try{ //tratamento de exceção caso a opção seja inválida
+        std::cin >> opcao1;
+        if(opcao1!="1" || opcao1!="2" || opcao1!="3" || opcao1!="4" || opcao1!="5" || opcao1!="6"){
+            throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+        }
+    } catch(std::invalid_argument& e){
+        while(opcao1!="1" && opcao1!="2" && opcao1!="3" && opcao1!="4" && opcao1!="5" && opcao1!="6"){
+            std::cerr << e.what();
+            std::cin >> opcao1;
+        }
+    }
+    //alterar login
+    if(opcao1 == "1"){
+        bool valido = true;
+        std::string login;
+        std::cout << "Digite o novo login desejado: ";
+        try{ //verifica se é válido
+            std::cin >> login;
+            for(int i=0;i<login.length();i++){
+                if(ispunct(login[i])){
+                    valido=false;
+                    throw std::invalid_argument ("O login só pode conter letras e números, digite novamente\n");
+                }
+            }
+            for(int i=0;i<g.size();i++){
+                if(login==g[i]->get_login()){
+                    valido=false;
+                    throw std::invalid_argument ("Login já existente\n");
+                }
+            }
+        } catch(std::invalid_argument& e){
+            while(!valido){
+                std::cerr << e.what();
+                std::cin >> login;
+                for(int i=0;i<login.length();i++){
+                    if(ispunct(login[i])){
+                        valido=false;
+                        break;
+                    }
+                    valido=true;
+                }
+            }
+        }
+        if(valido==true){//chama a função do usuário para mudar o login
+            g[aux]->set_login(login);
+            std::cout << "\nLogin modificado com sucesso.\n";
+        }
+    }
+    if(opcao1 == "2"){
+        std::string senha;
+        std::cout << "\nDigite a nova senha desejada: ";
+        try{ //verifica se é válida
+                std::cin >> senha;
+                if(senha.length()<8){
+                    throw std::invalid_argument("A senha deve ter no mínimo 8 caracteres\n");
+                }
+            } catch(std::invalid_argument& e){
+                while(senha.length()<8){
+                    std::cerr << e.what();
+                    std::cin >> senha;
+                }
+            }
+        g[aux]->set_senha(senha);//chama a função do usuário para mudar a senha
+        std::cout << "Senha modificada com sucesso.\n";
+    }
 }
 
-void Gerente::visualizar_dados(std::vector <Gerente*>, int aux){
-    
+void Gerente::visualizar_dados(std::vector <Gerente*> g, int aux){
+    std::cout << "\n--------------- Dados Pessoais --------------- " << std::endl;
+    std::cout << "\n---------------------------------------------- " << std::endl;
+}
+
+std::vector <Vacina*> Gerente:: get_vacina(){
+    return vacina;
 }

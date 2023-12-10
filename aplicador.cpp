@@ -24,7 +24,7 @@ void Aplicador::registrar_vacina(){
     try{ 
         std::cin >> numvac;
         if(numvac!="1" || numvac!="2" || numvac!="3" || numvac!="4"){
-            throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
+            throw std::invalid_argument ("Opção inexistente, digite novamente!");
         }
     } catch(std::invalid_argument& e){
         while(numvac!="1" && numvac!="2" && numvac!="3" && numvac!="4"){
