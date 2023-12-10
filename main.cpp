@@ -668,7 +668,7 @@ int main(void){
                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
         }
         } catch(std::invalid_argument& e){
-            while(opcao2!="1" || opcao2!="2"){
+            while(opcao2!="1" && opcao2!="2"){
                 std::cerr << e.what();
                 std::cin >> opcao2;
             }
