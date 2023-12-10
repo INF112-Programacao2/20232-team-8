@@ -19,8 +19,8 @@ void Aplicador::set_coren(std::string coren){
 
 void Aplicador::registrar_vacina(){
     std::string numvac, nome_vacina;
-    std::cout >> "Qual o nome da vacina aplicada?" >> std::endl;
-    std::cout >> "(1) Coronavac\n(2) Astrazeneca\n(3) Pfizer\n (4) Janssen\n";
+    std::cout << "Qual o nome da vacina aplicada?" << std::endl;
+    std::cout << "(1) Coronavac\n(2) Astrazeneca\n(3) Pfizer\n (4) Janssen\n";
     try{ 
         std::cin >> numvac;
         if(numvac!="1" || numvac!="2" || numvac!="3" || numvac!="4"){
@@ -32,7 +32,7 @@ void Aplicador::registrar_vacina(){
             std::cin >> numvac;
         }
     }
-    std::cout >> "Qual o lote da vacina?\n";
+    std::cout << "Qual o lote da vacina?\n";
     if(numvac == "1"){
         nome_vacina = "Coronavac";
     }
