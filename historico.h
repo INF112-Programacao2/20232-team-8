@@ -13,7 +13,7 @@ public:
     Historico(std::string cns, std::string coren, std::string data, std::string dose, bool retorno, std::string dataDeRetorno, std::string fabricante, std::string lote);
 
     std::string get_data();
-    int get_dose();
+    std::string get_dose();
     void set_dose(int atualDose);
     bool get_retorno();
     void set_retorno(bool atualRetorno);

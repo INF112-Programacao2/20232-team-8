@@ -8,7 +8,7 @@ std::string Historico::get_data(){
     return _data;
 }
 
-int Historico::get_dose(){
+std::string Historico::get_dose(){
     return _dose;
 }
 

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cctype>
 
+Gerente g;
+
 Aplicador::Aplicador(std::string login, std::string senha, std::string nome, std::string telefone, std::string email, std::string cpf, std::string data_vacina, std::string coren):
     Usuario(login,senha,nome,telefone,email,cpf,data_vacina), _coren(coren){}
 
@@ -46,10 +48,10 @@ void Aplicador::registrar_vacina(std::string cns){
     std::cout << "Qual o lote da vacina?\n";
     try{
         std::cin >> lote;
-        if(Gerente::verificar_lote(nome_vacina,lote) == false)
+        if(g.verificar_lote(nome_vacina,lote) == false)
             throw std::invalid_argument ("Lote da vacina digitado não corresponde a um lote existente, digite novamente. ");
     } catch(std::invalid_argument &d){
-        while(Gerente::verificar_lote(nome_vacina,lote) == false){
+        while(g.verificar_lote(nome_vacina,lote) == false){
             std::cerr << d.what();
             std::cin >> lote;
         }
@@ -172,7 +174,7 @@ void Aplicador::registrar_vacina(std::string cns){
             }
         }
     }
-    fabricante = Gerente::visualizar_fabricante(lote);
+    fabricante = g.visualizar_fabricante(lote);
     _historico.push_back(new Historico(cns,_coren,data_vacina,dose,opcao_retorno,data_retorno,fabricante,lote));
 }
 
