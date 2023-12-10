@@ -17,16 +17,16 @@ void Paciente::set_cns(std::string cns){
 }
 
 void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
-    std::string opcao=0;
+    std::string opcao;
     std::cout <<"Qual dado deseja modificar?\n";
-    std::cout << "(1) Login\n(2) Senha\n(3) Nome\n(4) Telefone\n(5) E-mail\n(6) CPF\n(7) Data de nascimento\n(8) CNS\n";
+    std::cout << "(1) Login\n(2) Senha\n(3) Nome\n(4) Telefone\n(5) E-mail\n(6) Data de nscimento\n";
     try{ //tratamento de exceção caso a opção seja inválida
         std::cin >> opcao;
-        if(opcao!="1" || opcao!="2" || opcao!="3" || opcao!="4" || opcao!="5" || opcao!="6" || opcao!="7" || opcao!="8"){
+        if(opcao!="1" || opcao!="2" || opcao!="3" || opcao!="4" || opcao!="5" || opcao!="6"){
             throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
         }
     } catch(std::invalid_argument& e){
-        while(opcao!="1" && opcao!="2" && opcao!="3" && opcao!="4" && opcao!="5" && opcao!="6" && opcao!="7" && opcao!="8"){
+        while(opcao!="1" && opcao!="2" && opcao!="3" && opcao!="4" && opcao!="5" && opcao!="6"){
             std::cin.clear();
             std::cerr << e.what();
             std::cin >> opcao;
@@ -92,7 +92,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     //modificar nome
     if(opcao == "3"){
     std::string nome;
-    bool valido;
+    bool valido = true;
         std::cout << "Digite o novo nome desejado: ";
         try{ //verifica se é válido
             std::cin >> nome;
@@ -123,7 +123,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     //modificar telefone
     if(opcao=="4"){
     std::string telefone;
-    bool valido;
+    bool valido = true;
         std::cout << "Digite o novo número de telefone desejado: ";
         try{ //verifica se é válido
                 std::cin >> telefone;
@@ -161,7 +161,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     //modificar o email
     if(opcao=="5"){
     std::string email;
-    bool valido;
+    bool valido = true;
         std::cout << "Digite o novo e-mail desejado: ";
         try { //verifica se possui @ e é um email válido
                 std::cin >> email;
@@ -188,49 +188,10 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
             }
     }
 
-    //modificar o cpf
-    if(opcao=="6"){
-    std::string cpf;
-    bool valido;
-        std::cout << "Digite o novo CPF desejado: ";
-        try { //verifica se o cpf é válido
-                std::cin >> cpf;
-                if(cpf.length()<11){
-                    valido=false;
-                    throw std::invalid_argument ("Digite um cpf válido\n");
-                }
-                for(int i=0;i<cpf.length();i++){
-                    if(isalpha(cpf[i])){
-                        valido=false;
-                        throw std::invalid_argument ("Digite um cpf válido\n");
-                    }
-                }
-            } catch(std::invalid_argument& e){
-                while(!valido){
-                    std::cerr << e.what();
-                    std::cin >> cpf;
-                    for(int i=0;i<cpf.length();i++){
-                        if(isalpha(cpf[i])){
-                            valido=false;
-                            break;
-                        }
-                        valido=true;
-                    }
-                    if(cpf.length()<11){
-                        valido=false;
-                    }
-                }
-            }
-            if(valido==true){//chama a função do usuário para mudar o cpf
-                p[aux]->set_cpf(cpf);
-                std::cout << "CPF modificado com sucesso.\n";
-            }
-    }
-
     //modificar data de nascimento
-    if(opcao=="7"){
+    if(opcao=="6"){
         std::string data_nascimento;
-        bool valido;
+        bool valido = true;
         std::string d,m,a;
             s:
             try{
@@ -280,49 +241,20 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
             }
 
     }
-    //modificar cns
-    if(opcao=="8"){
-        std::string cns;
-        bool valido;
-        std::cout << "Digite o novo número do cartão nacional de saúde desejado: ";
-            try { //verifica se é um número válido
-                std::cin >> cns;
-                for(int i=0;i<cns.length();i++){
-                    if(!isdigit(cns[i]) || cns.length()<15){
-                        valido=false;
-                        throw std::invalid_argument ("Digite um cns válido\n");
-                    }
-                }
-            } catch(std::invalid_argument& e){
-                while(!valido && cns.length()<15){
-                    std::cerr << e.what();
-                    std::cin >> cns;
-                    for(int i=0;i<cns.length();i++){
-                        if(!isdigit(cns[i])){
-                            valido=false;
-                            break;
-                        }
-                        valido=true;
-                    }
-                }
-            }
-            if(valido==true){
-                p[aux]->set_cns(cns);
-                std::cout << "Número do cartão nacional de saúde (CNS) modificado com sucesso.\n";
-            }
-    }
 
 }
 
-
 void Paciente::visualizar_dados(std::vector <Paciente*> p, int aux){
     std::cout << "\n--------------- Dados --------------- " << std::endl;
-    //std::cout << "Login: " << p[aux]->get_login() << std::endl;
-    //std::cout << "Senha: " << p[aux]->get_senha() << std::endl;
+    std::cout << "Login: " << p[aux]->get_login() << std::endl;
     std::cout << "Nome: " << p[aux]->get_nome() << std::endl;
     std::cout << "Telefone: " << p[aux]->get_telefone() << std::endl;
-    std::cout << "E-mail: " << p[aux]->get_telefone() << std::endl;
+    std::cout << "E-mail: " << p[aux]->get_email() << std::endl;
     std::cout << "CPF: " << p[aux]->get_cpf() << std::endl;
     std::cout << "Data de nascimento: " << p[aux]->get_data_nascimento() << std::endl;
     std::cout << "Cartão Nacional de Saúde (CNS): " << p[aux]->get_cns() << std::endl;
+}
+
+void Paciente::visualizar_historico(std::vector <Paciente*> p, int aux){
+
 }
