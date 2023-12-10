@@ -25,5 +25,8 @@ usuario.o: usuario.cpp
 vacina.o: vacina.cpp
 	g++ -c vacina.cpp
 
+run:
+	./cartao
+
 clean:
 	rm *.o cartao
