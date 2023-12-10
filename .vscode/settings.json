@@ -46,6 +46,9 @@
         "iostream": "cpp",
         "ctime": "cpp",
         "iomanip": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "numbers": "cpp"
     }
 }

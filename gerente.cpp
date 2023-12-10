@@ -529,10 +529,10 @@ void Gerente::alterar_estoque(){
     }
 }
 
-void Gerente::editar_dados(){
+void Gerente::editar_dados(std::vector <Gerente*>, int aux){
 
 }
 
-void Gerente::visualizar_dados(){
+void Gerente::visualizar_dados(std::vector <Gerente*>, int aux){
     
 }

@@ -16,8 +16,8 @@ class Gerente : public Usuario{
     void adicionar_estoque();
     void alterar_estoque();
     void visualizar_estoque();
-    void editar_dados();
-    void visualizar_dados();
+    void editar_dados(std::vector <Gerente*>, int aux);
+    void visualizar_dados(std::vector <Gerente*>, int aux);
 };
 
 #endif

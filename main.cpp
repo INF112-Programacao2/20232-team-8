@@ -64,12 +64,10 @@ int main(void){
             }
         }
         if(opcao2=="1"){//verifica se o usuário está cadastrado
+            bool existe=false;
             std::cout << "\n--------------- Login --------------- " << std::endl;
             std::cout << "Digite seu nome de usuário: ";
             std::cin >> login;
-            std::cout << "Digite sua senha: ";
-            std::cin >> senha;
-            bool existe=false;
             for(int i=0;i<_paciente.size();i++){
                 if(login==_paciente[i]->get_login()){
                     aux1 = i;
@@ -80,6 +78,12 @@ int main(void){
             if(!existe){ //se não existir, realiza o cadastro
                 std::cout << "Usuário inexistente, realize cadastro\n";
                 opcao2="2";
+            }
+            std::cout << "Digite sua senha: "; //se existir o usuário, verifica se a senha está correta
+            std::cin >> senha;
+            while(senha!=_paciente[aux1]->get_senha()){
+                std::cout << "Senha incorreta, digite novamente\n";
+                std::cin >> senha;
             }
         }
         if(opcao2=="2"){ //realiza o cadastro
@@ -640,11 +644,11 @@ int main(void){
             }
             //operacao de editar dados pessoais
             if(opcao3 == "4"){
-                _gerente[aux]->editar_dados();
+                _gerente[aux]->editar_dados(_gerente, aux);
             }
             //operacao de vizualizar dados pessoais
             if(opcao3 == "5"){
-                _gerente[aux]->visualizar_dados();
+                _gerente[aux]->visualizar_dados(_gerente, aux);
             }
             //encerrar sessão
             if(opcao3 == "6"){
@@ -671,12 +675,11 @@ int main(void){
             std::cout << "\n--------------- Login --------------- " << std::endl;
             std::cout << "Digite seu nome de usuário: ";
             std::cin >> login;
-            std::cout << "Digite sua senha: ";
-            std::cin >> senha;
             bool existe=false;
             for(int i=0;i<_aplicador.size();i++){
                 if(login==_aplicador[i]->get_login()){
                     existe=true;
+                    aux1=i;
                     break;
                 }
             }
@@ -684,6 +687,13 @@ int main(void){
                 std::cout << "Usuário inexistente, realize cadastro\n";
                 opcao2=2;
             }
+            std::cout << "Digite sua senha: ";
+            std::cin >> senha;
+            while(senha!=_aplicador[aux1]->get_senha()){
+                std::cout << "Senha incorreta, digite novamente\n";
+                std::cin >> senha;
+            }
+            
         }
         if(opcao2=="2"){ //realiza o cadastro
             //leitura dos dados e tratamento de excessão
