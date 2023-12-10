@@ -102,6 +102,12 @@ int main(void){
             bool validocns=true;
             try{ //verifica se é válido
                 std::cin >> login;
+                for(int i=0;i<_paciente.size();i++){
+                    if(login==_paciente[i]->get_login()){
+                        valido=false;
+                        throw std::invalid_argument("Login já existente, escolha outro\n");
+                    }
+                }
                 for(int i=0;i<login.length();i++){
                     if(ispunct(login[i])){
                         valido=false;
@@ -207,6 +213,12 @@ int main(void){
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
+                for(int i=0;i<_paciente.size();i++){
+                    if(cpf==_paciente[i]->get_cpf()){
+                        validocpf=false;
+                        throw std::invalid_argument("Cpf já cadastrado\n");
+                    }
+                }
                 if(cpf.length()<11){
                     validocpf=false;
                     throw std::invalid_argument ("Digite um cpf válido\n");
@@ -279,6 +291,12 @@ int main(void){
             std::cout << "Digite o número do seu cartão nacional de saúde: ";
             try { //verifica se é um número válido
                 std::cin >> cns;
+                for(int i=0;i<_paciente.size();i++){
+                    if(cns==_paciente[i]->get_cns()){
+                        valido=false;
+                        throw std::invalid_argument("Número de cartão nacional de saúde já cadastrado\n");
+                    }
+                }
                 for(int i=0;i<cns.length();i++){
                     if(!isdigit(cns[i]) || cns.length()<15){
                         validocns=false;
@@ -411,6 +429,12 @@ int main(void){
             bool validodata=true;
             try{ //verifica se é válido
                 std::cin >> login;
+                for(int i=0;i<_gerente.size();i++){
+                    if(login==_gerente[i]->get_login()){
+                        valido=false;
+                        throw std::invalid_argument("Login já existente, escolha outro\n");
+                    }
+                }
                 for(int i=0;i<login.length();i++){
                     if(ispunct(login[i])){
                         valido=false;
@@ -516,6 +540,12 @@ int main(void){
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
+                for(int i=0;i<_gerente.size();i++){
+                    if(cpf==_gerente[i]->get_cpf()){
+                        validocpf=false;
+                        throw std::invalid_argument("Cpf já cadastrado\n");
+                    }
+                }
                 if(cpf.length()<11){
                     validocpf=false;
                     throw std::invalid_argument ("Digite um cpf válido\n");
@@ -717,6 +747,12 @@ int main(void){
             bool validodata=true;
             try{ //verifica se é válido
                 std::cin >> login;
+                for(int i=0;i<_aplicador.size();i++){
+                    if(login==_aplicador[i]->get_login()){
+                        valido=false;
+                        throw std::invalid_argument("Login já existente, escolha outro\n");
+                    }
+                }
                 for(int i=0;i<login.length();i++){
                     if(ispunct(login[i])){
                         valido=false;
@@ -822,6 +858,12 @@ int main(void){
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
+                for(int i=0;i<_aplicador.size();i++){
+                    if(cpf==_aplicador[i]->get_cpf()){
+                        validocpf=false;
+                        throw std::invalid_argument("Cpf já cadastrado\n");
+                    }
+                }
                 if(cpf.length()<11){
                     validocpf=false;
                     throw std::invalid_argument ("Digite um cpf válido\n");
@@ -894,6 +936,12 @@ int main(void){
             std::cout << "Digite seu número do coren: ";
             try { //verifica se o valor digitado é válido
                 std::cin >> coren;
+                for(int i=0;i<_aplicador.size();i++){
+                    if(coren==_aplicador[i]->get_coren()){
+                        validocoren=false;
+                        throw std::invalid_argument("Coren já cadastrado\n");
+                    }
+                }
                 for(int i=0;i<coren.length();i++){
                     if(!isdigit(coren[i])){
                         validocoren=false;
