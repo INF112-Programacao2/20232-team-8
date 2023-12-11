@@ -3,12 +3,10 @@
 #include <iostream>
 #include <cctype>
 
-Gerente _gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004");
+Gerente _gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004"); // objeto do tipo gerente para acessar funções de gerente
 
-Aplicador::Aplicador(std::string login, std::string senha, std::string nome, std::string telefone, std::string email, std::string cpf, std::string data_vacina, std::string coren):
-    Usuario(login,senha,nome,telefone,email,cpf,data_vacina), _coren(coren){}
-
-Aplicador::~Aplicador() {}
+Aplicador::Aplicador(std::string login, std::string senha, std::string nome, std::string telefone, std::string email, std::string cpf, std::string data_nascimento, std::string coren):
+    Usuario(login,senha,nome,telefone,email,cpf,data_nascimento), _coren(coren){}
 
 std::string Aplicador::get_coren(){
     return _coren;
@@ -26,7 +24,7 @@ void Aplicador::registrar_vacina(std::string cns){
     try{ 
         std::cin >> numvac;
         if(numvac!="1" || numvac!="2" || numvac!="3" || numvac!="4"){
-            throw std::invalid_argument ("Opção inexistente, digite novamente!");
+            throw std::invalid_argument ("Opção inexistente, digite novamente.\n");
         }
     } catch(std::invalid_argument& e){
         while(numvac!="1" && numvac!="2" && numvac!="3" && numvac!="4"){
@@ -34,7 +32,7 @@ void Aplicador::registrar_vacina(std::string cns){
             std::cin >> numvac;
         }
     }
-    if(numvac == "1"){ // através das opções, grava o nome da vacina
+    if(numvac == "1"){ // através das opções, grava o nome da vacina para que ele possa ser conferido entre as vacinas registradas na classe gerente
         nome_vacina = "Coronavac"; 
     }
     if(numvac == "2"){
@@ -46,11 +44,11 @@ void Aplicador::registrar_vacina(std::string cns){
     if(numvac == "4"){
         nome_vacina = "Janssen";
     }
-    std::cout << "Qual o lote da vacina?\n";
+    std::cout << "Qual o lote da vacina? ";
     try{
         std::cin >> lote;
         if(_gerente.verificar_lote(nome_vacina,lote) == false)
-            throw std::invalid_argument ("Lote da vacina digitado não corresponde a um lote existente, digite novamente. ");
+            throw std::invalid_argument ("Lote da vacina digitado não corresponde a um lote existente, digite novamente.\n");
     } catch(std::invalid_argument &d){
         while(_gerente.verificar_lote(nome_vacina,lote) == false){
             std::cerr << d.what();
@@ -179,10 +177,25 @@ void Aplicador::registrar_vacina(std::string cns){
     _historico.push_back(new Historico(cns,_coren,data_vacina,dose,opcao_retorno,data_retorno,fabricante,lote));
 }
 
-void Aplicador::verificar_retorno(){
-    
-}
+void Aplicador::verificar_retorno(std::string cns){
+    int cont = 0; // contador de datas de retorno, se não houver nenhuma, vale 0 
+    std::vector <std::string> datas;
+    for(int i=0; i<_historico.size(); i++){
+        if(cns==_historico[i]->get_cns() const){
+            if(_historico[i]->get_retorno()){ // se houver necessidade de retorno 
+                datas.push_back(_historico[i]->get_data_retorno());
+                cont++;
+            }
+        }
+    } // não é possível dar break, porque um paciente pode ter mais que um historico
 
-void Aplicador::definir_retorno(){
-
+    if(cont!=0){
+        std::cout << "A(s) data(s) de retorno do paciente são: ";
+        for(int i=0; i<datas.size(); i++){
+            std::cout << datas[i] << " ";
+        }
+        std::cout << std::endl;
+    }
+    else
+        std::cout << "Nenhuma vacina do paciente exige seu retorno.\n";
 }

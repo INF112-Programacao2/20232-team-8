@@ -1,8 +1,8 @@
 #include "historico.h"
 #include "vacina.h"
 
-Historico::Historico(std::string cns, std::string coren, std::string data, std::string dose, bool retorno, std::string dataDeRetorno, std::string fabricante, std::string lote):
-    _cns(cns), _coren(coren), _data(data), _dose(dose), _retorno(retorno), _dataDeRetorno(dataDeRetorno), _fabricante(fabricante), _lote(lote) {}
+Historico::Historico(std::string cns, std::string coren, std::string data, std::string dose, bool retorno, std::string data_retorno, std::string fabricante, std::string lote):
+    _cns(cns), _coren(coren), _data(data), _dose(dose), _retorno(retorno), _data_retorno(data_retorno), _fabricante(fabricante), _lote(lote) {}
 
 std::string Historico::get_data(){
     return _data;
@@ -24,10 +24,14 @@ void Historico::set_retorno(bool atualRetorno){
     _retorno = atualRetorno;
 }
 
-std::string Historico::get_dataDeRetorno(){
-    return _dataDeRetorno;
+std::string Historico::get_data_retorno(){
+    return _data_retorno;
 }
 
-void Historico::set_dataDeRetorno(std::string atualDdr){
-    _dataDeRetorno = atualDdr;
+void Historico::set_data_retorno(std::string atualDdr){
+    _data_retorno = atualDdr;
+}
+
+std::string Historico::get_cns() const{
+    return _cns;
 }
