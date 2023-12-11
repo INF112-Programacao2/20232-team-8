@@ -406,11 +406,6 @@ void Gerente::adicionar_estoque(){
                 }
             }
         }
-        //fabricante
-        std::cout << "Digite o nome do fabricante: ";
-        std::cin.ignore();
-        getline(std::cin,fabricante);
-        //tipo
         std::cout << "Digite o tipo da vacina: ";
         std::cin >> tipo;
         
