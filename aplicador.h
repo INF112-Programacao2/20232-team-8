@@ -20,6 +20,7 @@ public:
     void visualizar_dados(std::vector <Aplicador*> apli, int aux);
     void editar_dados(std::vector <Aplicador*> apli, int aux);
     void visualizar_historico(std::string cns);
+    ~Aplicador();
 };
 
 #endif

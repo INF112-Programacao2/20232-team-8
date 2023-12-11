@@ -142,7 +142,43 @@ void Gerente::adicionar_estoque(){
         } 
         //lote do material
         std::cout << "Digite o lote do material: ";
-        std::cin >> lote;
+        bool lote_valido;
+        try{ //tratamento de exceção caso o lote ja exista
+            lote_valido = true;
+            std::cin >> lote;
+            for(int i=0; i<_estoque.size(); i++){
+                if(lote == _estoque[i]->get_lote()){
+                    lote_valido = false;
+                    break;
+                }
+            }
+            for(int i=0; i<_vacina.size(); i++){
+                    if(lote == _vacina[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+            if(!lote_valido)
+                throw std::invalid_argument ("Esse lote já existe, digite novamente!\n");
+        } catch(std::invalid_argument& e){
+            while(!lote_valido){
+                std::cerr << e.what();
+                std::cin >> lote;
+                lote_valido = true;
+                for(int i=0; i<_estoque.size(); i++){
+                    if(lote == _estoque[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+                for(int i=0; i<_vacina.size(); i++){
+                    if(lote == _vacina[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+            }
+        }
         //quantidade do material
         std::cout << "Digite a quantidade do material: ";
         bool invalida = false;
@@ -297,7 +333,43 @@ void Gerente::adicionar_estoque(){
         } 
         //lote da vacina
         std::cout << "Digite o lote da vacina: ";
-        std::cin >> lote;
+        bool lote_valido = true;
+        try{ //tratamento de exceção caso o lote ja exista
+            lote_valido = true;
+            std::cin >> lote;
+            for(int i=0; i<_estoque.size(); i++){
+                if(lote == _estoque[i]->get_lote()){
+                    lote_valido = false;
+                    break;
+                }
+            }
+            for(int i=0; i<_vacina.size(); i++){
+                    if(lote == _vacina[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+            if(!lote_valido)
+                throw std::invalid_argument ("Esse lote já existe, digite novamente!\n");
+        } catch(std::invalid_argument& e){
+            while(!lote_valido){
+                std::cerr << e.what();
+                std::cin >> lote;
+                lote_valido = true;
+                for(int i=0; i<_estoque.size(); i++){
+                    if(lote == _estoque[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+                for(int i=0; i<_vacina.size(); i++){
+                    if(lote == _vacina[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+            }
+        }
         //quantidade da vacina
         quantidade = 0;
         std::cout << "Digite a quantidade da vacina: ";
@@ -807,4 +879,10 @@ std::string Gerente::visualizar_fabricante(std::string lote){
         }
     }
     return f;
+}
+
+//destrutor
+Gerente::~Gerente(){
+    _vacina.clear();
+    _estoque.clear();
 }

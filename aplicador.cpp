@@ -450,8 +450,8 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
 
  void Aplicador::visualizar_historico(std::string cns){
     for(int i=0; i<_historico.size(); i++){
+        std::cout << "\n--------------- Cartão de Vacinas --------------- " << std::endl;
         if(cns==_historico[i]->get_cns()){
-            std::cout << "\n--------------- Dados --------------- " << std::endl;
             std::cout << "Coren: " << _historico[i]->get_coren() << std::endl;
             //std::cout << "Nome: " << _historico[i]->get_nome() << std::endl;
             std::cout << "Data: " << _historico[i]->get_data() << std::endl;
@@ -460,9 +460,13 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
                 std::cout << "Data de retorno: " << _historico[i]->get_data_retorno() << std::endl;
             //std::cout << "Fabricante: " << _historico[i]->get_fabricante() << std::endl;
             std::cout << "Lote: " << _historico[i]->get_lote() << std::endl;
-            std::cout << "------------------------------------- " << std::endl;
-            
+            std::cout << "------------------------------------------------- " << std::endl;
         }
     }
 
  }
+
+//destrutor
+Aplicador::~Aplicador(){
+    _historico.clear();
+}

@@ -87,6 +87,7 @@ int main(void){
                     std::cin >> senha;
                 }
             }
+            std::cout << "------------------------------------- " << std::endl;
         }
         if(opcao2=="2"){ //realiza o cadastro
             //leitura dos dados e tratamento de excessão
@@ -316,6 +317,7 @@ int main(void){
                     }
                 }
             }
+            std::cout << "---------------------------------------- " << std::endl;
             //construtor do paciente
             _paciente.push_back(new Paciente(login,senha,nome,telefone,email,cpf,data_nascimento,cns));
             for(int i=0; i<_paciente.size(); i++){
@@ -324,7 +326,6 @@ int main(void){
                     break;
                 }
             }
-
         }
 
         while(true){
@@ -418,6 +419,7 @@ int main(void){
                     }
                 }
             }
+            std::cout << "------------------------------------- " << std::endl;
         }
         if(opcao2=="2"){ //realiza o cadastro
             //leitura dos dados e tratamento de excessão
@@ -645,6 +647,7 @@ int main(void){
             }
             std::cout << "Digite o endereço do posto onde trabalha: ";
             std::cin >> endereco;
+            std::cout << "---------------------------------------- " << std::endl;
             //construtor do gerente
             _gerente.push_back(new Gerente(login,senha,nome,telefone,email,cpf,data_nascimento));
             for(int i=0; i<_gerente.size(); i++){
@@ -658,7 +661,7 @@ int main(void){
         while(true){
             //operações do gerente
             std::cout << "\nQual operação deseja realizar?\n";
-            std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Visualizar estoque\n(4) Editar dados pessoais\n(5) Vizualizar dados pessoais\n(6) Encerrar Sessão\n";
+            std::cout << "(1) Adicionar Estoque\n(2) Alterar estoque\n(3) Visualizar estoque\n(4) Editar dados pessoais\n(5) Visualizar dados pessoais\n(6) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
                 std::cin >> opcao3;
             if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4" || opcao3!="5" || opcao3!="6"){
@@ -687,7 +690,7 @@ int main(void){
             if(opcao3 == "4"){
                 _gerente[aux]->editar_dados(_gerente, aux);
             }
-            //operacao de vizualizar dados pessoais
+            //operacao de visualizar dados pessoais
             if(opcao3 == "5"){
                 _gerente[aux]->visualizar_dados(_gerente, aux);
             }
@@ -736,6 +739,7 @@ int main(void){
                     std::cin >> senha;
                 }
             }
+            std::cout << "------------------------------------- " << std::endl;
         }
         if(opcao2=="2"){ //realiza o cadastro
             //leitura dos dados e tratamento de excessão
@@ -965,8 +969,15 @@ int main(void){
                     }
                 }
             }
+            std::cout << "---------------------------------------- " << std::endl;
             //construtor de aplicador
             _aplicador.push_back(new Aplicador(login,senha,nome,telefone,email,cpf,data_nascimento,coren));
+            for(int i=0; i<_aplicador.size(); i++){
+                if(_aplicador[i]->get_login() == login){
+                    aux = i;
+                    break;
+                }
+            }
         }
 
         while(true){
