@@ -43,7 +43,7 @@ void Gerente::adicionar_estoque(){
         std::string opcao_material;
         //nome do material
         std::cout << "\nQual o nome do material: ";
-        std::cout << "(1) Algodão\n(2) Álcool\n(3) Luva\n(4) Seringa\n";
+        std::cout << "\n(1) Algodão\n(2) Álcool\n(3) Luva\n(4) Seringa\n";
         try{ 
             std::cin >> opcao_material;
             if(opcao_material!="1" || opcao_material!="2" || opcao_material!="3" || opcao_material!="4"){
