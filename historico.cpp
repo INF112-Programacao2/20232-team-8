@@ -32,6 +32,6 @@ void Historico::set_data_retorno(std::string atualDdr){
     _data_retorno = atualDdr;
 }
 
-std::string Historico::get_cns() const{
+std::string Historico::get_cns(){
     return _cns;
 }

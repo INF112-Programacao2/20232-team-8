@@ -14,7 +14,7 @@ public:
 //métodos
     Paciente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string data_nascimento, std::string cns);
-    virtual std::string get_cns() const;
+    std::string get_cns();
     void set_cns(std::string cns);
     void modificar_dados(std::vector <Paciente*> p, int aux);
     void visualizar_dados(std::vector <Paciente*> p, int aux);

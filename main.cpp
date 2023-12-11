@@ -970,28 +970,27 @@ int main(void){
         while(true){
             // operações do aplicador
             std::cout << "\nQual operação deseja realizar?\n";
-            std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n(3) Definir data de retorno do paciente\n(4) Encerrar Sessão\n";
+            std::cout << "(1) Registrar vacina aplicada\n(2) Verificar data de retorno do paciente\n(3) Visualizar dados\n(4) Modificar dados\n(5) Encerrar Sessão\n";
             try{ 
                 std::cin >> opcao3;
-                if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
-                    std::cin.clear();
+                if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4" || opcao3!="5"){
                     throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
                 }
             } catch(std::invalid_argument &e){
-                while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4"){
+                while(opcao3!="1" && opcao3!="2" && opcao3!="3" && opcao3!="4" && opcao3!="5"){
                     std::cerr << e.what();
                     std::cin >> opcao3;
                 }
             }
 
-            if(opcao3!="4"){ // agrupa as funções que exigem identificação do aplicador
+            if(opcao3!="5"){ // agrupa as funções que exigem identificação do aplicador
                 for(int i=0;i<_aplicador.size();i++){ 
                     if(login==_aplicador[i]->get_login()){ // confere se o login do usuáario é igual ao login de um aplicador
                         aux = i; // identifica o aplicador
                         break;
                     }
                 }
-                if(opcao3 == "1" || opcao3 == "2" || opcao3 == "3"){ // agrupa as funções que exigem identificação do paciente
+                if(opcao3 == "1" || opcao3 == "2"){ // agrupa as funções que exigem identificação do paciente
                     digitar_cns_do_paciente:
                     bool existe=false;
                     std::cout << "Digite o número do CNS do paciente: ";
@@ -1008,29 +1007,31 @@ int main(void){
                         try{ 
                             std::cin >> opcao3;
                             if(opcao3!="1" || opcao3!="2"){
-                                std::cin.clear();
                                 throw std::invalid_argument ("Opção inexistente, digite novamente!\n");
                             }
                         } catch(std::invalid_argument &er){
                             while(opcao3!="1" && opcao3!="2"){
-                                std::cin.clear();
                                 std::cerr << er.what();
                                 std::cin >> opcao3;
                             }
                         }
                         if(opcao3=="1")
-                            goto digitar_cns_do_paciente;
+                            goto digitar_cns_do_paciente; // volta ao cin >> cns
                         if(opcao3=="2")
                             std::cout << std::endl;
                             goto inicio;
                     }
                     if(opcao3=="1"){
-                        _aplicador[aux] -> registrar_vacina(cns);
+                        _aplicador[aux] -> registrar_vacina(cns); // registrar vacina que foi aplicada num paciente
                     }
                     if(opcao3=="2"){
-                        _aplicador[aux] -> verificar_retorno(cns);
+                        _aplicador[aux] -> verificar_retorno(cns); // verifica as datas em que o paciente deve retornar, caso existam
                     }
                 }
+                if(opcao3=="3")
+                    _aplicador[aux] -> visualizar_dados(_aplicador,aux); // aplicador visualiza dados pessoais
+                if(opcao3=="4")
+                    _aplicador[aux] -> editar_dados(_aplicador,aux); // aplicador edita dados pessoais
             }
             else{
                 std::cout << std::endl;

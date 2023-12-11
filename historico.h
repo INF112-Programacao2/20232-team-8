@@ -2,10 +2,9 @@
 #define INF112_HISTORICO_H
 #include <string>
 #include "vacina.h"
-#include "paciente.h"
 #include <iostream>
 
-class Historico : public Paciente {
+class Historico {
 private:
     std::string _cns, _coren, _data, _dose, _data_retorno, _fabricante, _lote;
     bool _retorno;
@@ -20,7 +19,7 @@ public:
     void set_retorno(bool atualRetorno);
     std::string get_data_retorno();
     void set_data_retorno(std::string atualDdr);
-    std::string get_cns() const override;
+    std::string get_cns();
 };
 
 #endif

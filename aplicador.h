@@ -16,6 +16,8 @@ public:
     void set_coren(std::string coren);
     void registrar_vacina(std::string cns);
     void verificar_retorno(std::string cns);
+    void visualizar_dados(std::vector <Aplicador*> apli, int aux);
+    void editar_dados(std::vector <Aplicador*> apli, int aux);
 };
 
 #endif
