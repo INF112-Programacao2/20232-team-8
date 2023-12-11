@@ -4,18 +4,22 @@
 #include <iostream>
 #include <vector>
 
+//Construtor para paciente
 Paciente::Paciente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string data_nascimento, std::string cns):
                 Usuario(login,senha,nome,telefone,email,cpf,data_nascimento), _cns(cns){}
 
+//função acessa o cns
 std::string Paciente::get_cns(){
     return _cns;
 }
 
+//função modifica o cns
 void Paciente::set_cns(std::string cns){
     _cns = cns;
 }
 
+//função modifica os dados do paciente
 void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     std::string opcao;
     std::cout <<"Qual dado deseja modificar?\n";
@@ -250,6 +254,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
 
 }
 
+//função que exibe os dados do paciente
 void Paciente::visualizar_dados(std::vector <Paciente*> p, int aux){
     std::cout << "\n--------------- Dados --------------- " << std::endl;
     std::cout << "Login: " << p[aux]->get_login() << std::endl;
@@ -259,7 +264,7 @@ void Paciente::visualizar_dados(std::vector <Paciente*> p, int aux){
     std::cout << "CPF: " << p[aux]->get_cpf() << std::endl;
     std::cout << "Data de nascimento: " << p[aux]->get_data_nascimento() << std::endl;
     std::cout << "Cartão Nacional de Saúde (CNS): " << p[aux]->get_cns() << std::endl;
-    std::cout << "\n---------------------------------------------- " << std::endl;
+    std::cout << "\n--------------------------------------- " << std::endl;
 
 }
 
