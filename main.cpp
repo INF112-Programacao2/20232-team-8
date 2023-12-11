@@ -267,6 +267,11 @@ int main(void){
                     validodata=false;
                     throw std::invalid_argument("Digite a data de nascimento no formato especificado\n");
                 }
+                //verifica se não foi digitada alguma letra
+                if(!isdigit(data_nascimento[0]) || !isdigit(data_nascimento[1]) || isalnum(data_nascimento[2]) || !isdigit(data_nascimento[3]) || !isdigit(data_nascimento[4]) || isalnum(data_nascimento[5]) || !isdigit(data_nascimento[6]) || !isdigit(data_nascimento[7]) || !isdigit(data_nascimento[8]) || !isdigit(data_nascimento[9])){
+                    validodata=false;
+                    throw std::invalid_argument("Digite a data no formato especificado.\n");
+                }
                 //utiliza as strings auxiliares para analizar cada caso
                 d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
                 m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
@@ -619,6 +624,11 @@ int main(void){
                     validodata=false;
                     throw std::invalid_argument("Digite a data de nascimento no formato especificado\n");
                 }
+                //verifica se não foi digitada alguma letra
+                if(!isdigit(data_nascimento[0]) || !isdigit(data_nascimento[1]) || isalnum(data_nascimento[2]) || !isdigit(data_nascimento[3]) || !isdigit(data_nascimento[4]) || isalnum(data_nascimento[5]) || !isdigit(data_nascimento[6]) || !isdigit(data_nascimento[7]) || !isdigit(data_nascimento[8]) || !isdigit(data_nascimento[9])){
+                    validodata=false;
+                    throw std::invalid_argument("Digite a data no formato especificado.\n");
+                }
                 d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
                 m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
                 a[0]=data_nascimento[6]; a[1]=data_nascimento[7]; a[2]=data_nascimento[8]; a[3]=data_nascimento[9];
@@ -930,6 +940,11 @@ int main(void){
                 if(data_nascimento.length()!=10){
                     validodata=false;
                     throw std::invalid_argument("Digite a data de nascimento no formato especificado\n");
+                }
+                //verifica se não foi digitada alguma letra
+                if(!isdigit(data_nascimento[0]) || !isdigit(data_nascimento[1]) || isalnum(data_nascimento[2]) || !isdigit(data_nascimento[3]) || !isdigit(data_nascimento[4]) || isalnum(data_nascimento[5]) || !isdigit(data_nascimento[6]) || !isdigit(data_nascimento[7]) || !isdigit(data_nascimento[8]) || !isdigit(data_nascimento[9])){
+                    validodata=false;
+                    throw std::invalid_argument("Digite a data no formato especificado.\n");
                 }
                 d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
                 m[0]=data_nascimento[3]; m[1]=data_nascimento[4];

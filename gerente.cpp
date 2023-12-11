@@ -81,6 +81,10 @@ void Gerente::adicionar_estoque(){
                 validodata=false;
                 throw std::invalid_argument("Digite a data de validade no formato especificado\n");
             }
+            if(!isdigit(validade[0]) || !isdigit(validade[1]) || isalnum(validade[2]) || !isdigit(validade[3]) || !isdigit(validade[4]) || isalnum(validade[5]) || !isdigit(validade[6]) || !isdigit(validade[7]) || !isdigit(validade[8]) || !isdigit(validade[9])){
+                validodata=false;
+                throw std::invalid_argument("Digite a data no formato especificado.\n");
+            }
             d[0]=validade[0]; d[1]=validade[1];
             m[0]=validade[3]; m[1]=validade[4];
             a[0]=validade[6]; a[1]=validade[7]; a[2]=validade[8]; a[3]=validade[9];
@@ -130,6 +134,10 @@ void Gerente::adicionar_estoque(){
                 validodata=false;
                 throw std::invalid_argument("Digite a data de recebimento no formato especificado\n");
             }
+            if(!isdigit(data_recebimento[0]) || !isdigit(data_recebimento[1]) || isalnum(data_recebimento[2]) || !isdigit(data_recebimento[3]) || !isdigit(data_recebimento[4]) || isalnum(data_recebimento[5]) || !isdigit(data_recebimento[6]) || !isdigit(data_recebimento[7]) || !isdigit(data_recebimento[8]) || !isdigit(data_recebimento[9])){
+            validodata=false;
+            throw std::invalid_argument("Digite a data no formato especificado.\n");
+        }
             d[0]=data_recebimento[0]; d[1]=data_recebimento[1];
             m[0]=data_recebimento[3]; m[1]=data_recebimento[4];
             a[0]=data_recebimento[6]; a[1]=data_recebimento[7]; a[2]=data_recebimento[8]; a[3]=data_recebimento[9];
@@ -259,6 +267,10 @@ void Gerente::adicionar_estoque(){
                 validodata=false;
                 throw std::invalid_argument("Digite a data de recebimento no formato especificado\n");
             }
+            if(!isdigit(validade[0]) || !isdigit(validade[1]) || isalnum(validade[2]) || !isdigit(validade[3]) || !isdigit(validade[4]) || isalnum(validade[5]) || !isdigit(validade[6]) || !isdigit(validade[7]) || !isdigit(validade[8]) || !isdigit(validade[9])){
+                validodata=false;
+                throw std::invalid_argument("Digite a data no formato especificado.\n");
+            }
             d[0]=validade[0]; d[1]=validade[1];
             m[0]=validade[3]; m[1]=validade[4];
             a[0]=validade[6]; a[1]=validade[7]; a[2]=validade[8]; a[3]=validade[9];
@@ -307,6 +319,10 @@ void Gerente::adicionar_estoque(){
             if(data_recebimento.length()!=10){
                 validodata=false;
                 throw std::invalid_argument("Digite a data de recebimento no formato especificado\n");
+            }
+            if(!isdigit(data_recebimento[0]) || !isdigit(data_recebimento[1]) || isalnum(data_recebimento[2]) || !isdigit(data_recebimento[3]) || !isdigit(data_recebimento[4]) || isalnum(data_recebimento[5]) || !isdigit(data_recebimento[6]) || !isdigit(data_recebimento[7]) || !isdigit(data_recebimento[8]) || !isdigit(data_recebimento[9])){
+                validodata=false;
+                throw std::invalid_argument("Digite a data no formato especificado.\n");
             }
             d[0]=data_recebimento[0]; d[1]=data_recebimento[1];
             m[0]=data_recebimento[3]; m[1]=data_recebimento[4];
@@ -767,6 +783,10 @@ void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
                 if(data_nascimento.length()!=10){
                     valido=false;
                     throw std::invalid_argument("Digite a data de nascimento no formato especificado\n");
+                }
+                if(!isdigit(data_nascimento[0]) || !isdigit(data_nascimento[1]) || isalnum(data_nascimento[2]) || !isdigit(data_nascimento[3]) || !isdigit(data_nascimento[4]) || isalnum(data_nascimento[5]) || !isdigit(data_nascimento[6]) || !isdigit(data_nascimento[7]) || !isdigit(data_nascimento[8]) || !isdigit(data_nascimento[9])){
+                    valido=false;
+                    throw std::invalid_argument("Digite a data no formato especificado.\n");
                 }
                 d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
                 m[0]=data_nascimento[3]; m[1]=data_nascimento[4];

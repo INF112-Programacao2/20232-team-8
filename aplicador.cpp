@@ -85,6 +85,12 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
             throw std::invalid_argument("Digite a data no formato especificado.\n");
         }
         d[0]=data_vacina[0]; d[1]=data_vacina[1];
+        d[0]=data_vacina[0]; d[1]=data_vacina[1];
+        if(!isdigit(data_vacina[0]) || !isdigit(data_vacina[1]) || isalnum(data_vacina[2]) || !isdigit(data_vacina[3]) || !isdigit(data_vacina[4]) || isalnum(data_vacina[5]) || !isdigit(data_vacina[6]) || !isdigit(data_vacina[7]) || !isdigit(data_vacina[8]) || !isdigit(data_vacina[9])){
+            valido_data_vacina=false;
+            throw std::invalid_argument("Digite a data no formato especificado.\n");
+        }
+        d[0]=data_vacina[0]; d[1]=data_vacina[1];
         m[0]=data_vacina[3]; m[1]=data_vacina[4];
         a[0]=data_vacina[6]; a[1]=data_vacina[7]; a[2]=data_vacina[8]; a[3]=data_vacina[9];
         if(stoi(d)<=0){
@@ -157,6 +163,10 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
             if(data_retorno.length()!=10){
                 valido_data_retorno=false;
                 throw std::invalid_argument("Digite a data no formato especificado.\n");
+            }
+            if(!isdigit(data_retorno[0]) || !isdigit(data_retorno[1]) || isalnum(data_retorno[2]) || !isdigit(data_retorno[3]) || !isdigit(data_retorno[4]) || isalnum(data_retorno[5]) || !isdigit(data_retorno[6]) || !isdigit(data_retorno[7]) || !isdigit(data_retorno[8]) || !isdigit(data_retorno[9])){
+            valido_data_retorno=false;
+            throw std::invalid_argument("Digite a data no formato especificado.\n");
             }
             dia[0]=data_retorno[0]; dia[1]=data_retorno[1];
             mes[0]=data_retorno[3]; mes[1]=data_retorno[4];
@@ -412,6 +422,10 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
                 if(data_nascimento.length()!=10){
                     valido=false;
                     throw std::invalid_argument("Digite a data de nascimento no formato especificado\n");
+                }
+                if(!isdigit(data_nascimento[0]) || !isdigit(data_nascimento[1]) || isalnum(data_nascimento[2]) || !isdigit(data_nascimento[3]) || !isdigit(data_nascimento[4]) || isalnum(data_nascimento[5]) || !isdigit(data_nascimento[6]) || !isdigit(data_nascimento[7]) || !isdigit(data_nascimento[8]) || !isdigit(data_nascimento[9])){
+                valido=false;
+                throw std::invalid_argument("Digite a data no formato especificado.\n");
                 }
                 d[0]=data_nascimento[0]; d[1]=data_nascimento[1];
                 m[0]=data_nascimento[3]; m[1]=data_nascimento[4];
