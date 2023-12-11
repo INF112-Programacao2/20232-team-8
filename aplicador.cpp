@@ -1,5 +1,6 @@
 #include "aplicador.h"
 #include "gerente.h"
+#include "vacina.h"
 #include <iostream>
 #include <cctype>
 
@@ -14,8 +15,8 @@ void Aplicador::set_coren(std::string coren){
     _coren = coren;
 }
 
-void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerente){
-    std::string numvac, nome_vacina, lote, data_vacina, dose, opcao1, data_retorno, fabricante;
+void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerente){ // recebe o cns do paciente atendido e o vector gerente da main 
+    std::string numvac, nome_vacina, lote, data_vacina, dose, opcao1, data_retorno, fabricante, tipo_vacina;
     bool valido_data_vacina, opcao_retorno, valido_data_retorno, lote_valido = false;
     int aux; //indice do gerente
     std::cout << "\nQual o nome da vacina aplicada?" << std::endl;
@@ -33,15 +34,23 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
     }
     if(numvac == "1"){ // através das opções, grava o nome da vacina para que ele possa ser conferido entre as vacinas registradas na classe gerente
         nome_vacina = "Coronavac"; 
+        fabricante = "Instituto Butantan";
+        tipo_vacina = "Vírus inativado";
     }
     if(numvac == "2"){
         nome_vacina = "Astrazeneca";
+        fabricante = "Astrazeneca";
+        tipo_vacina = "Vetor viral";
     }
     if(numvac == "3"){
         nome_vacina = "Pfizer";
+        fabricante = "Pfizer";
+        tipo_vacina = "RNA mensageiro";
     }
     if(numvac == "4"){
         nome_vacina = "Janssen";
+        fabricante = "Janssen Farmacêutica";
+        tipo_vacina = "Vetor viral";
     }
     std::cout << "Qual o lote da vacina? ";
     try{
@@ -49,7 +58,6 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
         for(int i=0; i<_gerente.size(); i++){
             if(_gerente[i]->verificar_lote(nome_vacina,lote) == true){
                 lote_valido = true;
-                //fabricante = _gerente[i]->visualizar_fabricante(lote);
                 break;
             }
         }
@@ -59,7 +67,6 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
         for(int i=0; i<_gerente.size(); i++){
             if(_gerente[i]->verificar_lote(nome_vacina,lote) == true){
                 lote_valido = true;
-                //fabricante = _gerente[i]->visualizar_fabricante(lote);
                 break;
             }
         }
@@ -186,7 +193,7 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
             }
         }
     }
-    _historico.push_back(new Historico(cns,_coren,data_vacina,dose,opcao_retorno,data_retorno,fabricante,lote));
+    _historico.push_back(new Historico(nome_vacina,cns,_coren,data_vacina,dose,opcao_retorno,data_retorno,fabricante,lote,tipo_vacina));
 }
 
 void Aplicador::verificar_retorno(std::string cns){
@@ -448,23 +455,23 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
     }
 }
 
- void Aplicador::visualizar_historico(std::string cns){
+void Aplicador::visualizar_historico(std::string cns){
     for(int i=0; i<_historico.size(); i++){
         std::cout << "\n--------------- Cartão de Vacinas --------------- " << std::endl;
         if(cns==_historico[i]->get_cns()){
             std::cout << "Coren: " << _historico[i]->get_coren() << std::endl;
-            //std::cout << "Nome: " << _historico[i]->get_nome() << std::endl;
+            std::cout << "Nome da vacina: " << _historico[i]->get_nome_vacina() << std::endl;
+            std::cout << "Tipo da vacina: " << _historico[i]->get_tipo_vacina() << std::endl;
             std::cout << "Data: " << _historico[i]->get_data() << std::endl;
             std::cout << "Dose: " << _historico[i]->get_dose() << std::endl;
             if(_historico[i]->get_retorno())
                 std::cout << "Data de retorno: " << _historico[i]->get_data_retorno() << std::endl;
-            //std::cout << "Fabricante: " << _historico[i]->get_fabricante() << std::endl;
+            std::cout << "Fabricante: " << _historico[i]->get_fabricante() << std::endl;
             std::cout << "Lote: " << _historico[i]->get_lote() << std::endl;
             std::cout << "------------------------------------------------- " << std::endl;
         }
     }
-
- }
+}
 
 //destrutor
 Aplicador::~Aplicador(){

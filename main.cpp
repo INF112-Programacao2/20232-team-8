@@ -37,7 +37,7 @@ int main(void){
     inicio: //flag para o goto ao escolher a opção encerrar sessão
     std::cout << "--------------- Inicio --------------- " << std::endl;
     std::cout << "Qual área deseja acessar?\n";
-    std::cout << "(1) Paciente\n(2) Gerente\n(3) Aplicador\n(4)Encerrar programa\n";
+    std::cout << "(1) Paciente\n(2) Gerente\n(3) Aplicador\n(4) Encerrar programa\n";
     try{ //tratamento de exceção caso a opção seja inválida
         std::cin >> opcao1;
         if(opcao1!="1" || opcao1!="2" || opcao1!="3" || opcao1!="4"){
