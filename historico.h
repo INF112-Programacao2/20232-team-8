@@ -14,6 +14,9 @@ public:
 
     std::string get_data();
     std::string get_dose();
+    std::string get_coren();
+    std::string get_lote();
+    std::string get_fabricante();
     void set_dose(int atualDose);
     bool get_retorno();
     void set_retorno(bool atualRetorno);

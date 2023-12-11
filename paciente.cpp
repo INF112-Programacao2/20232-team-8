@@ -254,5 +254,7 @@ void Paciente::visualizar_dados(std::vector <Paciente*> p, int aux){
     std::cout << "CPF: " << p[aux]->get_cpf() << std::endl;
     std::cout << "Data de nascimento: " << p[aux]->get_data_nascimento() << std::endl;
     std::cout << "Cartão Nacional de Saúde (CNS): " << p[aux]->get_cns() << std::endl;
+    std::cout << "\n---------------------------------------------- " << std::endl;
+
 }
 

@@ -404,6 +404,7 @@ void Gerente::alterar_estoque(){
     }
     //alterar dados de materiais
     if(opcao1 == "1"){
+        int aux;
         existe = false;
         std::cout << "\nDigite o lote do material que deseja alterar: ";
         //verificacao do lote
@@ -412,6 +413,7 @@ void Gerente::alterar_estoque(){
             for(int i=0; i<_estoque.size(); i++){
                 if(lote == _estoque[i]->get_lote()){
                     existe = true;
+                    aux = i;
                     break;
                 }
             }
@@ -424,6 +426,7 @@ void Gerente::alterar_estoque(){
                 std::cin >> lote;
                 for(int i=0; i<_estoque.size(); i++){
                     if(lote == _estoque[i]->get_lote()){
+                        aux = i;
                         existe = true;
                         break;
                     }
@@ -481,6 +484,7 @@ void Gerente::alterar_estoque(){
             for(int i=0; i<_vacina.size(); i++){
                 if(lote == _vacina[i]->get_lote()){
                     existe = true;
+                    aux = i;
                     break;
                 }
             }
@@ -768,13 +772,13 @@ void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
 
 void Gerente::visualizar_dados(std::vector <Gerente*> g, int aux){
     std::cout << "\n--------------- Dados Pessoais --------------- " << std::endl;
-    std::cout << "\n---------------------------------------------- " << std::endl;
     std::cout << "Login: " << g[aux]->get_login() << std::endl;
     std::cout << "Nome: " << g[aux]->get_nome() << std::endl;
     std::cout << "Telefone: " << g[aux]->get_telefone() << std::endl;
     std::cout << "E-mail: " << g[aux]->get_email() << std::endl;
     std::cout << "CPF: " << g[aux]->get_cpf() << std::endl;
     std::cout << "Data de nascimento: " << g[aux]->get_data_nascimento() << std::endl;
+    std::cout << "\n---------------------------------------------- " << std::endl;
 }
 
 bool Gerente::verificar_lote(std::string nome, std::string lote){

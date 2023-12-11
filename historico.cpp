@@ -12,6 +12,18 @@ std::string Historico::get_dose(){
     return _dose;
 }
 
+std::string Historico::get_coren(){
+    return _coren;
+}
+
+std::string Historico::get_fabricante(){
+    return _fabricante;
+}
+
+std::string Historico::get_lote(){
+    return _lote;
+}
+
 void Historico::set_dose(int atualDose){
     _dose = atualDose;
 }

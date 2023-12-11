@@ -330,7 +330,7 @@ int main(void){
         while(true){
             //operações do paciente
             std::cout << "\nQual operação deseja realizar?\n";
-            std::cout << "(1) Modificar Dados\n(2) Visualizar Dados\n(3) Visualizar histórico de vacinas(4) Encerrar Sessão\n";
+            std::cout << "(1) Modificar Dados\n(2) Visualizar Dados\n(3) Visualizar histórico de vacinas\n(4) Encerrar Sessão\n";
             try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao3;
             if(opcao3!="1" || opcao3!="2" || opcao3!="3" || opcao3!="4"){
@@ -353,7 +353,9 @@ int main(void){
             }
             //operacao de visualizar historico de vacinas
             if(opcao3 == "3"){
-                //funcao do aplicador
+                for(int i=0; i<_aplicador.size(); i++){
+                    _aplicador[i]->visualizar_historico(_paciente[aux1]->get_cns());
+                }
             }
             //operacao de encerrar sessão
             if(opcao3 == "4"){
@@ -1022,7 +1024,7 @@ int main(void){
                             goto inicio;
                     }
                     if(opcao3=="1"){
-                        _aplicador[aux] -> registrar_vacina(cns); // registrar vacina que foi aplicada num paciente
+                        _aplicador[aux] -> registrar_vacina(cns, _gerente); // registrar vacina que foi aplicada num paciente
                     }
                     if(opcao3=="2"){
                         _aplicador[aux] -> verificar_retorno(cns); // verifica as datas em que o paciente deve retornar, caso existam
