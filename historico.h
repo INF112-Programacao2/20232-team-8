@@ -2,10 +2,10 @@
 #define INF112_HISTORICO_H
 #include <string>
 #include "vacina.h"
-#include "usuario.h"
+#include "paciente.h"
 #include <iostream>
 
-class Historico : public Usuario {
+class Historico : public Paciente {
 private:
     std::string _cns, _coren, _data, _dose, _data_retorno, _fabricante, _lote;
     bool _retorno;

@@ -15,7 +15,6 @@ public:
     Usuario(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
                 std::string cpf, std::string data_nascimento);
 
-    virtual std::string get_cns() const = 0;
     std::string get_login();
     std::string get_senha();
     std::string get_nome();

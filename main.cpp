@@ -1028,10 +1028,7 @@ int main(void){
                         _aplicador[aux] -> registrar_vacina(cns);
                     }
                     if(opcao3=="2"){
-                        _aplicador[aux] -> verificar_retorno();
-                    }
-                    if(opcao3=="3"){
-                        _aplicador[aux] -> definir_retorno();
+                        _aplicador[aux] -> verificar_retorno(cns);
                     }
                 }
             }
