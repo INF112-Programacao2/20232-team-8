@@ -15,7 +15,6 @@ public:
 
     std::string get_coren();
     void set_coren(std::string coren);
-    std::string consultar_fabricante(std::string nome_vacina);
     void registrar_vacina(std::string cns, std::vector <Gerente*> _gerente);
     void verificar_retorno(std::string cns);
     void visualizar_dados(std::vector <Aplicador*> apli, int aux);
