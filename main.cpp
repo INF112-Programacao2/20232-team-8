@@ -94,14 +94,12 @@ int main(void){
             std::cout << "\n--------------- Cadastro --------------- " << std::endl;
             std::cout << "Digite o nome de usuário desejado: ";
             //booleanos para o tratamento de exceção das variáveis lidas
-            bool valido=true;
             bool validonome=true;
             bool validotel=true;
-            bool validocpf=true;
             bool validoemail=false;
             bool validodata=true;
-            bool validocns=true;
             teste_login:
+            bool valido=true;
             try{ //verifica se é válido
                 std::cin >> login;
                 //verifica se o login já está cadastrado
@@ -213,6 +211,7 @@ int main(void){
                 }
             }
             teste_cpf:
+            bool validocpf=true;
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
@@ -297,6 +296,7 @@ int main(void){
                 }
             }
             teste_cns:
+            bool validocns=true;
             std::cout << "Digite o número do seu cartão nacional de saúde: ";
             try { //verifica se é um número válido
                 std::cin >> cns;
@@ -431,13 +431,12 @@ int main(void){
             std::cout << "\n--------------- Cadastro --------------- " << std::endl;
             std::cout << "Digite o nome de usuário desejado: ";
             //booleanos para tratamento de exceçao
-            bool valido=true;
             bool validonome=true;
             bool validotel=true;
-            bool validocpf=true;
             bool validoemail=false;
             bool validodata=true;
             teste_login_2:
+            bool valido=true;
             try{ //verifica se é válido
                 std::cin >> login;
                 //verifica se já está cadastrado
@@ -549,6 +548,7 @@ int main(void){
                 }
             }
             teste_cpf_2:
+            bool validocpf=true;
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
@@ -732,14 +732,12 @@ int main(void){
             std::cout << "\n--------------- Cadastro --------------- " << std::endl;
             std::cout << "Digite o nome de usuário desejado: ";
             //booleanos para o tratamento de exceção
-            bool valido=true;
             bool validonome=true;
             bool validotel=true;
-            bool validocpf=true;
             bool validoemail=false;
-            bool validocoren=true;
             bool validodata=true;
             teste_login_3:
+            bool valido=true;
             try{ //verifica se é válido
                 std::cin >> login;
                 //verifica se o login já está em uso
@@ -851,6 +849,7 @@ int main(void){
                 }
             }
             teste_cpf_3:
+            bool validocpf=true;
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
@@ -934,6 +933,7 @@ int main(void){
                 }
             } 
             teste_coren:
+            bool validocoren=true;
             std::cout << "Digite seu número do coren: ";
             try { //verifica se o valor digitado é válido
                 std::cin >> coren;
