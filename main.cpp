@@ -28,8 +28,8 @@ int main(void){
     std::string opcao1, opcao2, opcao3;
     int aux, aux1; //guarda o indice do usuario
     //objetos criados já existentes no sistema
-    _paciente.push_back(new Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","12345"));
-    _paciente.push_back(new Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","54665"));
+    _paciente.push_back(new Paciente("lilicesm","abcde","Alice","3299774784","lilicesm@gmail.com","12345678912","30/12/2004","123451234512345"));
+    _paciente.push_back(new Paciente("jugama","ndsfkl","Julia","3299980345","jugama@gmail.com","65316789032","19/05/2005","000010000100001"));
     _aplicador.push_back(new Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
     _aplicador.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
     _gerente.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004"));
@@ -149,7 +149,8 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validonome){
                     std::cerr << e.what();
-                    std::cin >> nome;
+                    std::cin.ignore();
+                    getline(std::cin,nome);
                     for(int i=0;i<nome.length();i++){
                         if(!isalpha(nome[i]) && !isspace(nome[i])){
                             validonome=false;
@@ -198,7 +199,7 @@ int main(void){
                         validoemail=true;
                 }
                 if(!validoemail){
-                    throw std::invalid_argument ("Digite um email válido\n");
+                    throw std::invalid_argument ("Digite um email válido. Deve conter um @.\n");
                 }
             } catch(std::invalid_argument& e) {
                 while(!validoemail){
@@ -219,19 +220,19 @@ int main(void){
                 for(int i=0;i<_paciente.size();i++){
                     if(cpf==_paciente[i]->get_cpf()){
                         validocpf=false;
-                        throw std::invalid_argument("Cpf já cadastrado\n");
+                        throw std::invalid_argument("Cpf já cadastrado.\n");
                     }
                 }
                 //verifica se a string de entrada possui o tamanho correto
                 if(cpf.length()<11){
                     validocpf=false;
-                    throw std::invalid_argument ("Digite um cpf válido\n");
+                    throw std::invalid_argument ("Digite um cpf válido. Deve conter 11 dígitos e somente números.\n");
                 }
                 //verifica se o cpf só contem números
                 for(int i=0;i<cpf.length();i++){
                     if(isalpha(cpf[i])){
                         validocpf=false;
-                        throw std::invalid_argument ("Digite um cpf válido\n");
+                        throw std::invalid_argument ("Digite um cpf válido. Deve conter 11 dígitos e somente números.\n");
                     }
                 }
             } catch(std::invalid_argument& e){
@@ -311,7 +312,7 @@ int main(void){
                 for(int i=0;i<cns.length();i++){
                     if(!isdigit(cns[i]) || cns.length()<15){
                         validocns=false;
-                        throw std::invalid_argument ("Digite um cns válido\n");
+                        throw std::invalid_argument ("Digite um cns válido. Deve conter 15 números.\n");
                     }
                 }
             } catch(std::invalid_argument& e){
@@ -486,7 +487,8 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validonome){
                     std::cerr << e.what();
-                    std::cin >> nome;
+                    std::cin.ignore();
+                    getline(std::cin,nome);
                     for(int i=0;i<nome.length();i++){
                         if(!isalpha(nome[i]) && !isspace(nome[i])){
                             validonome=false;
@@ -508,7 +510,7 @@ int main(void){
                 for(int i=0;i<telefone.length();i++){
                     if(isalpha(telefone[i])){
                         validotel=false;
-                        throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente\n");
+                        throw std::invalid_argument ("O telefone tem no mínimo 10 dígitos e só pode conter números, digite novamente.\n");
                     }
                 }
             } catch(std::invalid_argument& e){
@@ -535,7 +537,7 @@ int main(void){
                         validoemail=true;
                 }
                 if(!validoemail){
-                    throw std::invalid_argument ("Digite um email válido\n");
+                    throw std::invalid_argument ("Digite um email válido. Deve conter @.\n");
                 }
             } catch(std::invalid_argument& e) {
                 while(!validoemail){
@@ -562,13 +564,13 @@ int main(void){
                 //verifica se possui o tamanho correto
                 if(cpf.length()<11){
                     validocpf=false;
-                    throw std::invalid_argument ("Digite um cpf válido\n");
+                    throw std::invalid_argument ("Digite um cpf válido. Deve conter 11 números.\n");
                 }
                 //verifica se possui letras
                 for(int i=0;i<cpf.length();i++){
                     if(isalpha(cpf[i])){
                         validocpf=false;
-                        throw std::invalid_argument ("Digite um cpf válido\n");
+                        throw std::invalid_argument ("Digite um cpf válido. Deve conter 11 números.\n");
                     }
                 }
             } catch(std::invalid_argument& e){
@@ -787,7 +789,8 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validonome){
                     std::cerr << e.what();
-                    std::cin >> nome;
+                    std::cin.ignore();
+                    getline(std::cin,nome);
                     for(int i=0;i<nome.length();i++){
                         if(!isalpha(nome[i]) && !isspace(nome[i])){
                             validonome=false;
@@ -836,7 +839,7 @@ int main(void){
                         validoemail=true;
                 }
                 if(!validoemail){
-                    throw std::invalid_argument ("Digite um email válido\n");
+                    throw std::invalid_argument ("Digite um email válido. Deve conter @.\n");
                 }
             } catch(std::invalid_argument& e) {
                 while(!validoemail){
@@ -863,13 +866,13 @@ int main(void){
                 //verifica se tem o tamanho correto
                 if(cpf.length()<11){
                     validocpf=false;
-                    throw std::invalid_argument ("Digite um cpf válido\n");
+                    throw std::invalid_argument ("Digite um cpf válido. Deve conter 11 números.\n");
                 }
                 //verifica se possui letras
                 for(int i=0;i<cpf.length();i++){
                     if(isalpha(cpf[i])){
                         validocpf=false;
-                        throw std::invalid_argument ("Digite um cpf válido\n");
+                        throw std::invalid_argument ("Digite um cpf válido. Deve conter 11 números.\n");
                     }
                 }
             } catch(std::invalid_argument& e){
@@ -948,7 +951,7 @@ int main(void){
                 for(int i=0;i<coren.length();i++){
                     if(!isdigit(coren[i])){
                         validocoren=false;
-                        throw std::invalid_argument ("Digite um número válido\n");
+                        throw std::invalid_argument ("Digite somente números.\n");
                     }
                 }
             } catch(std::invalid_argument& e){
