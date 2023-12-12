@@ -130,7 +130,7 @@ int main(void){
                     goto teste_login;
                 }
             }
-            std::cout << "Escolha uma senha: ";
+            std::cout << "Escolha uma senha com no mínimo 8 caracteres: ";
             try{ //verifica se é válida
                 std::cin >> senha;
                 //verifica se a senha tem o tamanho mínimo definido como 8 caracteres
@@ -168,7 +168,7 @@ int main(void){
                     }
                 }
             }
-            std::cout << "Digite um número de contato: ";
+            std::cout << "Digite um telefone de contato com no mínimo 10 dígitos: ";
             try{ //verifica se é válido
                 std::cin >> telefone;
                 //verifica se o tamanho do número informado corresponde ao tamanho de um número telefônico

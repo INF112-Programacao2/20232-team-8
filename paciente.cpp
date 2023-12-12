@@ -3,6 +3,12 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <ctime>
+
+time_t teste_time1 = time(0);
+char teste_dia2[3];
+char teste_mes2[3];
+char teste_ano2[5];
 
 //Construtor para paciente
 Paciente::Paciente(std::string login, std::string senha, std::string nome, std::string telefone, std::string email,
@@ -21,9 +27,12 @@ void Paciente::set_cns(std::string cns){
 
 //função modifica os dados do paciente
 void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
+    strftime(teste_dia2, 3, "%d", localtime(&teste_time1));
+    strftime(teste_mes2, 3, "%m", localtime(&teste_time1));
+    strftime(teste_ano2, 5, "%Y", localtime(&teste_time1));
     std::string opcao;
     std::cout <<"\nQual dado deseja modificar?\n";
-    std::cout << "(1) Login\n(2) Senha\n(3) Nome\n(4) Telefone\n(5) E-mail\n(6) Data de nscimento\n";
+    std::cout << "(1) Login\n(2) Senha\n(3) Nome\n(4) Telefone\n(5) E-mail\n(6) Data de nascimento\n";
     try{ //tratamento de exceção caso a opção seja inválida
         std::cin >> opcao;
         if(opcao!="1" || opcao!="2" || opcao!="3" || opcao!="4" || opcao!="5" || opcao!="6"){
@@ -232,6 +241,11 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
                 else if(stoi(a)>2023 || stoi(a)<1907){
                     valido=false;
                     throw std::invalid_argument("Ano inválido, digite novamente\n");
+                }
+                //verifica se a data não está no futuro
+                else if(stoi(m)>=stoi(std::string(teste_mes2)) && stoi(d)>stoi(std::string(teste_dia2))){
+                    valido=false;
+                    throw std::invalid_argument("A data não pode ser no futuro.\n");
                 }
                 valido=true;
             } catch(std::invalid_argument& e){

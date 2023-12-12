@@ -5,6 +5,7 @@
 #include "gerente.h"
 #include <string>
 #include <vector>
+#include <ctime>
 
 class Aplicador : public Usuario {
 private:
@@ -20,6 +21,7 @@ public:
     void visualizar_dados(std::vector <Aplicador*> apli, int aux);
     void editar_dados(std::vector <Aplicador*> apli, int aux);
     void visualizar_historico(std::string cns);
+    //void strftime(char[], int num, const char[], tm*);
     ~Aplicador();
 };
 

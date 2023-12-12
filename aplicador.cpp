@@ -2,19 +2,22 @@
 #include "gerente.h"
 #include "vacina.h"
 #include <iostream>
-#include <cctype>
+//#include <cctype>
 #include <ctime>
 
+time_t t_teste = time(0);
+char teste_dia0[3];
+char teste_mes0[3];
+char teste_ano0[5];
+
 Aplicador::Aplicador(std::string login, std::string senha, std::string nome, std::string telefone, std::string email, std::string cpf, std::string data_nascimento, std::string coren):
-    Usuario(login,senha,nome,telefone,email,cpf,data_nascimento), _coren(coren){
-        time_t t = time(0);
-    char teste_dia[3];
+    Usuario(login,senha,nome,telefone,email,cpf,data_nascimento), _coren(coren){}
+
+/*void Aplicador::strftime(char[], int num, const char[], tm*){
     strftime(teste_dia, 3, "%d", localtime(&t));
-    char teste_mes[3];
     strftime(teste_mes, 3, "%m", localtime(&t));
-    char teste_ano[5];
     strftime(teste_ano, 5, "%Y", localtime(&t));
-    }
+}*/
 
 std::string Aplicador::get_coren(){
     return _coren;
@@ -25,6 +28,9 @@ void Aplicador::set_coren(std::string coren){
 }
 
 void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerente){ // recebe o cns do paciente atendido e o vector gerente da main 
+    strftime(teste_dia0, 3, "%d", localtime(&t_teste));
+    strftime(teste_mes0, 3, "%m", localtime(&t_teste));
+    strftime(teste_ano0, 5, "%Y", localtime(&t_teste));
     std::string numvac, nome_vacina, lote, data_vacina, dose, opcao1, data_retorno, fabricante, tipo_vacina;
     bool valido_data_vacina, opcao_retorno, valido_data_retorno, lote_valido = false;
     int aux; //indice do gerente
@@ -108,11 +114,11 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
             valido_data_vacina=false;
             throw std::invalid_argument("Dia inválido, digite novamente.\n");
         }
-        if(stoi(m)>12 || stoi(m)<0){
+        else if(stoi(m)>12 || stoi(m)<0){
             valido_data_vacina=false;
             throw std::invalid_argument("Mês inválido, digite novamente.\n");
         }
-        if((stoi(m)==1 || stoi(m)==3 || stoi(m)==5 || stoi(m)==7 || stoi(m)==8 || stoi(m)==10 || stoi(m)==12) && stoi(d)>31){
+        else if((stoi(m)==1 || stoi(m)==3 || stoi(m)==5 || stoi(m)==7 || stoi(m)==8 || stoi(m)==10 || stoi(m)==12) && stoi(d)>31){
             valido_data_vacina=false;
             throw std::invalid_argument("Data inexistente, digite novamente.\n");
         }
@@ -129,9 +135,9 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
             throw std::invalid_argument("Ano inválido, digite novamente.\n");
         }
         //verifica se a data de aplicação é diferente da de hoje
-        else if(stoi(m)!=stoi(std::string(teste_mes))  && stoi(d)!=stoi(std::string(teste_dia)) && stoi(a)!=stoi(std::string(teste_ano))){
+        else if(stoi(m)!=stoi(std::string(teste_mes0)) || stoi(d)!=stoi(std::string(teste_dia0)) || stoi(a)!=stoi(std::string(teste_ano0))){
             valido_data_vacina=false;
-            throw std::invalid_argument("A data não pode ser diferente de hoje\n");
+            throw std::invalid_argument("A data não pode ser diferente de hoje.\n");
         }
         valido_data_vacina=true;
     } catch(std::invalid_argument &f){
@@ -191,11 +197,11 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
                 valido_data_retorno=false;
                 throw std::invalid_argument("Dia inválido, digite novamente.\n");
             }
-            if(stoi(mes)>12 || stoi(mes)<0){
+            else if(stoi(mes)>12 || stoi(mes)<0){
                 valido_data_retorno=false;
                 throw std::invalid_argument("Mês inválido, digite novamente.\n");
             }
-            if((stoi(mes)==1 || stoi(mes)==3 || stoi(mes)==5 || stoi(mes)==7 || stoi(mes)==8 || stoi(mes)==10 || stoi(mes)==12) && stoi(dia)>31){
+            else if((stoi(mes)==1 || stoi(mes)==3 || stoi(mes)==5 || stoi(mes)==7 || stoi(mes)==8 || stoi(mes)==10 || stoi(mes)==12) && stoi(dia)>31){
                 valido_data_retorno=false;
                 throw std::invalid_argument("Data inexistente, digite novamente.\n");
             }
@@ -211,15 +217,15 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
                 valido_data_retorno=false;
                 throw std::invalid_argument("Ano inválido, digite novamente.\n");
             }
-            //verifica se a data já não passou
-            else if(stoi(m)<stoi(std::string(teste_mes))){
+            /*//verifica se a data já não passou
+            else if(stoi(mes)<stoi(std::string(teste_mes0))){
                 valido_data_retorno=false;
                 throw std::invalid_argument("A data não pode ser no passado\n");
             }
-            else if(stoi(m)==stoi(std::string(teste_mes))  && stoi(d)<=stoi(std::string(teste_dia))){
+            else if(stoi(mes)==stoi(std::string(teste_mes0)) && stoi(dia)<=stoi(std::string(teste_dia0))){
                 valido_data_retorno=false;
                 throw std::invalid_argument("A data não pode ser no passado\n");
-            }
+            }*/
             valido_data_retorno=true;
         } catch(std::invalid_argument &k){
             std::cerr << k.what();
@@ -480,6 +486,11 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
                     valido=false;
                     throw std::invalid_argument("Ano inválido, digite novamente\n");
                 }
+                /* //verifica se a data não está no futuro
+                else if(stoi(m)>=stoi(std::string(teste_mes)) && stoi(d)>stoi(std::string(teste_dia))){
+                    valido=false;
+                    throw std::invalid_argument("A data não pode ser no futuro.\n");
+                } */
                 valido=true;
             } catch(std::invalid_argument& e){
                 std::cerr << e.what();

@@ -9,13 +9,10 @@
 //variaveis genericas
 std::string opcao1;
 bool existe = false;
-time_t t = time(0);
-/*char teste_dia[3];
-strftime(teste_dia, 3, "%d", localtime(&t));
-char teste_mes[3];
-strftime(teste_mes, 3, "%m", localtime(&t));
-char teste_ano[5];
-strftime(teste_ano, 5, "%Y", localtime(&t));*/
+time_t teste_time = time(0);
+char teste_dia1[3];
+char teste_mes1[3];
+char teste_ano1[5];
 
 //dados do estoque
 std::string nome, validade, data_recebimento, lote;
@@ -32,6 +29,9 @@ Gerente::Gerente(std::string login, std::string senha, std::string nome, std::st
 
 //funcao que adiciona um novo estoque
 void Gerente::adicionar_estoque(){
+    strftime(teste_dia1, 3, "%d", localtime(&teste_time));
+    strftime(teste_mes1, 3, "%m", localtime(&teste_time));
+    strftime(teste_ano1, 5, "%Y", localtime(&teste_time));
     std::cout << "\nQual o tipo de produto do estoque?\n";
     std::cout << "(1) Material\n(2) Vacina\n";
     try{ //tratamento de exceção caso a opção seja inválida
@@ -121,10 +121,14 @@ void Gerente::adicionar_estoque(){
                 validodata=false;
                 throw std::invalid_argument("Ano inválido, digite novamente\n");
             }
-            /*else if(stoi(m)<stoi(std::string(teste_mes))){
+            else if(stoi(m)<stoi(std::string(teste_mes1))){
                 validodata=false;
-                throw std::invalid_argument("A data não pode ser no passado\n");
-            }*/
+                throw std::invalid_argument("A data não pode ser no passado.\n");
+            }
+            else if((stoi(m)==stoi(std::string(teste_mes1)) && (stoi(d)<=stoi(std::string(teste_dia1))))){
+                validodata=false;
+                throw std::invalid_argument("A data não pode ser no passado.\n");
+            }
             validodata=true;
         }catch(std::invalid_argument& e){
             std::cerr << e.what();
@@ -177,6 +181,11 @@ void Gerente::adicionar_estoque(){
             else if(stoi(a)>2023 || stoi(a)<1907){
                 validodata=false;
                 throw std::invalid_argument("Ano inválido, digite novamente\n");
+            }
+            //verifica se a data não está no futuro
+            else if(stoi(m)>=stoi(std::string(teste_mes1))  && stoi(d)>stoi(std::string(teste_dia1))){
+                validodata=false;
+                throw std::invalid_argument("A data não pode ser no futuro.\n");
             }
             validodata=true;
         }catch(std::invalid_argument& e){
@@ -347,6 +356,14 @@ void Gerente::adicionar_estoque(){
                 validodata=false;
                 throw std::invalid_argument("Ano inválido, digite novamente\n");
             }
+            else if(stoi(m)<stoi(std::string(teste_mes1))){
+                validodata=false;
+                throw std::invalid_argument("A data não pode ser no passado.\n");
+            }
+            else if((stoi(m)==stoi(std::string(teste_mes1)) && (stoi(d)<=stoi(std::string(teste_dia1))))){
+                validodata=false;
+                throw std::invalid_argument("A data não pode ser no passado.\n");
+            }
             validodata=true;
         }catch(std::invalid_argument& e){
             std::cerr << e.what();
@@ -399,6 +416,11 @@ void Gerente::adicionar_estoque(){
             else if(stoi(a)>2023 || stoi(a)<1907){
                 validodata=false;
                 throw std::invalid_argument("Ano inválido, digite novamente\n");
+            }
+            //verifica se a data não está no futuro
+            else if(stoi(m)>=stoi(std::string(teste_mes1))  && stoi(d)>stoi(std::string(teste_dia1))){
+                validodata=false;
+                throw std::invalid_argument("A data não pode ser no futuro.\n");
             }
             validodata=true;
         }catch(std::invalid_argument& e){
@@ -901,6 +923,11 @@ void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
                     valido=false;
                     throw std::invalid_argument("Ano inválido, digite novamente\n");
                 }
+                /* //verifica se a data não está no futuro
+                else if(stoi(m)>=stoi(std::string(teste_mes1)) && stoi(d)>stoi(std::string(teste_dia1))){
+                    valido=false;
+                    throw std::invalid_argument("A data não pode ser no futuro.\n");
+                } */
                 valido=true;
             } catch(std::invalid_argument& e){
                 std::cerr << e.what();
