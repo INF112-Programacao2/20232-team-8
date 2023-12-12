@@ -723,7 +723,7 @@ int main(void){
         }
     }
     else if(opcao1=="3"){ //área de acesso do aplicador
-        std::cout << "Você deseja realizar login ou cadastro?\n";
+        std::cout << "\nVocê deseja realizar login ou cadastro?\n";
         std::cout << "(1) Login\n(2) Cadastro\n";
         try{ //tratamento de exceção caso a opção seja inválida
             std::cin >> opcao2;

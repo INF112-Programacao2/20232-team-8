@@ -22,7 +22,7 @@ void Paciente::set_cns(std::string cns){
 //função modifica os dados do paciente
 void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     std::string opcao;
-    std::cout <<"Qual dado deseja modificar?\n";
+    std::cout <<"\nQual dado deseja modificar?\n";
     std::cout << "(1) Login\n(2) Senha\n(3) Nome\n(4) Telefone\n(5) E-mail\n(6) Data de nscimento\n";
     try{ //tratamento de exceção caso a opção seja inválida
         std::cin >> opcao;
@@ -40,7 +40,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     if(opcao == "1"){
     bool valido = true;
     std::string login;
-        std::cout << "Digite o novo login desejado: ";
+        std::cout << "\nDigite o novo login desejado: ";
         try{ //verifica se é válido
             std::cin >> login;
             for(int i=0;i<login.length();i++){
@@ -76,7 +76,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     //modificar senha
     if(opcao == "2"){
     std::string senha;
-        std::cout << "Digite a nova senha desejada: ";
+        std::cout << "\nDigite a nova senha desejada: ";
         try{ //verifica se é válida
                 std::cin >> senha;
                 if(senha.length()<8){
@@ -97,7 +97,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     if(opcao == "3"){
     std::string nome;
     bool valido = true;
-        std::cout << "Digite o novo nome desejado: ";
+        std::cout << "\nDigite o novo nome desejado: ";
         try{ //verifica se é válido
             std::cin.ignore();
             getline(std::cin,nome);
@@ -129,7 +129,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     if(opcao=="4"){
     std::string telefone;
     bool valido = true;
-        std::cout << "Digite o novo número de telefone desejado: ";
+        std::cout << "\nDigite o novo número de telefone desejado: ";
         try{ //verifica se é válido
                 std::cin >> telefone;
                 if(telefone.length()<10){
@@ -167,7 +167,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     if(opcao=="5"){
     std::string email;
     bool valido = true;
-        std::cout << "Digite o novo e-mail desejado: ";
+        std::cout << "\nDigite o novo e-mail desejado: ";
         try { //verifica se possui @ e é um email válido
                 std::cin >> email;
                 for(int i=0;i<email.length();i++){
@@ -200,7 +200,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
         std::string d,m,a;
             s:
             try{
-                std::cout << "Digite a nova data de nascimento no formato dd/mm/aaaa: ";
+                std::cout << "\nDigite a nova data de nascimento no formato dd/mm/aaaa: ";
                 std::cin >> data_nascimento;
                 if(data_nascimento.length()!=10){
                     valido=false;
@@ -264,7 +264,7 @@ void Paciente::visualizar_dados(std::vector <Paciente*> p, int aux){
     std::cout << "CPF: " << p[aux]->get_cpf() << std::endl;
     std::cout << "Data de nascimento: " << p[aux]->get_data_nascimento() << std::endl;
     std::cout << "Cartão Nacional de Saúde (CNS): " << p[aux]->get_cns() << std::endl;
-    std::cout << "\n--------------------------------------- " << std::endl;
+    std::cout << "--------------------------------------- " << std::endl;
 
 }
 

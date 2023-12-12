@@ -174,7 +174,43 @@ void Gerente::adicionar_estoque(){
         } 
         //lote do material
         std::cout << "Digite o lote do material: ";
-        std::cin >> lote;
+        bool lote_valido;
+        try{ //tratamento de exceção caso o lote ja exista
+            lote_valido = true;
+            std::cin >> lote;
+            for(int i=0; i<_estoque.size(); i++){
+                if(lote == _estoque[i]->get_lote()){
+                    lote_valido = false;
+                    break;
+                }
+            }
+            for(int i=0; i<_vacina.size(); i++){
+                    if(lote == _vacina[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+            if(!lote_valido)
+                throw std::invalid_argument ("Esse lote já existe, digite novamente!\n");
+        }catch(std::invalid_argument& e){
+            while(!lote_valido){
+                std::cerr << e.what();
+                std::cin >> lote;
+                lote_valido = true;
+                for(int i=0; i<_estoque.size(); i++){
+                    if(lote == _estoque[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+                for(int i=0; i<_vacina.size(); i++){
+                    if(lote == _vacina[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+            }
+        }
         //quantidade do material
         std::cout << "Digite a quantidade do material: ";
         bool invalida = false;
@@ -360,7 +396,43 @@ void Gerente::adicionar_estoque(){
         } 
         //lote da vacina
         std::cout << "Digite o lote da vacina: ";
-        std::cin >> lote;
+        bool lote_valido;
+        try{ //tratamento de exceção caso o lote ja exista
+            lote_valido = true;
+            std::cin >> lote;
+            for(int i=0; i<_estoque.size(); i++){
+                if(lote == _estoque[i]->get_lote()){
+                    lote_valido = false;
+                    break;
+                }
+            }
+            for(int i=0; i<_vacina.size(); i++){
+                    if(lote == _vacina[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+            if(!lote_valido)
+                throw std::invalid_argument ("Esse lote já existe, digite novamente!\n");
+        }catch(std::invalid_argument& e){
+            while(!lote_valido){
+                std::cerr << e.what();
+                std::cin >> lote;
+                lote_valido = true;
+                for(int i=0; i<_estoque.size(); i++){
+                    if(lote == _estoque[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+                for(int i=0; i<_vacina.size(); i++){
+                    if(lote == _vacina[i]->get_lote()){
+                        lote_valido = false;
+                        break;
+                    }
+                }
+            }
+        }
         //quantidade da vacina
         quantidade = 0;
         std::cout << "Digite a quantidade da vacina: ";
@@ -621,7 +693,7 @@ void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
     if(opcao1 == "1"){
         bool valido = true;
         std::string login;
-        std::cout << "Digite o novo login desejado: ";
+        std::cout << "\nDigite o novo login desejado: ";
         try{ //verifica se é válido
             std::cin >> login;
             for(int i=0;i<login.length();i++){
@@ -675,7 +747,7 @@ void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
     if(opcao1 == "3"){
     std::string nome;
     bool valido = true;
-        std::cout << "Digite o novo nome desejado: ";
+        std::cout << "\nDigite o novo nome desejado: ";
         try{ //verifica se é válido
             std::cin.ignore();
             getline(std::cin,nome);
@@ -707,7 +779,7 @@ void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
     if(opcao1=="4"){
     std::string telefone;
     bool valido = true;
-        std::cout << "Digite o novo número de telefone desejado: ";
+        std::cout << "\nDigite o novo número de telefone desejado: ";
         try{ //verifica se é válido
                 std::cin >> telefone;
                 if(telefone.length()<10){
@@ -745,7 +817,7 @@ void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
     if(opcao1=="5"){
     std::string email;
     bool valido = true;
-        std::cout << "Digite o novo e-mail desejado: ";
+        std::cout << "\nDigite o novo e-mail desejado: ";
         try { //verifica se possui @ e é um email válido
                 std::cin >> email;
                 for(int i=0;i<email.length();i++){
@@ -778,7 +850,7 @@ void Gerente::editar_dados(std::vector <Gerente*> g, int aux){
         std::string d,m,a;
             s:
             try{
-                std::cout << "Digite a nova data de nascimento no formato dd/mm/aaaa: ";
+                std::cout << "\nDigite a nova data de nascimento no formato dd/mm/aaaa: ";
                 std::cin >> data_nascimento;
                 if(data_nascimento.length()!=10){
                     valido=false;
@@ -838,9 +910,10 @@ void Gerente::visualizar_dados(std::vector <Gerente*> g, int aux){
     std::cout << "E-mail: " << g[aux]->get_email() << std::endl;
     std::cout << "CPF: " << g[aux]->get_cpf() << std::endl;
     std::cout << "Data de nascimento: " << g[aux]->get_data_nascimento() << std::endl;
-    std::cout << "\n---------------------------------------------- " << std::endl;
+    std::cout << "---------------------------------------------- " << std::endl;
 }
 
+//verificar se o lote digitado pelo aplicador condiz com a vacina aplicada
 bool Gerente::verificar_lote(std::string nome, std::string lote){
     std::vector <std::string> lote_referente;
     bool valido = false;
@@ -857,14 +930,4 @@ bool Gerente::verificar_lote(std::string nome, std::string lote){
         }
     }
     return valido;
-}
-
-std::string Gerente::visualizar_fabricante(std::string lote){
-    std::string f;
-    for(int i=0; i<vacina.size(); i++){
-        if(lote == vacina[i]->get_lote()){
-            f = vacina[i]->get_fabricante();
-        }
-    }
-    return f;
 }

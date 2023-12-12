@@ -20,7 +20,6 @@ class Gerente : public Usuario{
     void editar_dados(std::vector <Gerente*> g, int aux);
     void visualizar_dados(std::vector <Gerente*> g, int aux);
     bool verificar_lote(std::string nome, std::string lote);
-    std::string visualizar_fabricante(std::string lote);
     ~Gerente();
 };
 

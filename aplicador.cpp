@@ -55,6 +55,7 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
     std::cout << "Qual o lote da vacina? ";
     try{
         std::cin >> lote;
+        lote_valido = false;
         for(int i=0; i<_gerente.size(); i++){
             if(_gerente[i]->verificar_lote(nome_vacina,lote) == true){
                 lote_valido = true;
@@ -64,15 +65,16 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
         if(lote_valido == false)
             throw std::invalid_argument ("Lote da vacina digitado não corresponde a um lote existente, digite novamente.\n");
     } catch(std::invalid_argument &e){
-        for(int i=0; i<_gerente.size(); i++){
-            if(_gerente[i]->verificar_lote(nome_vacina,lote) == true){
-                lote_valido = true;
-                break;
-            }
-        }
         while(lote_valido == false){
             std::cerr << e.what();
             std::cin >> lote;
+            lote_valido = false;
+            for(int i=0; i<_gerente.size(); i++){
+                if(_gerente[i]->verificar_lote(nome_vacina,lote) == true){
+                    lote_valido = true;
+                    break;
+                }
+            }
         }
     }
     cin_data_vacina:
@@ -238,7 +240,7 @@ void Aplicador::visualizar_dados(std::vector <Aplicador*> apli, int aux){
     std::cout << "CPF: " << apli[aux]->get_cpf() << std::endl;
     std::cout << "Data de nascimento: " << apli[aux]->get_data_nascimento() << std::endl;
     std::cout << "Cadastro no Coren (Conselho Regional de Enfermagem): " << apli[aux]->get_coren() << std::endl;
-    std::cout << "\n---------------------------------------------- " << std::endl;
+    std::cout << "---------------------------------------------- " << std::endl;
 }
 
 void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
@@ -260,7 +262,7 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
     if(opcao1 == "1"){
         bool valido = true;
         std::string login;
-        std::cout << "Digite o novo login desejado: ";
+        std::cout << "\nDigite o novo login desejado: ";
         try{ //verifica se é válido
             std::cin >> login;
             for(int i=0;i<login.length();i++){
@@ -314,7 +316,7 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
     if(opcao1 == "3"){
     std::string nome;
     bool valido = true;
-        std::cout << "Digite o novo nome desejado: ";
+        std::cout << "\nDigite o novo nome desejado: ";
         try{ //verifica se é válido
             std::cin.ignore();
             getline(std::cin,nome);
@@ -346,7 +348,7 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
     if(opcao1=="4"){
     std::string telefone;
     bool valido = true;
-        std::cout << "Digite o novo número de telefone desejado: ";
+        std::cout << "\nDigite o novo número de telefone desejado: ";
         try{ //verifica se é válido
                 std::cin >> telefone;
                 if(telefone.length()<10){
@@ -384,7 +386,7 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
     if(opcao1=="5"){
     std::string email;
     bool valido = true;
-        std::cout << "Digite o novo e-mail desejado: ";
+        std::cout << "\nDigite o novo e-mail desejado: ";
         try { //verifica se possui @ e é um email válido
                 std::cin >> email;
                 for(int i=0;i<email.length();i++){
@@ -417,7 +419,7 @@ void Aplicador::editar_dados(std::vector <Aplicador*> apli, int aux){
         std::string d,m,a;
             s:
             try{
-                std::cout << "Digite a nova data de nascimento no formato dd/mm/aaaa: ";
+                std::cout << "\nDigite a nova data de nascimento no formato dd/mm/aaaa: ";
                 std::cin >> data_nascimento;
                 if(data_nascimento.length()!=10){
                     valido=false;
