@@ -931,3 +931,9 @@ bool Gerente::verificar_lote(std::string nome, std::string lote){
     }
     return valido;
 }
+
+//destrutor
+Gerente::~Gerente(){
+    _vacina.clear();
+    _estoque.clear();
+}
