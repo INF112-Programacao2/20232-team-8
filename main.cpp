@@ -1103,9 +1103,9 @@ int main(void){
     }
     //encerra a execução do programa
     else if(opcao1=="4"){
+        std::cout << "-------------------------------------- " << std::endl;
         exit(0);
     }
-    std::cout << "------------------------------------- " << std::endl;
     //destrutor dos vectors
     _paciente.clear();
     _gerente.clear();
