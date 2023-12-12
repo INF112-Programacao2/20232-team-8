@@ -1,12 +1,21 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <cctype>
+#include <ctime>
 #include "gerente.h"
 #include "usuario.h"
 
 //variaveis genericas
 std::string opcao1;
 bool existe = false;
+time_t t = time(0);
+/*char teste_dia[3];
+strftime(teste_dia, 3, "%d", localtime(&t));
+char teste_mes[3];
+strftime(teste_mes, 3, "%m", localtime(&t));
+char teste_ano[5];
+strftime(teste_ano, 5, "%Y", localtime(&t));*/
 
 //dados do estoque
 std::string nome, validade, data_recebimento, lote;
@@ -112,6 +121,10 @@ void Gerente::adicionar_estoque(){
                 validodata=false;
                 throw std::invalid_argument("Ano inválido, digite novamente\n");
             }
+            /*else if(stoi(m)<stoi(std::string(teste_mes))){
+                validodata=false;
+                throw std::invalid_argument("A data não pode ser no passado\n");
+            }*/
             validodata=true;
         }catch(std::invalid_argument& e){
             std::cerr << e.what();

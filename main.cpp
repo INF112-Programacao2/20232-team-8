@@ -11,6 +11,7 @@
 #include <string>
 #include <exception>
 #include <stdlib.h>
+#include <ctime>
 
 int main(void){ 
     //vector para cada tipo de usuário
@@ -33,6 +34,13 @@ int main(void){
     _aplicador.push_back(new Aplicador("cecicassab","67567","Cecilia","32984365837","ceci@gmail.com","13138476532","31/12/2004","86709"));
     _aplicador.push_back(new Aplicador("marycosta","6575","Maryana","32997654890","marycosta@gmail.com","95643123897","06/06/2003","98765"));
     _gerente.push_back(new Gerente("mariads","4292","Maria","45997654890","mariasouza@gmail.com","95643123897","07/10/2004"));
+    time_t t = time(0);
+    char teste_dia[3];
+    strftime(teste_dia, 3, "%d", localtime(&t));
+    char teste_mes[3];
+    strftime(teste_mes, 3, "%m", localtime(&t));
+    char teste_ano[5];
+    strftime(teste_ano, 5, "%Y", localtime(&t));
     //definição de que tipo de usuário acessará o sistema, o que define diferentes funções
     inicio: //flag para o goto ao escolher a opção encerrar sessão
     std::cout << "--------------- Inicio --------------- " << std::endl;
@@ -288,6 +296,11 @@ int main(void){
                 else if(stoi(a)>2023 || stoi(a)<1907){
                     validodata=false;
                     throw std::invalid_argument("Ano inválido, digite novamente\n");
+                }
+                //verifica se a data não está no futuro
+                else if(stoi(m)>=stoi(std::string(teste_mes))  && stoi(d)>stoi(std::string(teste_dia))){
+                    validodata=false;
+                    throw std::invalid_argument("A data não pode ser no futuro\n");
                 }
                 validodata=true;
             } catch(std::invalid_argument& e){
@@ -626,6 +639,10 @@ int main(void){
                     validodata=false;
                     throw std::invalid_argument("Ano inválido, digite novamente\n");
                 }
+                else if(stoi(m)>=stoi(std::string(teste_mes))  && stoi(d)>stoi(std::string(teste_dia))){
+                    validodata=false;
+                    throw std::invalid_argument("A data não pode ser no futuro\n");
+                }
                 validodata=true;
             } catch(std::invalid_argument& e){
                 std::cerr << e.what();
@@ -927,6 +944,10 @@ int main(void){
                 else if(stoi(a)>2023 || stoi(a)<1907){
                     validodata=false;
                     throw std::invalid_argument("Ano inválido, digite novamente\n");
+                }
+                else if(stoi(m)>=stoi(std::string(teste_mes))  && stoi(d)>stoi(std::string(teste_dia))){
+                    validodata=false;
+                    throw std::invalid_argument("A data não pode ser no futuro\n");
                 }
                 validodata=true;
             } catch(std::invalid_argument& e){

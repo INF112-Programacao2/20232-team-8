@@ -3,9 +3,18 @@
 #include "vacina.h"
 #include <iostream>
 #include <cctype>
+#include <ctime>
 
 Aplicador::Aplicador(std::string login, std::string senha, std::string nome, std::string telefone, std::string email, std::string cpf, std::string data_nascimento, std::string coren):
-    Usuario(login,senha,nome,telefone,email,cpf,data_nascimento), _coren(coren){}
+    Usuario(login,senha,nome,telefone,email,cpf,data_nascimento), _coren(coren){
+        time_t t = time(0);
+    char teste_dia[3];
+    strftime(teste_dia, 3, "%d", localtime(&t));
+    char teste_mes[3];
+    strftime(teste_mes, 3, "%m", localtime(&t));
+    char teste_ano[5];
+    strftime(teste_ano, 5, "%Y", localtime(&t));
+    }
 
 std::string Aplicador::get_coren(){
     return _coren;
@@ -119,6 +128,11 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
             valido_data_vacina=false;
             throw std::invalid_argument("Ano inválido, digite novamente.\n");
         }
+        //verifica se a data de aplicação é diferente da de hoje
+        else if(stoi(m)!=stoi(std::string(teste_mes))  && stoi(d)!=stoi(std::string(teste_dia)) && stoi(a)!=stoi(std::string(teste_ano))){
+            valido_data_vacina=false;
+            throw std::invalid_argument("A data não pode ser diferente de hoje\n");
+        }
         valido_data_vacina=true;
     } catch(std::invalid_argument &f){
         std::cerr << f.what();
@@ -196,6 +210,15 @@ void Aplicador::registrar_vacina(std::string cns, std::vector <Gerente*> _gerent
             else if(stoi(ano)<2023){
                 valido_data_retorno=false;
                 throw std::invalid_argument("Ano inválido, digite novamente.\n");
+            }
+            //verifica se a data já não passou
+            else if(stoi(m)<stoi(std::string(teste_mes))){
+                valido_data_retorno=false;
+                throw std::invalid_argument("A data não pode ser no passado\n");
+            }
+            else if(stoi(m)==stoi(std::string(teste_mes))  && stoi(d)<=stoi(std::string(teste_dia))){
+                valido_data_retorno=false;
+                throw std::invalid_argument("A data não pode ser no passado\n");
             }
             valido_data_retorno=true;
         } catch(std::invalid_argument &k){
