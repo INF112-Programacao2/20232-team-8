@@ -38,6 +38,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
     }
     //modificar login
     if(opcao == "1"){
+    teste_login:
     bool valido = true;
     std::string login;
         std::cout << "\nDigite o novo login desejado: ";
@@ -58,14 +59,7 @@ void Paciente::modificar_dados(std::vector <Paciente*> p, int aux){
         } catch(std::invalid_argument& e){
             while(!valido){
                 std::cerr << e.what();
-                std::cin >> login;
-                for(int i=0;i<login.length();i++){
-                    if(ispunct(login[i])){
-                        valido=false;
-                        break;
-                    }
-                    valido=true;
-                }
+                goto teste_login;
             }
         }
         if(valido==true){//chama a função do usuário para mudar o login

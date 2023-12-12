@@ -101,6 +101,7 @@ int main(void){
             bool validoemail=false;
             bool validodata=true;
             bool validocns=true;
+            teste_login:
             try{ //verifica se é válido
                 std::cin >> login;
                 //verifica se o login já está cadastrado
@@ -120,14 +121,7 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!valido){
                     std::cerr << e.what();
-                    std::cin >> login;
-                    for(int i=0;i<login.length();i++){
-                        if(ispunct(login[i])){
-                            valido=false;
-                            break;
-                        }
-                        valido=true;
-                    }
+                    goto teste_login;
                 }
             }
             std::cout << "Escolha uma senha: ";
@@ -218,6 +212,7 @@ int main(void){
                     }
                 }
             }
+            teste_cpf:
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
@@ -243,17 +238,7 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validocpf){
                     std::cerr << e.what();
-                    std::cin >> cpf;
-                    for(int i=0;i<cpf.length();i++){
-                        if(isalpha(cpf[i])){
-                            validocpf=false;
-                            break;
-                        }
-                        validocpf=true;
-                    }
-                    if(cpf.length()<11){
-                        validocpf=false;
-                    }
+                    goto teste_cpf;
                 }
             }
             //strings auxiliares para tratamento de exceção de data
@@ -311,13 +296,14 @@ int main(void){
                     goto s;
                 }
             }
+            teste_cns:
             std::cout << "Digite o número do seu cartão nacional de saúde: ";
             try { //verifica se é um número válido
                 std::cin >> cns;
                 //verifica se é um cns já cadastrado
                 for(int i=0;i<_paciente.size();i++){
                     if(cns==_paciente[i]->get_cns()){
-                        valido=false;
+                        validocns=false;
                         throw std::invalid_argument("Número de cartão nacional de saúde já cadastrado\n");
                     }
                 }
@@ -331,14 +317,7 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validocns && cns.length()<15){
                     std::cerr << e.what();
-                    std::cin >> cns;
-                    for(int i=0;i<cns.length();i++){
-                        if(!isdigit(cns[i])){
-                            validocns=false;
-                            break;
-                        }
-                        validocns=true;
-                    }
+                    goto teste_cns;
                 }
             }
             std::cout << "---------------------------------------- " << std::endl;
@@ -458,6 +437,7 @@ int main(void){
             bool validocpf=true;
             bool validoemail=false;
             bool validodata=true;
+            teste_login_2:
             try{ //verifica se é válido
                 std::cin >> login;
                 //verifica se já está cadastrado
@@ -477,14 +457,7 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!valido){
                     std::cerr << e.what();
-                    std::cin >> login;
-                    for(int i=0;i<login.length();i++){
-                        if(ispunct(login[i])){
-                            valido=false;
-                            break;
-                        }
-                        valido=true;
-                    }
+                    goto teste_login_2;
                 }
             }
             std::cout << "Escolha uma senha: ";
@@ -575,6 +548,7 @@ int main(void){
                     }
                 }
             }
+            teste_cpf_2:
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
@@ -600,17 +574,7 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validocpf){
                     std::cerr << e.what();
-                    std::cin >> cpf;
-                    for(int i=0;i<cpf.length();i++){
-                        if(isalpha(cpf[i])){
-                            validocpf=false;
-                            break;
-                        }
-                        validocpf=true;
-                    }
-                    if(cpf.length()<11){
-                        validocpf=false;
-                    }
+                    goto teste_cpf_2;
                 }
             }
             //tratamento de exceção da data
@@ -775,6 +739,7 @@ int main(void){
             bool validoemail=false;
             bool validocoren=true;
             bool validodata=true;
+            teste_login_3:
             try{ //verifica se é válido
                 std::cin >> login;
                 //verifica se o login já está em uso
@@ -794,14 +759,7 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!valido){
                     std::cerr << e.what();
-                    std::cin >> login;
-                    for(int i=0;i<login.length();i++){
-                        if(ispunct(login[i])){
-                            valido=false;
-                            break;
-                        }
-                        valido=true;
-                    }
+                    goto teste_login_3;
                 }
             }
             std::cout << "Escolha uma senha: ";
@@ -892,6 +850,7 @@ int main(void){
                     }
                 }
             }
+            teste_cpf_3:
             std::cout << "Digite seu cpf: ";
             try { //verifica se o cpf é válido
                 std::cin >> cpf;
@@ -917,17 +876,7 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validocpf){
                     std::cerr << e.what();
-                    std::cin >> cpf;
-                    for(int i=0;i<cpf.length();i++){
-                        if(isalpha(cpf[i])){
-                            validocpf=false;
-                            break;
-                        }
-                        validocpf=true;
-                    }
-                    if(cpf.length()<11){
-                        validocpf=false;
-                    }
+                    goto teste_cpf_3;
                 }
             }
             //strings auxiliares para tratamento de exceção da data
@@ -984,6 +933,7 @@ int main(void){
                     goto t;
                 }
             } 
+            teste_coren:
             std::cout << "Digite seu número do coren: ";
             try { //verifica se o valor digitado é válido
                 std::cin >> coren;
@@ -1004,14 +954,7 @@ int main(void){
             } catch(std::invalid_argument& e){
                 while(!validocoren){
                     std::cerr << e.what();
-                    std::cin >> coren;
-                    for(int i=0;i<coren.length();i++){
-                        if(!isdigit(coren[i])){
-                            validocoren=false;
-                            break;
-                        }
-                        validocoren=true;
-                    }
+                    goto teste_coren;
                 }
             }
             std::cout << "---------------------------------------- " << std::endl;
